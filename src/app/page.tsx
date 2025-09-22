@@ -701,9 +701,9 @@ export default function Home() {
     </p>
 
     {/* Icons with full-height dividers (right) */}
-    <div className="flex flex-wrap gap-4 sm:flex-nowrap sm:items-stretch sm:text-center sm:overflow-visible">
+    <div className="grid grid-cols-2 gap-0 border border-gray-300 dark:border-gray-600 rounded-lg sm:flex sm:flex-nowrap sm:items-stretch sm:text-center sm:overflow-visible sm:border-0 sm:rounded-none">
       {/* Item 1 */}
-      <div className="flex flex-col items-center p-2 sm:px-6 cursor-pointer group w-1/2 sm:w-auto">
+      <div className="flex flex-col items-center p-4 border-r border-b border-gray-300 dark:border-gray-600 sm:border-0 cursor-pointer group">
         <div 
           ref={setIconRef(0)}
           className="mb-2 transition-colors duration-300 group-hover:text-orange-500"
@@ -718,11 +718,9 @@ export default function Home() {
         </p>
       </div>
 
-      {/* Divider */}
-      <span className="w-px bg-gray-600 self-stretch" />
 
       {/* Item 2 */}
-      <div className="flex flex-col items-center p-2 sm:px-6 cursor-pointer group w-1/2 sm:w-auto">
+      <div className="flex flex-col items-center p-4 border-b border-gray-300 dark:border-gray-600 sm:border-0 cursor-pointer group">
         <div 
           ref={setIconRef(1)}
           className="mb-2 transition-colors duration-300 group-hover:text-orange-500"
@@ -737,11 +735,9 @@ export default function Home() {
         </p>
       </div>
 
-      {/* Divider */}
-      <span className="w-px bg-gray-600 self-stretch" />
 
       {/* Item 3 */}
-      <div className="flex flex-col items-center p-2 sm:px-6 cursor-pointer group w-1/2 sm:w-auto">
+      <div className="flex flex-col items-center p-4 border-r border-gray-300 dark:border-gray-600 sm:border-0 cursor-pointer group">
         <div 
           ref={setIconRef(2)}
           className="mb-2 transition-colors duration-300 group-hover:text-orange-500"
@@ -756,11 +752,9 @@ export default function Home() {
         </p>
       </div>
 
-      {/* Divider */}
-      <span className="w-px bg-gray-600 self-stretch" />
 
       {/* Item 4 */}
-      <div className="flex flex-col items-center p-2 sm:px-6 cursor-pointer group w-1/2 sm:w-auto">
+      <div className="flex flex-col items-center p-4 cursor-pointer group">
         <div 
           ref={setIconRef(3)}
           className="mb-2 transition-colors duration-300 group-hover:text-orange-500"
