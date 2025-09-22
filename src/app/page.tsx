@@ -13,6 +13,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
+// Mobile detection utility
+const isMobile = () => {
+  if (typeof window === 'undefined') return false
+  return window.innerWidth < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+}
+
 export default function Home() {
   const [imageLoading, setImageLoading] = useState(true)
   const [featuredImageLoading, setFeaturedImageLoading] = useState(true)
@@ -108,14 +114,16 @@ export default function Home() {
     })
 
     // Create timeline
-    const tl = gsap.timeline({
+    const tl = gsap.timeline(
+      isMobile() ? {} : {
       scrollTrigger: {
         trigger: educationSectionRef.current,
         start: "top 80%",
         end: "bottom 20%",
         toggleActions: "play none none reverse"
       }
-    })
+      }
+    )
 
     // Animate title and subtext first
     if (title) {
@@ -198,14 +206,16 @@ export default function Home() {
     })
 
     // Create timeline
-    const tl = gsap.timeline({
+    const tl = gsap.timeline(
+      isMobile() ? {} : {
       scrollTrigger: {
         trigger: metricsSectionRef.current,
         start: "top 80%",
         end: "bottom 20%",
         toggleActions: "play none none reverse"
       }
-    })
+      }
+    )
 
     // Animate all metric cards with stagger
     tl.to(metrics, {
@@ -288,14 +298,16 @@ export default function Home() {
     })
 
     // Create timeline for intro and image
-    const tl = gsap.timeline({
+    const tl = gsap.timeline(
+      isMobile() ? {} : {
       scrollTrigger: {
         trigger: mainBodySectionRef.current,
         start: "top 85%",
         end: "bottom 15%",
         toggleActions: "play none none reverse"
       }
-    })
+      }
+    )
 
     // Animate intro text
     tl.to(introText, {
@@ -322,12 +334,14 @@ export default function Home() {
         scale: 1,
         duration: 1.2,
         ease: "back.out(1.7)",
+        ...(isMobile() ? {} : {
         scrollTrigger: {
           trigger: ctaButtons,
           start: "top 85%",
           end: "bottom 15%",
           toggleActions: "play none none reverse"
         }
+        })
       })
     }
 
@@ -348,14 +362,16 @@ export default function Home() {
     })
 
     // Create timeline with delay after education icons animation
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: educationSectionRef.current,
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play none none reverse"
+    const tl = gsap.timeline(
+      isMobile() ? {} : {
+        scrollTrigger: {
+          trigger: educationSectionRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse"
+        }
       }
-    })
+    )
 
     // Delay to start after education icons animation and SplitText title animation
     tl.to(skillCards, {
@@ -395,14 +411,16 @@ export default function Home() {
     })
 
     // Create timeline
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: featuredCaseStudyRef.current,
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play none none reverse"
+    const tl = gsap.timeline(
+      isMobile() ? {} : {
+        scrollTrigger: {
+          trigger: featuredCaseStudyRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse"
+        }
       }
-    })
+    )
 
     // Animate content elements and image simultaneously
     const contentElements = [badge, title, challenge, buttons].filter(Boolean)
@@ -597,15 +615,15 @@ export default function Home() {
                 </div>
                 <div className="absolute inset-0 overflow-hidden rounded-2xl">
                   {featuredImageLoading && <ImageLoading />}
-                  <Image
-                    src="/charts.png"
-                    alt="Crypto Portfolio Manager Case Study"
-                    fill
+                <Image
+                  src="/charts.png"
+                  alt="Crypto Portfolio Manager Case Study"
+                  fill
                     className={`object-cover transition-all duration-700 group-hover:scale-105 ${featuredImageLoading ? 'opacity-0' : 'opacity-100'}`}
                     onLoad={() => setFeaturedImageLoading(false)}
-                  />
-                  {/* Gradient overlay for modern look */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                />
+                {/* Gradient overlay for modern look */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
               </div>
               
