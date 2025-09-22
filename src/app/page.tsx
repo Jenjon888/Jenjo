@@ -701,9 +701,9 @@ export default function Home() {
     </p>
 
     {/* Icons with full-height dividers (right) */}
-    <div className="flex items-stretch text-center overflow-x-auto sm:overflow-visible">
+    <div className="grid grid-cols-2 gap-4 sm:flex sm:items-stretch sm:text-center sm:overflow-visible">
       {/* Item 1 */}
-      <div className="flex flex-col items-center px-2 sm:px-6 cursor-pointer group">
+      <div className="flex flex-col items-center p-2 sm:px-6 cursor-pointer group">
         <div 
           ref={setIconRef(0)}
           className="mb-2 transition-colors duration-300 group-hover:text-orange-500"
@@ -722,7 +722,7 @@ export default function Home() {
       <span className="w-px bg-gray-600 self-stretch" />
 
       {/* Item 2 */}
-      <div className="flex flex-col items-center px-2 sm:px-6 cursor-pointer group">
+      <div className="flex flex-col items-center p-2 sm:px-6 cursor-pointer group">
         <div 
           ref={setIconRef(1)}
           className="mb-2 transition-colors duration-300 group-hover:text-orange-500"
@@ -741,7 +741,7 @@ export default function Home() {
       <span className="w-px bg-gray-600 self-stretch" />
 
       {/* Item 3 */}
-      <div className="flex flex-col items-center px-2 sm:px-6 cursor-pointer group">
+      <div className="flex flex-col items-center p-2 sm:px-6 cursor-pointer group">
         <div 
           ref={setIconRef(2)}
           className="mb-2 transition-colors duration-300 group-hover:text-orange-500"
@@ -760,7 +760,7 @@ export default function Home() {
       <span className="w-px bg-gray-600 self-stretch" />
 
       {/* Item 4 */}
-      <div className="flex flex-col items-center px-2 sm:px-6 cursor-pointer group">
+      <div className="flex flex-col items-center p-2 sm:px-6 cursor-pointer group">
         <div 
           ref={setIconRef(3)}
           className="mb-2 transition-colors duration-300 group-hover:text-orange-500"
