@@ -1,26 +1,130 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #0a0a0a;
+  --foreground: #ffffff;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-dm-sans), Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Removed old logo scroll animation - now using Framer Motion InfiniteSlider */
+
+/* Custom max width for 1440px */
+.max-w-1440 {
+  max-width: 1440px;
+}
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg));
+  }
+  100% {
+    transform: rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px)) rotate(calc((var(--angle) * -1deg) - 360deg));
+  }
+}
+
+/* Logo hover effects */
+@keyframes liquidFlow {
+  0% {
+    transform: scale(1) rotate(0deg);
+    border-radius: 50% 40% 60% 30%;
+  }
+  25% {
+    transform: scale(1.1) rotate(90deg);
+    border-radius: 30% 60% 40% 50%;
+  }
+  50% {
+    transform: scale(1.05) rotate(180deg);
+    border-radius: 60% 30% 50% 40%;
+  }
+  75% {
+    transform: scale(1.1) rotate(270deg);
+    border-radius: 40% 50% 30% 60%;
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+    border-radius: 50% 40% 60% 30%;
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(249, 115, 22, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.8), 0 0 30px rgba(249, 115, 22, 0.6);
+  }
+}
+
+.logo-liquid:hover {
+  animation: liquidFlow 2s ease-in-out infinite;
+}
+
+.logo-bounce:hover {
+  animation: bounce 1s ease-in-out;
+}
+
+.logo-shimmer:hover::before {
+  animation: shimmer 1.5s ease-in-out;
+}
+
+.logo-glow:hover {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Pulsating color effect for blog read more text on hover */
+@keyframes pulse-orange-hover {
+  0%, 100% {
+    color: rgb(107 114 128); /* gray-500 */
+  }
+  50% {
+    color: rgb(249 115 22); /* orange-500 */
+  }
+}
+
+.pulse-orange-hover:hover {
+  animation: pulse-orange-hover 1s ease-in-out infinite !important;
 }
