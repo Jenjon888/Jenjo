@@ -746,7 +746,7 @@ export default function Home() {
         </div>
         <p 
           ref={setTextRef(2)}
-          className="text-sm text-gray-700 dark:text-gray-300 leading-tight"
+          className="text-sm text-gray-700 dark:text-gray-300 leading-tight text-center"
         >
           Full Stack Development
         </p>
