@@ -460,7 +460,7 @@ export default function Home() {
 
                 {/* MAIN BODY SECTION */}
 <section ref={mainBodySectionRef} className="flex justify-center">
-  <div className="relative w-full max-w-6xl rounded-[12px] bg-gray-100 dark:bg-[#141414] py-4 md:py-6 lg:py-8 text-black dark:text-white">
+  <div className="relative w-full max-w-6xl rounded-[12px] bg-gray-100 dark:bg-[#141414] pt-4 md:py-6 lg:py-8 text-black dark:text-white">
     <div className="space-y-12 px-8 md:px-14 pt-6">
       
      
@@ -585,7 +585,7 @@ export default function Home() {
 </section>
 
   {/* Featured Case Study Section */}
-  <section ref={featuredCaseStudyRef} className="flex justify-center pt-16 pb-16">
+  <section ref={featuredCaseStudyRef} className="flex justify-center pt-16 pb-0 md:pb-16">
     <div className="relative w-full max-w-6xl px-8 py-16 lg:px-16 lg:py-24 rounded-2xl overflow-hidden bg-gray-50 dark:bg-transparent">
       <BorderBeam 
         size={200}
