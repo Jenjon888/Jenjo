@@ -91,7 +91,7 @@ export default function HeroSection() {
                                 <Button
                                     asChild
                                     size="lg"
-                                    className="px-6 text-base rounded-xl bg-transparent border border-gray-700 text-gray-300 hover:bg-gray-800">
+                                    className="px-6 text-base rounded-xl bg-transparent border border-gray-700 text-gray-300 hover:bg-gray-800 w-fit">
                                     <Link href="/case-studies">
                                         View case studies
                                     </Link>
@@ -99,7 +99,7 @@ export default function HeroSection() {
                                 <Button
                                     asChild
                                     size="lg"
-                                    className="px-6 text-base rounded-xl bg-white text-black hover:bg-gray-200">
+                                    className="px-6 text-base rounded-xl bg-white text-black hover:bg-gray-200 w-fit">
                                     <Link href="/experience">
                                         View CV
                                     </Link>
