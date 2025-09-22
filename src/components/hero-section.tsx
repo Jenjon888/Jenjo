@@ -87,7 +87,7 @@ export default function HeroSection() {
                             Senior UX/UI Product Designer specialising in research-driven design that simplifies complex workflows.
                             </p>
 
-                            <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-4 mt-6 justify-start" style={{ opacity: 0, scale: 0.5, filter: "blur(20px)" }}>
+                            <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-4 mt-6 justify-start sm:justify-center" style={{ opacity: 0, scale: 0.5, filter: "blur(20px)" }}>
                                 <Button
                                     asChild
                                     size="lg"
