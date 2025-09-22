@@ -141,16 +141,6 @@ export default function Navigation() {
                     >
                         Contact
                     </Link>
-                    <Link 
-                        href="/test" 
-                        className={`transition-all duration-300 ease-out ${
-                            isActive('/test') 
-                                ? 'text-orange-500' 
-                                : 'text-black dark:text-white hover:scale-105'
-                        }`}
-                    >
-                        Test
-                    </Link>
                 </nav>
                 
                 {/* Desktop Actions (lg and above) */}
@@ -309,17 +299,6 @@ export default function Navigation() {
                                         }`}
                                     >
                                         Contact
-                                    </Link>
-                                    <Link 
-                                        href="/test" 
-                                        onClick={closeMobileMenu}
-                                        className={`block px-4 py-3 text-lg rounded-lg transition-all duration-300 ease-out ${
-                                            isActive('/test') 
-                                                ? 'text-orange-500 bg-orange-50 dark:bg-orange-900/20' 
-                                                : 'text-black dark:text-white hover:scale-105 hover:shadow-md'
-                                        }`}
-                                    >
-                                        Test
                                     </Link>
                                 </div>
                             </nav>
