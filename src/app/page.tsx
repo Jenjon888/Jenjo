@@ -810,8 +810,7 @@ export default function Home() {
     {/* Card 1 */}
     <TiltedTextCard>
       <div ref={setSkillCardRef(0)} className="bg-white dark:bg-[#1f1f1f] border border-gray-200 dark:border-transparent rounded-xl p-6 flex flex-col h-full">
-        <h4 className="text-lg font-semibold text-black dark:text-white">UX &</h4>
-        <p className="text-gray-600 dark:text-gray-400 mb-8">Research</p>
+        <h4 className="text-lg font-semibold text-black dark:text-white mb-8">UX & Research</h4>
         <div className="flex flex-col gap-3">
           {[
             "User Research & Testing",
@@ -834,8 +833,7 @@ export default function Home() {
     {/* Card 2 */}
     <TiltedTextCard>
       <div ref={setSkillCardRef(1)} className="bg-white dark:bg-[#1f1f1f] border border-gray-200 dark:border-transparent rounded-xl p-6 flex flex-col h-full">
-        <h4 className="text-lg font-semibold text-black dark:text-white">UI &</h4>
-        <p className="text-gray-600 dark:text-gray-400 mb-8">Visual Design</p>
+        <h4 className="text-lg font-semibold text-black dark:text-white mb-8">UI & Visual Design</h4>
         <div className="flex flex-col gap-3">
           {[
             "User Interface Design",
@@ -858,8 +856,7 @@ export default function Home() {
     {/* Card 3 */}
     <TiltedTextCard>
       <div ref={setSkillCardRef(2)} className="bg-white dark:bg-[#1f1f1f] border border-gray-200 dark:border-transparent rounded-xl p-6 flex flex-col h-full">
-        <h4 className="text-lg font-semibold text-black dark:text-white">Front end</h4>
-        <p className="text-gray-600 dark:text-gray-400 mb-8">Development</p>
+        <h4 className="text-lg font-semibold text-black dark:text-white mb-8">Front end Development</h4>
         <div className="flex flex-col gap-3">
           {["React.js", "Next.js", "Vue.js", "HTML/CSS", "Tailwind UI"].map(
             (item) => (
@@ -878,8 +875,7 @@ export default function Home() {
     {/* Card 4 */}
     <TiltedTextCard>
       <div ref={setSkillCardRef(3)} className="bg-white dark:bg-[#1f1f1f] border border-gray-200 dark:border-transparent rounded-xl p-6 flex flex-col h-full">
-        <h4 className="text-lg font-semibold text-black dark:text-white">Design</h4>
-        <p className="text-gray-600 dark:text-gray-400 mb-8">Tools</p>
+        <h4 className="text-lg font-semibold text-black dark:text-white mb-8">Design Tools</h4>
         <div className="flex flex-col gap-3">
           {["Figma", "Adobe Suite", "Supernova"].map((item) => (
             <span
