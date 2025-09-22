@@ -797,7 +797,7 @@ export default function Home() {
         rootMargin="-50px"
       />
     )}
-    <a href="/skills" className="flex items-center w-full sm:w-fit bg-black dark:bg-white text-white dark:text-black rounded-xl px-6 py-3 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors text-sm font-medium">
+    <a href="/skills" className="flex items-center w-full sm:w-fit bg-black dark:bg-white text-white dark:text-black rounded-xl px-6 py-3 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors font-medium">
       <span>View my process</span>
       <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

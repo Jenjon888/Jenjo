@@ -1,7 +1,6 @@
 'use client'
 import React, { useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { Button } from '@/components/ui/button'
 // import { LogoSlider } from '@/components/logo-slider'
 // import LogoCloud from '@/components/logo-cloud'
 import { InteractiveGlobe } from '@/components/interactive-globe'
@@ -88,22 +87,18 @@ export default function HeroSection() {
                             </p>
 
                             <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-4 mt-6 justify-start sm:justify-center" style={{ opacity: 0, scale: 0.5, filter: "blur(20px)" }}>
-                                <Button
-                                    asChild
-                                    size="lg"
-                                    className="px-6 text-base rounded-xl bg-transparent border border-gray-700 text-gray-300 hover:bg-gray-800 w-fit">
-                                    <Link href="/case-studies">
-                                        View case studies
-                                    </Link>
-                                </Button>
-                                <Button
-                                    asChild
-                                    size="lg"
-                                    className="px-6 text-base rounded-xl bg-white text-black hover:bg-gray-200 w-fit">
-                                    <Link href="/experience">
-                                        View CV
-                                    </Link>
-                                </Button>
+                                <Link 
+                                    href="/case-studies"
+                                    className="flex items-center w-full sm:w-fit bg-black dark:bg-white text-white dark:text-black rounded-xl px-6 py-3 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
+                                >
+                                    <span className="font-medium">View case studies</span>
+                                </Link>
+                                <Link 
+                                    href="/experience"
+                                    className="flex items-center w-full sm:w-fit bg-black dark:bg-white text-white dark:text-black rounded-xl px-6 py-3 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
+                                >
+                                    <span className="font-medium">View CV</span>
+                                </Link>
                                 
                             </div>
                         </div>
