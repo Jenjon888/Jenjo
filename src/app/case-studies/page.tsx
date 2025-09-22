@@ -98,7 +98,7 @@ export default function CaseStudies() {
               <div key={item.id} className="group">
                 {/* Image */}
                 <Link href={item.link} className="block">
-                  <div className="relative w-full h-80 md:h-96 overflow-hidden rounded-lg cursor-pointer">
+                  <div className="relative w-full h-96 md:h-96 overflow-hidden rounded-lg cursor-pointer">
                     <Image
                       src={item.image || "/20.jpg"}
                       alt={item.title}

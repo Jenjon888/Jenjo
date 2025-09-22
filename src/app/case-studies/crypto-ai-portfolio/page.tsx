@@ -33,7 +33,7 @@ export default function CaseStudyPage() {
       {/* Hero Image */}
       <section className="px-8 pt-16">
         <div className="max-w-6xl mx-auto">
-          <div className="w-full h-[600px] md:h-[800px] relative overflow-hidden rounded-lg">
+          <div className="w-full h-[500px] md:h-[800px] relative overflow-hidden rounded-lg">
             <Image
               src="/crypto/7.png"
               alt="Crypto Portfolio Manager Dashboard"
@@ -228,7 +228,7 @@ export default function CaseStudyPage() {
 
                      {/* Image Placeholder - Between Challenge and Approach */}
            <section className="py-8">
-             <div className="w-full h-[680px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
+             <div className="w-full h-[400px] md:h-[680px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
                <Image
                  src="/crypto/3.png"
                  alt="Problem Analysis - User pain points and market research"
@@ -312,7 +312,7 @@ export default function CaseStudyPage() {
 
                     {/* Image Placeholder - Between Challenge and Approach */}
           <section className="py-8">
-            <div className="w-full h-[980px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
+            <div className="w-full h-[500px] md:h-[980px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
               <Image
                 src="/crypto/6.png"
                 alt="Problem Analysis - User pain points and market research"
@@ -323,7 +323,7 @@ export default function CaseStudyPage() {
           </section>
 
           <section className="py-8">
-            <div className="w-full h-[980px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
+            <div className="w-full h-[500px] md:h-[980px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
               <Image
                 src="/crypto/5.png"
                 alt="Problem Analysis - User pain points and market research"
