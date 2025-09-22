@@ -856,7 +856,7 @@ export default function Home() {
     {/* Card 3 */}
     <TiltedTextCard>
       <div ref={setSkillCardRef(2)} className="bg-white dark:bg-[#1f1f1f] border border-gray-200 dark:border-transparent rounded-xl p-6 flex flex-col h-full">
-        <h4 className="text-lg font-semibold text-black dark:text-white mb-8">Front end Development</h4>
+        <h4 className="text-lg font-semibold text-black dark:text-white mb-8">Front End Development</h4>
         <div className="flex flex-col gap-3">
           {["React.js", "Next.js", "Vue.js", "HTML/CSS", "Tailwind UI"].map(
             (item) => (
