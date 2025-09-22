@@ -701,9 +701,9 @@ export default function Home() {
     </p>
 
     {/* Icons with full-height dividers (right) */}
-    <div className="flex items-stretch text-center">
+    <div className="flex items-stretch text-center overflow-x-auto">
       {/* Item 1 */}
-      <div className="flex flex-col items-center px-6 cursor-pointer group">
+      <div className="flex flex-col items-center px-2 sm:px-6 cursor-pointer group">
         <div 
           ref={setIconRef(0)}
           className="mb-2 transition-colors duration-300 group-hover:text-orange-500"
@@ -722,7 +722,7 @@ export default function Home() {
       <span className="w-px bg-gray-600 self-stretch" />
 
       {/* Item 2 */}
-      <div className="flex flex-col items-center px-6 cursor-pointer group">
+      <div className="flex flex-col items-center px-2 sm:px-6 cursor-pointer group">
         <div 
           ref={setIconRef(1)}
           className="mb-2 transition-colors duration-300 group-hover:text-orange-500"
@@ -741,7 +741,7 @@ export default function Home() {
       <span className="w-px bg-gray-600 self-stretch" />
 
       {/* Item 3 */}
-      <div className="flex flex-col items-center px-6 cursor-pointer group">
+      <div className="flex flex-col items-center px-2 sm:px-6 cursor-pointer group">
         <div 
           ref={setIconRef(2)}
           className="mb-2 transition-colors duration-300 group-hover:text-orange-500"
@@ -760,7 +760,7 @@ export default function Home() {
       <span className="w-px bg-gray-600 self-stretch" />
 
       {/* Item 4 */}
-      <div className="flex flex-col items-center px-6 cursor-pointer group">
+      <div className="flex flex-col items-center px-2 sm:px-6 cursor-pointer group">
         <div 
           ref={setIconRef(3)}
           className="mb-2 transition-colors duration-300 group-hover:text-orange-500"
@@ -783,7 +783,7 @@ export default function Home() {
       {/* Skills Section */}
 <div className="space-y-8">
   {/* Heading */}
-  <div className="flex items-center justify-between pt-8">
+  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pt-8 gap-4">
     <SplitText
       text="Core Expertise and Tools"
       tag="h3"
@@ -797,8 +797,11 @@ export default function Home() {
       threshold={0.1}
       rootMargin="-50px"
     />
-    <a href="/skills" className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors">
-      View my process →
+    <a href="/skills" className="flex items-center w-full sm:w-fit bg-black dark:bg-white text-white dark:text-black rounded-xl px-6 py-3 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors text-sm font-medium">
+      <span>View my process</span>
+      <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
     </a>
   </div>
 
