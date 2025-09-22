@@ -29,7 +29,7 @@ export default function YLDDesignSystemCaseStudy() {
       {/* Hero Image */}
       <section className="px-8 pt-16">
         <div className="max-w-6xl mx-auto">
-          <div className="w-full h-[600px] md:h-[800px] relative overflow-hidden rounded-lg">
+          <div className="w-full h-[500px] md:h-[800px] relative overflow-hidden rounded-lg">
             <Image
               src="/DS1.png"
               alt="Multi-Brand Design System Components"
@@ -280,7 +280,7 @@ export default function YLDDesignSystemCaseStudy() {
 
                     <section className="py-8">
             <div className="w-full">
-              <div className="w-full h-[880px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
+              <div className="w-full h-[500px] md:h-[880px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
                 <Image
                   src="/yld/9.png"
                   alt="Discovery Process - Stakeholder interviews and UI audit"
@@ -339,7 +339,7 @@ export default function YLDDesignSystemCaseStudy() {
 
            <section className="">
               <div className="w-full">
-                <div className="w-full h-[420px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
+                <div className="w-full h-[300px] md:h-[420px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
                   <Image
                     src="/yld/6.png"
                     alt="Discovery Process - Stakeholder interviews and UI audit"
@@ -352,7 +352,7 @@ export default function YLDDesignSystemCaseStudy() {
 
                      <section className="">
              <div className="w-full">
-               <div className="w-full h-[740px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
+               <div className="w-full h-[400px] md:h-[740px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
                  <Image
                    src="/yld/3.png"
                    alt="Discovery Process - Stakeholder interviews and UI audit"
@@ -365,7 +365,7 @@ export default function YLDDesignSystemCaseStudy() {
 
           <section className="pb-8">
             <div className="w-full">
-              <div className="w-full h-[580px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
+              <div className="w-full h-[350px] md:h-[580px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
                 <Image
                   src="/yld/11.png"
                   alt="Discovery Process - Stakeholder interviews and UI audit"
@@ -380,7 +380,7 @@ export default function YLDDesignSystemCaseStudy() {
           <section className="pb-8">
             <div className="w-full">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="w-full h-[480px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
+                <div className="w-full h-[300px] md:h-[480px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
                   <Image
                     src="/yld/12.png"
                     alt="Design System Components - Multi-brand theming and patterns"
@@ -388,7 +388,7 @@ export default function YLDDesignSystemCaseStudy() {
                     className="object-cover"
                   />
                 </div>
-                <div className="w-full h-[480px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
+                <div className="w-full h-[300px] md:h-[480px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
                   <Image
                     src="/yld/13.png"
                     alt="Training & Adoption - Team workshops and implementation"
@@ -424,7 +424,7 @@ export default function YLDDesignSystemCaseStudy() {
                               {/* Design Council Visual */}
                                <section className="py-8">
             <div className="w-full">
-              <div className="w-full h-[460px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
+              <div className="w-full h-[300px] md:h-[460px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
                 <Image
                   src="/yld/8.png"
                   alt="Design Council - Organisational impact and governance structure"
