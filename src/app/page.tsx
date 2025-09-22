@@ -561,7 +561,7 @@ export default function Home() {
   <button 
     onClick={handleContactClick}
     disabled={isContactLoading}
-    className="flex items-center w-fit bg-black dark:bg-white text-white dark:text-black rounded-xl px-6 py-3 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+    className="flex items-center w-full sm:w-fit bg-black dark:bg-white text-white dark:text-black rounded-xl px-6 py-3 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
   >
     {isContactLoading ? (
       <>
@@ -575,7 +575,7 @@ export default function Home() {
       </>
     )}
   </button>
-  <a href="/about" className="flex items-center w-fit border border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+  <a href="/about" className="flex items-center w-full sm:w-fit border border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
     <span className="font-medium">View my experience</span>
   </a>
 </div>
@@ -663,7 +663,7 @@ export default function Home() {
             <div ref={featuredButtonsRef} className="flex flex-col sm:flex-row gap-4 pt-4">
               <a 
                 href="/case-studies/crypto-ai-portfolio"
-                className="flex items-center w-fit bg-black dark:bg-white text-white dark:text-black rounded-xl px-6 py-3 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
+                className="flex items-center w-full sm:w-fit bg-black dark:bg-white text-white dark:text-black rounded-xl px-6 py-3 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
               >
                 <span className="font-medium">View Case Study</span>
                 <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -672,7 +672,7 @@ export default function Home() {
               </a>
               <a 
                 href="/case-studies"
-                className="flex items-center w-fit border border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                className="flex items-center w-full sm:w-fit border border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               >
                 <span className="font-medium">All Case Studies</span>
               </a>
