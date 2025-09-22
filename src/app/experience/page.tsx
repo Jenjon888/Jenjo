@@ -27,9 +27,9 @@ export default function Experience() {
       </div>
       
       {/* Main Content */}
-      <div className="flex min-h-screen">
-         {/* Left Column - Completely Fixed */}
-         <div className="lg:w-1/3 lg:pr-12 lg:pl-8 lg:py-8 lg:fixed lg:top-20 lg:left-0 lg:h-screen lg:bg-white lg:dark:bg-black">
+      <div className="flex flex-col lg:flex-row min-h-screen">
+         {/* Left Column - CV Info and Stats */}
+         <div className="lg:w-1/3 lg:pr-12 lg:pl-8 lg:py-8 lg:fixed lg:top-20 lg:left-0 lg:h-screen lg:bg-white lg:dark:bg-black px-8 py-8 lg:px-0 lg:py-0">
            <div className="pt-8 pl-5 -mt-5">
            <h2 className="text-2xl md:text-3xl font-medium text-black dark:text-white">
             Current CV
@@ -73,7 +73,7 @@ export default function Experience() {
            </div>
          </div>
 
-        {/* Right Column - Scrollable Content */}
+        {/* Right Column - Professional Experience */}
         <div className="lg:w-2/3 lg:ml-[33.333333%] px-8 py-8 space-y-12 overflow-y-auto max-w-[600px]">
               
                
