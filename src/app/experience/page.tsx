@@ -30,7 +30,7 @@ export default function Experience() {
       <div className="flex flex-col lg:flex-row min-h-screen">
          {/* Left Column - CV Info and Stats */}
          <div className="lg:w-1/3 lg:pr-12 lg:pl-8 lg:py-8 lg:fixed lg:top-20 lg:left-0 lg:h-screen lg:bg-white lg:dark:bg-black px-8 py-8 lg:px-0 lg:py-0">
-           <div className="pt-8 pl-5 -mt-5">
+           <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 lg:bg-transparent lg:dark:bg-transparent lg:rounded-none lg:p-0 pt-8 pl-5 -mt-5">
            <h2 className="text-2xl md:text-3xl font-medium text-black dark:text-white">
             Current CV
           </h2>
