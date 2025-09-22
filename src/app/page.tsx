@@ -694,14 +694,14 @@ export default function Home() {
   </h2>
 
   {/* Subtext + Icons row */}
-  <div className="flex items-start justify-between">
+  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
     {/* Subtext (left) */}
-    <p ref={educationSubtextRef} className="text-gray-600 dark:text-gray-400 whitespace-nowrap mr-8">
+    <p ref={educationSubtextRef} className="text-gray-600 dark:text-gray-400 sm:whitespace-nowrap sm:mr-8">
       Digital Arts and Multimedia Computing, 1999
     </p>
 
     {/* Icons with full-height dividers (right) */}
-    <div className="flex items-stretch text-center overflow-x-auto">
+    <div className="flex items-stretch text-center overflow-x-auto sm:overflow-visible">
       {/* Item 1 */}
       <div className="flex flex-col items-center px-2 sm:px-6 cursor-pointer group">
         <div 
