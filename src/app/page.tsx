@@ -784,19 +784,25 @@ export default function Home() {
 <div className="space-y-8">
   {/* Heading */}
   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pt-8 gap-4">
-    <SplitText
-      text="Core Expertise and Tools"
-      tag="h3"
-      className="text-2xl md:text-3xl font-medium leading-snug"
-      splitType="chars"
-      delay={50}
-      duration={0.8}
-      ease="power3.out"
-      from={{ opacity: 0, y: 50, rotationX: -90 }}
-      to={{ opacity: 1, y: 0, rotationX: 0 }}
-      threshold={0.1}
-      rootMargin="-50px"
-    />
+    {isMobile() ? (
+      <h3 className="text-2xl md:text-3xl font-medium leading-snug">
+        Core Expertise and Tools
+      </h3>
+    ) : (
+      <SplitText
+        text="Core Expertise and Tools"
+        tag="h3"
+        className="text-2xl md:text-3xl font-medium leading-snug"
+        splitType="chars"
+        delay={50}
+        duration={0.8}
+        ease="power3.out"
+        from={{ opacity: 0, y: 50, rotationX: -90 }}
+        to={{ opacity: 1, y: 0, rotationX: 0 }}
+        threshold={0.1}
+        rootMargin="-50px"
+      />
+    )}
     <a href="/skills" className="flex items-center w-full sm:w-fit bg-black dark:bg-white text-white dark:text-black rounded-xl px-6 py-3 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors text-sm font-medium">
       <span>View my process</span>
       <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -822,7 +828,7 @@ export default function Home() {
           ].map((item) => (
             <span
               key={item}
-              className="bg-gray-100 dark:bg-[#2a2a2a] px-4 py-2 rounded-full text-sm text-gray-800 dark:text-gray-300 w-fit"
+              className="bg-gray-100 dark:bg-[#2a2a2a] px-4 py-2 rounded-full text-base text-gray-800 dark:text-gray-300 w-fit"
             >
               {item}
             </span>
@@ -846,7 +852,7 @@ export default function Home() {
           ].map((item) => (
             <span
               key={item}
-              className="bg-gray-100 dark:bg-[#2a2a2a] px-4 py-2 rounded-full text-sm text-gray-800 dark:text-gray-300 w-fit"
+              className="bg-gray-100 dark:bg-[#2a2a2a] px-4 py-2 rounded-full text-base text-gray-800 dark:text-gray-300 w-fit"
             >
               {item}
             </span>
@@ -865,7 +871,7 @@ export default function Home() {
             (item) => (
               <span
                 key={item}
-                className="bg-gray-100 dark:bg-[#2a2a2a] px-4 py-2 rounded-full text-sm text-gray-800 dark:text-gray-300 w-fit"
+                className="bg-gray-100 dark:bg-[#2a2a2a] px-4 py-2 rounded-full text-base text-gray-800 dark:text-gray-300 w-fit"
               >
                 {item}
               </span>
@@ -884,7 +890,7 @@ export default function Home() {
           {["Figma", "Adobe Suite", "Supernova"].map((item) => (
             <span
               key={item}
-              className="bg-gray-100 dark:bg-[#2a2a2a] px-4 py-2 rounded-full text-sm text-gray-800 dark:text-gray-300 w-fit"
+              className="bg-gray-100 dark:bg-[#2a2a2a] px-4 py-2 rounded-full text-base text-gray-800 dark:text-gray-300 w-fit"
             >
               {item}
             </span>
