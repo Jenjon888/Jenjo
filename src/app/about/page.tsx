@@ -174,12 +174,12 @@ export default function About() {
 
       {/* Availability Badge */}
       <div className="flex justify-center px-8 pt-8 pb-4">
-        <div ref={tagRef} className="flex items-center gap-3" style={{ opacity: 0, transform: "translateY(30px)" }}>
-          <div className="flex items-center bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 px-4 py-2 rounded-full">
+        <div ref={tagRef} className="flex flex-col sm:flex-row sm:items-center gap-3 w-full sm:w-auto" style={{ opacity: 0, transform: "translateY(30px)" }}>
+          <div className="flex items-center justify-center bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 px-4 py-2 rounded-full w-full sm:w-auto">
             <span className="w-2 h-2 rounded-full bg-green-500 mr-2"></span>
             <span className="text-sm font-medium">Open to new opportunities</span>
           </div>
-          <span className="text-sm text-gray-600 dark:text-gray-400">London-based, open to remote</span>
+          <span className="text-sm text-gray-600 dark:text-gray-400 hidden sm:block">London-based, open to remote</span>
         </div>
       </div>
 
