@@ -68,14 +68,14 @@ export default function Navigation() {
                         alt="Logo" 
                         width={258} 
                         height={86} 
-                        className="h-14 sm:h-16 lg:h-[86px] w-auto dark:hidden"
+                        className="h-20 sm:h-16 lg:h-[86px] w-auto dark:hidden"
                     />
                     <Image 
                         src="/wht-logo2.png" 
                         alt="Logo" 
                         width={258} 
                         height={86} 
-                        className="h-14 sm:h-16 lg:h-[86px] w-auto hidden dark:block"
+                        className="h-20 sm:h-16 lg:h-[86px] w-auto hidden dark:block"
                     />
                 </Link>
                 
