@@ -576,7 +576,7 @@ export default function Home() {
     )}
   </button>
   <a href="/about" className="flex items-center w-full sm:w-fit border border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-    <span className="font-medium">View my experience</span>
+    <span className="font-medium">View experience</span>
   </a>
 </div>
 
