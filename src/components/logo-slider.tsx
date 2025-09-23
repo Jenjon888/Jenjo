@@ -195,3 +195,150 @@ export function LogoSlider() {
 }
 
 
+
+
+          <InfiniteSlider
+
+            speed={50}
+
+            gap={64}
+
+            className="py-4"
+
+          >
+
+            {logos.map((logo, index) => (
+
+              <div
+
+                key={index}
+
+                className={`${logo.className} whitespace-nowrap flex-shrink-0`}
+
+              >
+
+                {logo.name}
+
+              </div>
+
+            ))}
+
+          </InfiniteSlider>
+
+          
+
+          {/* Gradient overlays for fade effect */}
+
+          <div className="absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-black to-transparent pointer-events-none z-10"></div>
+
+          <div className="absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-black to-transparent pointer-events-none z-10"></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  );
+
+}
+
+
+
+
+          <InfiniteSlider
+
+            speed={50}
+
+            gap={64}
+
+            className="py-4"
+
+          >
+
+            {logos.map((logo, index) => (
+
+              <div
+
+                key={index}
+
+                className={`${logo.className} whitespace-nowrap flex-shrink-0`}
+
+              >
+
+                {logo.name}
+
+              </div>
+
+            ))}
+
+          </InfiniteSlider>
+
+          
+
+          {/* Gradient overlays for fade effect */}
+
+          <div className="absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-black to-transparent pointer-events-none z-10"></div>
+
+          <div className="absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-black to-transparent pointer-events-none z-10"></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  );
+
+}
+
+
+
+
+          <InfiniteSlider
+
+            speed={50}
+
+            gap={64}
+
+            className="py-4"
+
+          >
+
+            {logos.map((logo, index) => (
+
+              <div
+
+                key={index}
+
+                className={`${logo.className} whitespace-nowrap flex-shrink-0`}
+
+              >
+
+                {logo.name}
+
+              </div>
+
+            ))}
+
+          </InfiniteSlider>
+
+          
+
+          {/* Gradient overlays for fade effect */}
+
+          <div className="absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-black to-transparent pointer-events-none z-10"></div>
+
+          <div className="absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-black to-transparent pointer-events-none z-10"></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  );
+
+}
+
+
