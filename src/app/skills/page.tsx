@@ -391,20 +391,42 @@ export default function Skills() {
       <div className="flex-1 max-w-6xl mx-auto px-6 pb-16">
         
         {/* Tab Navigation */}
-        <div className="flex flex-wrap justify-center gap-2 md:gap-8 mb-16 border-b border-gray-200 dark:border-gray-700">
-          {sections.map((section, index) => (
-            <button
-              key={section.id}
-              onClick={() => setActiveSection(section.id)}
-              className={`pb-4 px-2 text-sm md:text-base transition-colors ${
-                activeSection === section.id
-                  ? 'text-orange-500 border-b-2 border-orange-500'
-                  : 'text-black dark:text-white hover:scale-105'
-              }`}
-            >
-              {section.title}
-            </button>
-          ))}
+        <div className="mb-16 border-b border-gray-200 dark:border-gray-700">
+          {/* Mobile: Two-row grid layout */}
+          <div className="md:hidden pb-4">
+            <div className="grid grid-cols-3 gap-2">
+              {sections.map((section, index) => (
+                <button
+                  key={section.id}
+                  onClick={() => setActiveSection(section.id)}
+                  className={`py-3 px-2 text-sm font-medium transition-all duration-200 rounded-lg ${
+                    activeSection === section.id
+                      ? 'bg-orange-500 text-white'
+                      : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                  }`}
+                >
+                  {section.title}
+                </button>
+              ))}
+            </div>
+          </div>
+          
+          {/* Desktop: Original layout */}
+          <div className="hidden md:flex flex-wrap justify-center gap-2 md:gap-8">
+            {sections.map((section, index) => (
+              <button
+                key={section.id}
+                onClick={() => setActiveSection(section.id)}
+                className={`pb-4 px-2 text-sm md:text-base transition-colors ${
+                  activeSection === section.id
+                    ? 'text-orange-500 border-b-2 border-orange-500'
+                    : 'text-black dark:text-white hover:scale-105'
+                }`}
+              >
+                {section.title}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Two Column Layout */}
