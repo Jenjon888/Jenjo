@@ -74,15 +74,15 @@ export default function HeroSection() {
             <main className="overflow-x-hidden">
                 {/* HERO PANEL */}
                 <section className="flex justify-center px-2 md:px-6 lg:px-10 ">
-                    <div className="relative flex flex-col lg:flex-row items-center justify-between w-full max-w-6xl rounded-[12px] bg-[#141414] p-6 md:p-10 lg:p-12 text-white min-h-[600px]">
+                    <div className="relative flex flex-col lg:flex-row items-center justify-between w-full max-w-6xl rounded-[12px] bg-[#141414] dark:bg-[#141414] bg-gray-50 p-6 md:p-10 lg:p-12 text-white dark:text-white text-black min-h-[600px] overflow-hidden">
                         <HeroBackgroundAnimation />
                         
                         {/* LEFT CONTENT */}
                         <div className="max-w-xl space-y-6 relative z-10">
                             <h1 ref={titleRef} className="text-5xl font-semibold tracking-tight" style={{ opacity: 0, scale: 0.5, filter: "blur(20px)" }}>
-                            Intelligent  <span className="text-gray-300">Design & Development </span>
+                            <span className="text-orange-500 dark:text-white">Intelligent</span>  <span className="text-gray-300 dark:text-gray-300 text-gray-600">Design & Development </span>
                             </h1>
-                            <p ref={subtitleRef} className="text-lg text-gray-400 max-w-[450px]" style={{ opacity: 0, scale: 0.5, filter: "blur(20px)" }}>
+                            <p ref={subtitleRef} className="text-lg text-gray-400 dark:text-gray-400 text-gray-600 max-w-[450px]" style={{ opacity: 0, scale: 0.5, filter: "blur(20px)" }}>
                             A Senior UX/UI Product Designer who designs and builds products including AI-powered applications.
                             </p>
 
@@ -110,40 +110,40 @@ export default function HeroSection() {
                                     {/* Subtle floating tech icons */}
                                     <div className="grid grid-cols-3 gap-8 opacity-60">
                                         <div className="flex flex-col items-center space-y-2 group">
-                                            <div className="p-4 rounded-2xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 group-hover:border-orange-500/50 transition-all duration-300">
+                                            <div className="p-4 transition-all duration-300">
                                                 <FigmaIcon size={32} />
                                             </div>
-                                            <span className="text-xs text-gray-400 group-hover:text-orange-500 transition-colors">Figma</span>
+                                            <span className="text-xs text-gray-400 dark:text-gray-400 text-gray-800 group-hover:text-orange-500 transition-colors">Figma</span>
                                         </div>
                                         <div className="flex flex-col items-center space-y-2 group">
-                                            <div className="p-4 rounded-2xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 group-hover:border-orange-500/50 transition-all duration-300">
+                                            <div className="p-4 transition-all duration-300">
                                                 <ReactIcon size={32} />
                                             </div>
-                                            <span className="text-xs text-gray-400 group-hover:text-orange-500 transition-colors">React</span>
+                                            <span className="text-xs text-gray-400 dark:text-gray-400 text-gray-800 group-hover:text-orange-500 transition-colors">React</span>
                                         </div>
                                         <div className="flex flex-col items-center space-y-2 group">
-                                            <div className="p-4 rounded-2xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 group-hover:border-orange-500/50 transition-all duration-300">
+                                            <div className="p-4 transition-all duration-300">
                                                 <NextJSIcon size={32} />
                                             </div>
-                                            <span className="text-xs text-gray-400 group-hover:text-orange-500 transition-colors">Next.js</span>
+                                            <span className="text-xs text-gray-400 dark:text-gray-400 text-gray-800 group-hover:text-orange-500 transition-colors">Next.js</span>
                                         </div>
                                         <div className="flex flex-col items-center space-y-2 group">
-                                            <div className="p-4 rounded-2xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 group-hover:border-orange-500/50 transition-all duration-300">
+                                            <div className="p-4 transition-all duration-300">
                                                 <SketchIcon size={32} />
                                             </div>
-                                            <span className="text-xs text-gray-400 group-hover:text-orange-500 transition-colors">Sketch</span>
+                                            <span className="text-xs text-gray-400 dark:text-gray-400 text-gray-800 group-hover:text-orange-500 transition-colors">Sketch</span>
                                         </div>
                                         <div className="flex flex-col items-center space-y-2 group">
-                                            <div className="p-4 rounded-2xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 group-hover:border-orange-500/50 transition-all duration-300">
+                                            <div className="p-4 transition-all duration-300">
                                                 <JavaScriptIcon size={32} />
                                             </div>
-                                            <span className="text-xs text-gray-400 group-hover:text-orange-500 transition-colors">JavaScript</span>
+                                            <span className="text-xs text-gray-400 dark:text-gray-400 text-gray-800 group-hover:text-orange-500 transition-colors">JavaScript</span>
                                         </div>
                                         <div className="flex flex-col items-center space-y-2 group">
-                                            <div className="p-4 rounded-2xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 group-hover:border-orange-500/50 transition-all duration-300">
+                                            <div className="p-4 transition-all duration-300">
                                                 <GitHubIcon size={32} />
                                             </div>
-                                            <span className="text-xs text-gray-400 group-hover:text-orange-500 transition-colors">GitHub</span>
+                                            <span className="text-xs text-gray-400 dark:text-gray-400 text-gray-800 group-hover:text-orange-500 transition-colors">GitHub</span>
                                         </div>
                                     </div>
                                 </div>

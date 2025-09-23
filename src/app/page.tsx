@@ -682,7 +682,7 @@ export default function Home() {
     </div>
   </section>
 
-  <section className="flex justify-center pb-16">
+  <section className="flex justify-center pb-2">
   <div className="relative w-full max-w-6xl rounded-[12px] bg-gray-100 dark:bg-[#141414] py-4 md:py-6 lg:py-8 text-black dark:text-white">
     <div className="space-y-12 px-8 md:px-14 pt-6 "> 
       

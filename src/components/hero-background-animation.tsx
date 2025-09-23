@@ -2,14 +2,19 @@
 
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { useTheme } from '@/contexts/ThemeContext';
 
 export function HeroBackgroundAnimation() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (!containerRef.current) return;
 
     const container = containerRef.current;
+    
+    // Clear existing waves
+    container.innerHTML = '';
     const waves: HTMLDivElement[] = [];
 
     // Create gradient waves
@@ -17,12 +22,21 @@ export function HeroBackgroundAnimation() {
       const wave = document.createElement('div');
       wave.className = 'absolute w-full h-full';
       
-      // Create gradient background
-      const gradient = `radial-gradient(ellipse at ${50 + i * 20}% ${30 + i * 20}%, 
-        rgba(0, 255, 255, ${0.15 + i * 0.05}) 0%, 
-        rgba(138, 43, 226, ${0.12 + i * 0.03}) 30%, 
-        rgba(255, 20, 147, ${0.08 + i * 0.02}) 60%, 
-        transparent 100%)`;
+      // Create gradient background based on theme
+      const isDark = theme === 'dark';
+      console.log('Theme:', theme, 'isDark:', isDark); // Debug log
+      
+      const gradient = isDark 
+        ? `radial-gradient(ellipse at ${50 + i * 20}% ${30 + i * 20}%, 
+            rgba(0, 255, 255, ${0.15 + i * 0.05}) 0%, 
+            rgba(138, 43, 226, ${0.12 + i * 0.03}) 30%, 
+            rgba(255, 20, 147, ${0.08 + i * 0.02}) 60%, 
+            transparent 100%)`
+        : `radial-gradient(ellipse at ${50 + i * 20}% ${30 + i * 20}%, 
+            rgba(30, 58, 138, ${0.08 + i * 0.03}) 0%, 
+            rgba(88, 28, 135, ${0.06 + i * 0.02}) 30%, 
+            rgba(180, 83, 9, ${0.05 + i * 0.015}) 60%, 
+            transparent 100%)`;
       
       wave.style.background = gradient;
       wave.style.borderRadius = '50%';
@@ -78,13 +92,11 @@ export function HeroBackgroundAnimation() {
 
     // Cleanup
     return () => {
-      waves.forEach(wave => {
-        if (wave.parentNode) {
-          wave.parentNode.removeChild(wave);
-        }
-      });
+      if (containerRef.current) {
+        containerRef.current.innerHTML = '';
+      }
     };
-  }, []);
+  }, [theme]);
 
   return (
     <div 

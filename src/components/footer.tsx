@@ -5,7 +5,7 @@ import { Linkedin, Mail } from 'lucide-react'
 
 export default function Footer() {
     return (
-        <footer className="bg-white dark:bg-black text-black dark:text-white py-6 w-full">
+        <footer className="bg-white dark:bg-black text-black dark:text-white pb-6 w-full">
             <div className="w-full px-4 md:px-8">
                 {/* Mobile Layout */}
                 <div className="md:hidden">

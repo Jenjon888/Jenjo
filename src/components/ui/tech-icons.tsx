@@ -64,9 +64,9 @@ export const NextJSIcon: React.FC<TechIconProps> = ({ className, size = 24 }) =>
     width={size}
     height={size}
     viewBox="0 0 24 24"
-    fill="#FFFFFF"
+    fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
-    className={cn(className)}
+    className={cn("text-white dark:text-white text-black", className)}
   >
     <path d={siNextdotjs?.path || ''} />
   </svg>
@@ -77,9 +77,9 @@ export const JavaScriptIcon: React.FC<TechIconProps> = ({ className, size = 24 }
     width={size}
     height={size}
     viewBox="0 0 24 24"
-    fill={siJavascript?.hex ? `#${siJavascript.hex}` : '#F7DF1E'}
+    fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
-    className={cn(className)}
+    className={cn("text-yellow-500 dark:text-yellow-500 text-gray-800", className)}
   >
     <path d={siJavascript?.path || ''} />
   </svg>
@@ -103,9 +103,9 @@ export const GitHubIcon: React.FC<TechIconProps> = ({ className, size = 24 }) =>
     width={size}
     height={size}
     viewBox="0 0 24 24"
-    fill="#FFFFFF"
+    fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
-    className={cn(className)}
+    className={cn("text-white dark:text-white text-black", className)}
   >
     <path d={siGithub?.path || ''} />
   </svg>
