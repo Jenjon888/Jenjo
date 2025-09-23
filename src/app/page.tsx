@@ -467,7 +467,7 @@ export default function Home() {
 
       {/* Intro Text */}
       <p ref={introTextRef} className="text-2xl text-left" style={{ opacity: 0, transform: 'translateY(50px)' }}>
-      With over 15 years of experience leading end-to-end design in fintech, education, and e-commerce, I translate deep user research into scalable interfaces. My expertise covers the full product lifecycle, from initial strategy and user research to front-end development in React and Next.js.
+      With over 15 years of experience leading end to end design in fintech, education, and e-commerce, I translate deep user research into scalable interfaces. My expertise covers the full product lifecycle, from initial strategy and user research to front-end development in React and Next.js.
       </p>
 
       {/* Case Study Image */}
