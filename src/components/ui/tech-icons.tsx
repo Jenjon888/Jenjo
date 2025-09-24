@@ -25,9 +25,9 @@ export const SketchIcon: React.FC<TechIconProps> = ({ className, size = 24 }) =>
     width={size}
     height={size}
     viewBox="0 0 24 24"
-    fill={siSketch?.hex ? `#${siSketch.hex}` : '#F7B500'}
+    fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
-    className={cn(className)}
+    className={cn("text-[#F7B500] dark:text-[#F7B500] text-[#E67E22]", className)}
   >
     <path d={siSketch?.path || ''} />
   </svg>
@@ -38,9 +38,9 @@ export const FigmaIcon: React.FC<TechIconProps> = ({ className, size = 24 }) => 
     width={size}
     height={size}
     viewBox="0 0 24 24"
-    fill={siFigma?.hex ? `#${siFigma.hex}` : '#F24E1E'}
+    fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
-    className={cn(className)}
+    className={cn("text-[#F24E1E] dark:text-[#F24E1E] text-[#C0392B]", className)}
   >
     <path d={siFigma?.path || ''} />
   </svg>
@@ -51,9 +51,9 @@ export const ReactIcon: React.FC<TechIconProps> = ({ className, size = 24 }) => 
     width={size}
     height={size}
     viewBox="0 0 24 24"
-    fill={siReact?.hex ? `#${siReact.hex}` : '#61DAFB'}
+    fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
-    className={cn(className)}
+    className={cn("text-[#61DAFB] dark:text-[#61DAFB] text-[#4A9CD1]", className)}
   >
     <path d={siReact?.path || ''} />
   </svg>
@@ -79,7 +79,7 @@ export const JavaScriptIcon: React.FC<TechIconProps> = ({ className, size = 24 }
     viewBox="0 0 24 24"
     fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
-    className={cn("text-yellow-500 dark:text-yellow-500 text-gray-800", className)}
+    className={cn("text-yellow-500 dark:text-yellow-500 text-[#B7950B]", className)}
   >
     <path d={siJavascript?.path || ''} />
   </svg>

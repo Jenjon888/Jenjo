@@ -73,7 +73,7 @@ export default function HeroSection() {
             
             <main className="overflow-x-hidden">
                 {/* HERO PANEL */}
-                <section className="flex justify-center px-2 md:px-6 lg:px-10 ">
+                <section className="flex justify-center px-1 md:px-6 lg:px-10 ">
                     <div className="relative flex flex-col lg:flex-row items-center justify-between w-full max-w-6xl rounded-[12px] bg-[#141414] dark:bg-[#141414] bg-gray-50 p-6 md:p-10 lg:p-12 text-white dark:text-white text-black min-h-[600px] overflow-hidden">
                         <HeroBackgroundAnimation />
                         
@@ -104,46 +104,46 @@ export default function HeroSection() {
                         </div>
 
                         {/* RIGHT VISUAL - Subtle Tech Stack */}
-                        <div ref={techIconsRef} className="mt-10 lg:mt-0 lg:ml-12 flex-1 relative z-10" style={{ opacity: 0, scale: 0.5, filter: "blur(20px)" }}>
+                        <div ref={techIconsRef} className="mt-10 lg:mt-0 lg:ml-12 flex-1 relative z-20" style={{ opacity: 0, scale: 0.5, filter: "blur(20px)" }}>
                             <div className="w-full h-[400px] flex items-center justify-center">
                                 <div className="relative w-full h-full flex items-center justify-center">
                                     {/* Subtle floating tech icons */}
-                                    <div className="grid grid-cols-3 gap-8 opacity-60">
+                                    <div className="grid grid-cols-3 gap-8 opacity-60 relative z-30">
                                         <div className="flex flex-col items-center space-y-2 group">
                                             <div className="p-4 transition-all duration-300">
                                                 <FigmaIcon size={32} />
                                             </div>
-                                            <span className="text-xs text-gray-400 dark:text-gray-400 text-gray-800 group-hover:text-orange-500 transition-colors">Figma</span>
+                                            <span className="text-xs font-semibold text-gray-400 dark:text-gray-400 text-black group-hover:text-orange-500 transition-colors opacity-100">Figma</span>
                                         </div>
                                         <div className="flex flex-col items-center space-y-2 group">
                                             <div className="p-4 transition-all duration-300">
                                                 <ReactIcon size={32} />
                                             </div>
-                                            <span className="text-xs text-gray-400 dark:text-gray-400 text-gray-800 group-hover:text-orange-500 transition-colors">React</span>
+                                            <span className="text-xs font-semibold text-gray-400 dark:text-gray-400 text-black group-hover:text-orange-500 transition-colors opacity-100">React</span>
                                         </div>
                                         <div className="flex flex-col items-center space-y-2 group">
                                             <div className="p-4 transition-all duration-300">
                                                 <NextJSIcon size={32} />
                                             </div>
-                                            <span className="text-xs text-gray-400 dark:text-gray-400 text-gray-800 group-hover:text-orange-500 transition-colors">Next.js</span>
+                                            <span className="text-xs font-semibold text-gray-400 dark:text-gray-400 text-black group-hover:text-orange-500 transition-colors opacity-100">Next.js</span>
                                         </div>
                                         <div className="flex flex-col items-center space-y-2 group">
                                             <div className="p-4 transition-all duration-300">
                                                 <SketchIcon size={32} />
                                             </div>
-                                            <span className="text-xs text-gray-400 dark:text-gray-400 text-gray-800 group-hover:text-orange-500 transition-colors">Sketch</span>
+                                            <span className="text-xs font-semibold text-gray-400 dark:text-gray-400 text-black group-hover:text-orange-500 transition-colors opacity-100">Sketch</span>
                                         </div>
                                         <div className="flex flex-col items-center space-y-2 group">
                                             <div className="p-4 transition-all duration-300">
                                                 <JavaScriptIcon size={32} />
                                             </div>
-                                            <span className="text-xs text-gray-400 dark:text-gray-400 text-gray-800 group-hover:text-orange-500 transition-colors">JavaScript</span>
+                                            <span className="text-xs font-semibold text-gray-400 dark:text-gray-400 text-black group-hover:text-orange-500 transition-colors opacity-100">JavaScript</span>
                                         </div>
                                         <div className="flex flex-col items-center space-y-2 group">
                                             <div className="p-4 transition-all duration-300">
                                                 <GitHubIcon size={32} />
                                             </div>
-                                            <span className="text-xs text-gray-400 dark:text-gray-400 text-gray-800 group-hover:text-orange-500 transition-colors">GitHub</span>
+                                            <span className="text-xs font-semibold text-gray-400 dark:text-gray-400 text-black group-hover:text-orange-500 transition-colors opacity-100">GitHub</span>
                                         </div>
                                     </div>
                                 </div>
@@ -154,7 +154,7 @@ export default function HeroSection() {
                 </section>
                 
                 {/* Worked with Section */}
-                <section className="flex justify-center px-2 md:px-6 lg:px-10 mt-8">
+                <section className="flex justify-center px-4 md:px-6 lg:px-10 mt-8">
                     <div className="w-full max-w-6xl">
                         <p className="text-base mb-2 text-gray-600 dark:text-gray-400">Worked with</p>
                         <div className="bg-white dark:bg-transparent py-1 rounded-lg">

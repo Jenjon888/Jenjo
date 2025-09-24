@@ -461,7 +461,7 @@ export default function Home() {
                 {/* MAIN BODY SECTION */}
 <section ref={mainBodySectionRef} className="flex justify-center">
   <div className="relative w-full max-w-6xl rounded-[12px] bg-transparent sm:bg-gray-100 dark:sm:bg-[#141414] pt-4 pb-0 md:py-6 lg:py-8 text-black dark:text-white">
-    <div className="space-y-12 px-8 md:px-14 pt-6">
+    <div className="space-y-12 px-4 md:px-14 pt-6">
       
      
 
@@ -557,7 +557,7 @@ export default function Home() {
 
 
       {/* CTA Buttons */}
-<div ref={ctaButtonsRef} className="w-full mt-8 pt-16 flex flex-col sm:flex-row gap-4">
+<div ref={ctaButtonsRef} className="w-full mt-8 pt-8 md:pt-16 flex flex-col sm:flex-row gap-4">
   <button 
     onClick={handleContactClick}
     disabled={isContactLoading}
@@ -586,7 +586,7 @@ export default function Home() {
 
   {/* Featured Case Study Section */}
   <section ref={featuredCaseStudyRef} className="flex justify-center pt-16 pb-0 md:pb-16">
-    <div className="relative w-full max-w-6xl px-8 py-16 lg:px-16 lg:py-24 rounded-2xl overflow-hidden bg-gray-50 dark:bg-transparent">
+    <div className="relative w-full max-w-6xl px-4 py-16 lg:px-16 lg:py-24 rounded-2xl overflow-hidden bg-gray-50 dark:bg-transparent">
       <BorderBeam 
         size={200}
         duration={4}
@@ -684,12 +684,12 @@ export default function Home() {
 
   <section className="flex justify-center pb-2">
   <div className="relative w-full max-w-6xl rounded-[12px] bg-gray-100 dark:bg-[#141414] py-4 md:py-6 lg:py-8 text-black dark:text-white">
-    <div className="space-y-12 px-8 md:px-14 pt-6 "> 
+    <div className="space-y-12 px-4 md:px-14 pt-6 "> 
       
 {/* Education */}
 <div ref={educationSectionRef} className="space-y-6">
   {/* Title */}
-  <h2 ref={educationTitleRef} className="text-3xl md:text-5xl font-regular pb-8">
+  <h2 ref={educationTitleRef} className="text-3xl md:text-5xl font-regular pb-4 md:pb-8">
     Bachelor of Arts - Hons (2.1)
   </h2>
 
@@ -777,16 +777,16 @@ export default function Home() {
       {/* Skills Section */}
 <div className="space-y-8">
   {/* Heading */}
-  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pt-8 gap-4">
+  <div className="flex flex-col items-start sm:flex-row sm:items-center sm:justify-between pt-8 gap-4">
     {isMobile() ? (
-      <h3 className="text-2xl md:text-3xl font-medium leading-snug">
+      <h3 className="text-2xl md:text-3xl font-medium leading-snug text-left">
         Core Expertise and Tools
       </h3>
     ) : (
       <SplitText
         text="Core Expertise and Tools"
         tag="h3"
-        className="text-2xl md:text-3xl font-medium leading-snug"
+        className="text-2xl md:text-3xl font-medium leading-snug text-left"
         splitType="chars"
         delay={50}
         duration={0.8}
@@ -806,12 +806,12 @@ export default function Home() {
   </div>
 
   {/* Cards Grid */}
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 text-left">
     {/* Card 1 */}
     <TiltedTextCard>
       <div ref={setSkillCardRef(0)} className="bg-white dark:bg-[#1f1f1f] border border-gray-200 dark:border-transparent rounded-xl p-6 flex flex-col h-full">
         <h4 className="text-lg font-semibold text-black dark:text-white mb-8">UX & Research</h4>
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 items-start">
           {[
             "User Research & Testing",
             "Wireframing",
@@ -834,7 +834,7 @@ export default function Home() {
     <TiltedTextCard>
       <div ref={setSkillCardRef(1)} className="bg-white dark:bg-[#1f1f1f] border border-gray-200 dark:border-transparent rounded-xl p-6 flex flex-col h-full">
         <h4 className="text-lg font-semibold text-black dark:text-white mb-8">UI & Visual Design</h4>
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 items-start">
           {[
             "User Interface Design",
             "Design Systems",
@@ -857,7 +857,7 @@ export default function Home() {
     <TiltedTextCard>
       <div ref={setSkillCardRef(2)} className="bg-white dark:bg-[#1f1f1f] border border-gray-200 dark:border-transparent rounded-xl p-6 flex flex-col h-full">
         <h4 className="text-lg font-semibold text-black dark:text-white mb-8">Front End Development</h4>
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 items-start">
           {["React.js", "Next.js", "Vue.js", "HTML/CSS", "Tailwind UI"].map(
             (item) => (
               <span
@@ -876,7 +876,7 @@ export default function Home() {
     <TiltedTextCard>
       <div ref={setSkillCardRef(3)} className="bg-white dark:bg-[#1f1f1f] border border-gray-200 dark:border-transparent rounded-xl p-6 flex flex-col h-full">
         <h4 className="text-lg font-semibold text-black dark:text-white mb-8">Design Tools</h4>
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 items-start">
           {["Figma", "Adobe Suite", "Supernova"].map((item) => (
             <span
               key={item}
