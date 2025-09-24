@@ -22,7 +22,7 @@ export default function LogoCloud() {
             <div className="group relative m-auto max-w-6xl px-6">
                 <div className="flex flex-col items-center md:flex-row">
                     <div className="md:w-32 md:border-r md:pr-4">
-                        <p className="text-end text-sm">Worked with</p>
+                        <p className="text-end text-sm">I've had the great pleasure of working with:</p>
                     </div>
                     <div className="relative md:w-[calc(100%-8rem)]">
                         <InfiniteSlider

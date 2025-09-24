@@ -95,7 +95,7 @@ export default function HeroSection() {
                                 </Link>
                                 <Link 
                                     href="/experience"
-                                    className="flex items-center w-full sm:w-fit bg-black dark:bg-white text-white dark:text-black rounded-xl px-6 py-3 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
+                                    className="flex items-center w-full sm:w-fit border border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl px-6 py-3 hover:text-orange-500 hover:border-orange-500 transition-colors"
                                 >
                                     <span className="font-medium">View CV</span>
                                 </Link>
@@ -156,7 +156,7 @@ export default function HeroSection() {
                 {/* Worked with Section */}
                 <section className="flex justify-center px-4 md:px-6 lg:px-10 mt-8">
                     <div className="w-full max-w-6xl">
-                        <p className="text-base mb-2 text-gray-600 dark:text-gray-400">Worked with</p>
+                        <p className="text-base mb-2 text-gray-600 dark:text-gray-400">I've had the great pleasure of working with:</p>
                         <div className="bg-white dark:bg-transparent py-1 rounded-lg">
                             <LogoLoop 
                                 logos={[
