@@ -10,7 +10,7 @@ export default function YLDDesignSystemCaseStudy() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-white dark:bg-black text-gray-800 dark:text-white px-8 py-20">
+      <section className="bg-white dark:bg-black text-gray-800 dark:text-white px-4 py-20">
         <div className="max-w-6xl mx-auto">
           <div className="mb-16">
             <div className="flex items-center gap-4">
@@ -27,7 +27,7 @@ export default function YLDDesignSystemCaseStudy() {
       </section>
 
       {/* Hero Image */}
-      <section className="px-8 pt-16">
+      <section className="px-4 pt-16">
         <div className="max-w-6xl mx-auto">
           <div className="w-full h-[500px] md:h-[800px] relative overflow-hidden rounded-lg">
             <Image
@@ -41,7 +41,7 @@ export default function YLDDesignSystemCaseStudy() {
       </section>
 
       {/* Project Information */}
-      <section className="px-8 pb-8">
+      <section className="px-4 pb-8">
         <div className="max-w-6xl mx-auto bg-gray-50 dark:bg-black text-gray-800 dark:text-white rounded-lg p-8">
           <div className="flex flex-wrap gap-[60px]">
             <div>
@@ -61,7 +61,7 @@ export default function YLDDesignSystemCaseStudy() {
       </section>
 
       {/* Project Details */}
-      <section className="px-8 py-16">
+      <section className="px-4 py-16">
         <div className="max-w-6xl mx-auto space-y-16">
           
           {/* Company Section */}
@@ -118,7 +118,7 @@ export default function YLDDesignSystemCaseStudy() {
           </section>
 
           {/* Design System Overview */}
-          {/* <section className="px-8 py-8">
+          {/* <section className="px-4 py-8">
             <div className="max-w-6xl mx-auto">
               <div className="w-full h-[480px] relative overflow-hidden rounded-lg">
                 <Image
@@ -196,7 +196,7 @@ export default function YLDDesignSystemCaseStudy() {
           </section>
 
           {/* Discovery Process Visual */}
-          {/* <section className="px-8 py-8">
+          {/* <section className="px-4 py-8">
             <div className="max-w-6xl mx-auto">
               <div className="w-full h-[880px] relative overflow-hidden rounded-lg">
                 <Image
@@ -255,7 +255,7 @@ export default function YLDDesignSystemCaseStudy() {
           </section>
 
           {/* Component Library & Training Visuals */}
-          {/* <section className="px-8 py-8">
+          {/* <section className="px-4 py-8">
             <div className="max-w-6xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="w-full h-[420px] relative overflow-hidden rounded-lg">
@@ -493,7 +493,7 @@ export default function YLDDesignSystemCaseStudy() {
       </section>
 
       {/* Case Study Navigation */}
-      <section className="px-8 py-4">
+      <section className="px-4 py-4">
         <div className="max-w-6xl mx-auto">
           <div className="pt-8">
           <div className="flex justify-between items-center">

@@ -60,7 +60,7 @@ export default function Contact() {
       <Navigation />
 
       {/* Section Title */}
-      <div className="flex justify-center px-6 md:px-12 py-12">
+      <div className="flex justify-center px-4 md:px-12 py-12">
         <div className="w-full max-w-6xl">
           <SplitText
             text="Contact"
@@ -79,7 +79,7 @@ export default function Contact() {
       </div>
 
       {/* Contact Options */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 px-8 pb-20">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 px-4 pb-20">
 
         {/* Option 1 | Calendly */}
         <div>
@@ -181,7 +181,7 @@ export default function Contact() {
                   value={formData.websiteType}
                   onChange={handleInputChange}
                   required
-                  className="w-full border border-gray-300 dark:border-gray-700 rounded-xl px-4 py-3 bg-white dark:bg-[#111] text-black dark:text-white placeholder-gray-500 [&>option:hover]:bg-gray-200 [&>option:checked]:bg-gray-200"
+                  className="w-full border border-gray-300 dark:border-gray-700 rounded-xl pl-4 pr-12 py-3 bg-white dark:bg-[#111] text-black dark:text-white placeholder-gray-500 [&>option:hover]:bg-gray-200 [&>option:checked]:bg-gray-200 appearance-none bg-no-repeat bg-right bg-[length:20px_20px] bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTUgNy41TDEwIDEyLjVMMTUgNy41IiBzdHJva2U9IiM0QjU1NjMiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=')]"
                 >
                   <option value="">What type of project do you need help with?</option>
                   <option value="product-design">Product Design & UX/UI</option>
@@ -219,7 +219,7 @@ export default function Contact() {
                 value={formData.referral}
                 onChange={handleInputChange}
                 required
-                className="w-full border border-gray-300 dark:border-gray-700 rounded-xl px-4 py-3 bg-white dark:bg-[#111] text-black dark:text-white placeholder-gray-500 [&>option:hover]:bg-gray-200 [&>option:checked]:bg-gray-200"
+                className="w-full border border-gray-300 dark:border-gray-700 rounded-xl pl-4 pr-12 py-3 bg-white dark:bg-[#111] text-black dark:text-white placeholder-gray-500 [&>option:hover]:bg-gray-200 [&>option:checked]:bg-gray-200 appearance-none bg-no-repeat bg-right bg-[length:20px_20px] bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTUgNy41TDEwIDEyLjVMMTUgNy41IiBzdHJva2U9IiM0QjU1NjMiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=')]"
               >
                 <option value="">When do you need this project completed?</option>
                 <option value="asap">ASAP (within 2 weeks)</option>

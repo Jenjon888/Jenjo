@@ -10,7 +10,7 @@ export default function BlogPost() {
       <Navigation />
       
       {/* Back Button */}
-      <div className="flex justify-center px-8 pt-24 pb-8">
+      <div className="flex justify-center px-4 pt-24 pb-8">
         <div className="max-w-3xl w-full">
           <Link 
             href="/blog" 
@@ -23,7 +23,7 @@ export default function BlogPost() {
       </div>
 
       {/* Article Header */}
-      <div className="flex justify-center px-8 pb-12">
+      <div className="flex justify-center px-4 pb-12">
         <div className="max-w-3xl w-full">
           <div className="space-y-6">
             {/* Category */}
@@ -51,7 +51,7 @@ export default function BlogPost() {
         </div>
       </div>
 
-      <div className="max-w-3xl mx-auto px-6 pb-12">
+      <div className="max-w-3xl mx-auto px-4 pb-12">
 
         {/* Hero Image */}
         <div className="mb-12">
@@ -276,7 +276,7 @@ export default function BlogPost() {
       </div>
 
       {/* Navigation */}
-      <div className="flex justify-center px-8 pb-24">
+      <div className="flex justify-center px-4 pb-24">
         <div className="max-w-3xl w-full">
           <div className="flex justify-between items-center pt-8 border-t border-gray-200 dark:border-gray-700">
             <Link 

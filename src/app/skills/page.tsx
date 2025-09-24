@@ -377,7 +377,7 @@ export default function Skills() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="flex justify-center px-6 md:px-12 py-20">
+      <section className="flex justify-center px-4 md:px-12 py-20">
         <div className="w-full max-w-6xl">
           <div className="text-center mb-20">
             <p className="text-2xl md:text-3xl font-light leading-relaxed text-black dark:text-white max-w-5xl mx-auto">
@@ -388,7 +388,7 @@ export default function Skills() {
       </section>
 
       {/* Main Content */}
-      <div className="flex-1 max-w-6xl mx-auto px-6 pb-16">
+      <div className="flex-1 max-w-6xl mx-auto px-4 pb-16">
         
         {/* Tab Navigation */}
         <div className="mb-16 border-b border-gray-200 dark:border-gray-700">

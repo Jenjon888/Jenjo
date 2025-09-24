@@ -10,7 +10,7 @@ export default function CaseStudyPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-white dark:bg-black text-gray-800 dark:text-white px-8 py-20">
+      <section className="bg-white dark:bg-black text-gray-800 dark:text-white px-4 py-20">
         <div className="max-w-6xl mx-auto">
 
           {/* Logo and Company Name */}
@@ -31,7 +31,7 @@ export default function CaseStudyPage() {
       </section>
 
       {/* Hero Image */}
-      <section className="px-8 pt-16">
+      <section className="px-4 pt-16">
         <div className="max-w-6xl mx-auto">
           <div className="w-full h-[500px] md:h-[800px] relative overflow-hidden rounded-lg">
             <Image
@@ -46,7 +46,7 @@ export default function CaseStudyPage() {
 
 
       {/* Project Information */}
-      <section className="px-8 pb-8">
+      <section className="px-4 pb-8">
         <div className="max-w-6xl mx-auto bg-gray-50 dark:bg-black text-gray-800 dark:text-white rounded-lg p-8">
           <div className="flex flex-wrap gap-[60px]">
             <div>
@@ -67,7 +67,7 @@ export default function CaseStudyPage() {
 
 
       {/* Project Details */}
-      <section className="px-8 py-16">
+      <section className="px-4 py-16">
         <div className="max-w-6xl mx-auto space-y-16">
           
           {/* What We Did Section */}
@@ -452,7 +452,7 @@ export default function CaseStudyPage() {
       </section>
 
       {/* Case Study Navigation */}
-      <section className="px-8 py-8">
+      <section className="px-4 py-8">
         <div className="max-w-6xl mx-auto">
           <div className="pt-8">
           <div className="flex justify-between items-center">

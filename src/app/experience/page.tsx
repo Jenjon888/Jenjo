@@ -8,7 +8,7 @@ export default function Experience() {
       <Navigation />
       
       {/* Section Title */}
-      <div className="flex justify-center px-6 md:px-12 py-12">
+      <div className="flex justify-center px-4 md:px-12 py-12">
         <div className="w-full max-w-6xl">
           <SplitText
             text="Experience"
@@ -29,7 +29,7 @@ export default function Experience() {
       {/* Main Content */}
       <div className="flex flex-col lg:flex-row min-h-screen">
          {/* Left Column - CV Info and Stats */}
-         <div className="lg:w-1/3 lg:pr-12 lg:pl-8 lg:py-8 lg:fixed lg:top-20 lg:left-0 lg:h-screen lg:bg-white lg:dark:bg-black px-8 py-8 lg:px-0 lg:py-0">
+         <div className="lg:w-1/3 lg:pr-12 lg:pl-8 lg:py-8 lg:fixed lg:top-20 lg:left-0 lg:h-screen lg:bg-white lg:dark:bg-black px-4 py-8 lg:px-0 lg:py-0">
            <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 lg:bg-transparent lg:dark:bg-transparent lg:rounded-none lg:p-0 pt-8 pl-5 -mt-5">
            <h2 className="text-2xl md:text-3xl font-medium text-black dark:text-white">
             Current CV
@@ -74,7 +74,7 @@ export default function Experience() {
          </div>
 
         {/* Right Column - Professional Experience */}
-        <div className="lg:w-2/3 lg:ml-[33.333333%] px-8 py-8 space-y-12 overflow-y-auto max-w-[600px]">
+        <div className="lg:w-2/3 lg:ml-[33.333333%] px-4 py-8 space-y-12 overflow-y-auto max-w-[600px]">
               
                
 

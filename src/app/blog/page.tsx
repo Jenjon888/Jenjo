@@ -118,7 +118,7 @@ export default function Blog() {
       <Navigation />
       
       {/* Section Title */}
-      <div className="flex justify-center px-6 md:px-12 py-12">
+      <div className="flex justify-center px-4 md:px-12 py-12">
         <div ref={titleRef} className="w-full max-w-6xl text-center" style={{ opacity: 0 }}>
           <SplitText
             text="Blog"
@@ -151,7 +151,7 @@ export default function Blog() {
       </div> */}
 
       {/* Blog Posts Grid */}
-      <div className="flex justify-center px-8 pb-24">
+      <div className="flex justify-center px-4 pb-24">
         <div className="max-w-4xl w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {blogPosts.map((post) => {

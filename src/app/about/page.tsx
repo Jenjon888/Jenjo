@@ -173,7 +173,7 @@ export default function About() {
       {/* Page Title */}
 
       {/* Availability Badge */}
-      <div className="flex justify-center px-8 pt-8 pb-4">
+      <div className="flex justify-center px-4 pt-8 pb-4">
         <div ref={tagRef} className="flex flex-col sm:flex-row sm:items-center gap-3 w-full sm:w-auto" style={{ opacity: 0, transform: "translateY(30px)" }}>
           <div className="flex items-center justify-center bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 px-4 py-2 rounded-full w-full sm:w-auto">
             <span className="w-2 h-2 rounded-full bg-green-500 mr-2"></span>
@@ -186,7 +186,7 @@ export default function About() {
 
       {/* Content Sections - Minimal Layout */}
       {/* Section Title */}
-      <div className="flex justify-center px-6 md:px-12 py-12">
+      <div className="flex justify-center px-4 md:px-12 py-12">
         <div ref={titleRef} className="w-full max-w-6xl text-center" style={{ opacity: 0 }}>
           <SplitText
             text="About"
@@ -204,7 +204,7 @@ export default function About() {
         </div>
       </div>
 
-      <div ref={contentSectionRef} className="flex justify-center px-8 pb-16">
+      <div ref={contentSectionRef} className="flex justify-center px-4 pb-16">
         <div className="max-w-3xl w-full space-y-16">
           
           {/* My Story Section */}

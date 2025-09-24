@@ -71,7 +71,7 @@ export default function CaseStudies() {
       <Navigation />
 
       {/* Section Title */}
-      <div className="flex justify-center px-6 md:px-12 py-12">
+      <div className="flex justify-center px-4 md:px-12 py-12">
         <div className="w-full max-w-6xl">
           <SplitText
             text="Case Studies"
@@ -90,7 +90,7 @@ export default function CaseStudies() {
       </div>
 
       {/* Case Studies Grid */}
-      <div className="flex justify-center px-6 md:px-12 pb-20">
+      <div className="flex justify-center px-4 md:px-12 pb-20">
         <div className="w-full max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {highlights.map((item) => {
