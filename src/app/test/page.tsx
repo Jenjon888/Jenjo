@@ -7,6 +7,12 @@ import { useRef, useEffect, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useTheme } from '@/contexts/ThemeContext'
+// Spline integration temporarily disabled due to package issues
+// import dynamic from 'next/dynamic'
+// const Spline = dynamic(() => import('@splinetool/react-spline'), {
+//   ssr: false,
+//   loading: () => <div className="w-full h-full bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900" />
+// })
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -816,6 +822,139 @@ export default function TestPage() {
       />
       
       <Navigation />
+      
+      {/* 3D Hero Section - CSS Animation Demo */}
+      <section className="relative h-screen overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          {/* Animated background with CSS */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.3),transparent_50%)] animate-pulse"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,119,198,0.2),transparent_50%)] animate-pulse" style={{animationDelay: '1s'}}></div>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(119,198,255,0.2),transparent_50%)] animate-pulse" style={{animationDelay: '2s'}}></div>
+          </div>
+          
+          {/* Floating geometric shapes */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-white/10 rounded-full animate-bounce" style={{animationDuration: '3s'}}></div>
+            <div className="absolute top-3/4 right-1/4 w-24 h-24 bg-blue-400/20 rounded-lg rotate-45 animate-bounce" style={{animationDuration: '4s', animationDelay: '1s'}}></div>
+            <div className="absolute top-1/2 right-1/3 w-16 h-16 bg-purple-400/20 rounded-full animate-bounce" style={{animationDuration: '5s', animationDelay: '2s'}}></div>
+            <div className="absolute bottom-1/4 left-1/3 w-20 h-20 bg-pink-400/20 rounded-lg animate-bounce" style={{animationDuration: '6s', animationDelay: '0.5s'}}></div>
+          </div>
+        </div>
+        
+        {/* Content Overlay */}
+        <div className="relative z-10 flex items-center justify-center h-full">
+          <div className="text-center text-white max-w-4xl mx-auto px-8">
+            <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              CSS Animation Demo
+            </h1>
+            <p className="text-xl md:text-2xl mb-8 text-gray-200">
+              Beautiful animated background with floating shapes - ready for Spline integration
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="px-8 py-4 bg-white text-black rounded-lg font-semibold hover:bg-gray-200 transition-colors">
+                Explore Projects
+              </button>
+              <button className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-black transition-colors">
+                View Case Studies
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+          <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white rounded-full mt-2 animate-bounce"></div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Spline Examples Section */}
+      <section className="py-16 px-8">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-12">3D Integration Examples</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            {/* Example 1: Portfolio Showcase */}
+            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6">
+              <h3 className="text-2xl font-semibold mb-4">Portfolio Showcase</h3>
+              <div className="h-64 bg-gradient-to-br from-blue-900 to-purple-900 rounded-lg flex items-center justify-center relative overflow-hidden">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1),transparent_70%)]"></div>
+                <div className="text-center text-white z-10">
+                  <p className="text-lg font-semibold mb-2">3D Device Mockups</p>
+                  <p className="text-sm opacity-80">Floating phones, laptops, tablets</p>
+                </div>
+              </div>
+              <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
+                Create floating 3D mockups of phones, laptops, and tablets showcasing your actual project interfaces.
+              </p>
+            </div>
+            
+            {/* Example 2: Skills Visualization */}
+            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6">
+              <h3 className="text-2xl font-semibold mb-4">Skills Visualization</h3>
+              <div className="h-64 bg-gradient-to-br from-green-900 to-blue-900 rounded-lg flex items-center justify-center relative overflow-hidden">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1),transparent_70%)]"></div>
+                <div className="text-center text-white z-10">
+                  <p className="text-lg font-semibold mb-2">Interactive Tech Stack</p>
+                  <p className="text-sm opacity-80">3D icons with hover effects</p>
+                </div>
+              </div>
+              <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
+                Interactive 3D icons for each technology with hover effects showing proficiency levels.
+              </p>
+            </div>
+          </div>
+          
+          {/* Code Example */}
+          <div className="bg-gray-900 rounded-lg p-6 mb-8">
+            <h3 className="text-xl font-semibold mb-4 text-white">Code Example</h3>
+            <pre className="text-sm text-gray-300 overflow-x-auto">
+              <code>{`// Replace the CSS background with your Spline scene:
+<Spline 
+  scene="https://prod.spline.design/YOUR_SCENE_ID/scene.splinecode"
+  onLoad={() => console.log('3D scene loaded!')}
+  style={{ 
+    width: '100%', 
+    height: '100%',
+    position: 'absolute',
+    top: 0,
+    left: 0
+  }}
+/>`}</code>
+            </pre>
+          </div>
+          
+          {/* Implementation Guide */}
+          <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-8">
+            <h3 className="text-2xl font-semibold mb-4">How to Create Your Own 3D Scenes</h3>
+            <div className="space-y-4 text-sm">
+              <div className="flex items-start gap-3">
+                <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+                <div>
+                  <p className="font-semibold">Visit Spline.design</p>
+                  <p className="text-gray-600 dark:text-gray-400">Create a free account and start building your 3D scene</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+                <div>
+                  <p className="font-semibold">Design Your Scene</p>
+                  <p className="text-gray-600 dark:text-gray-400">Add 3D models, materials, lighting, and animations</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
+                <div>
+                  <p className="font-semibold">Export & Integrate</p>
+                  <p className="text-gray-600 dark:text-gray-400">Get your scene URL and replace the placeholder in the code above</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       
       {/* Back Button */}
       <div className="px-8 py-6">

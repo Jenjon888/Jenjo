@@ -103,9 +103,6 @@ export default function Home() {
       scale: 0.9
     })
     
-    // Debug: Check if elements exist
-    console.log('Title element:', title)
-    console.log('Subtext element:', subtext)
     
     gsap.set([...icons, ...texts], {
       opacity: 0,
@@ -456,15 +453,11 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
       <HeroSection />
-      
 
                 {/* MAIN BODY SECTION */}
 <section ref={mainBodySectionRef} className="flex justify-center">
   <div className="relative w-full max-w-6xl rounded-[12px] bg-transparent sm:bg-gray-100 dark:sm:bg-[#141414] pt-4 pb-0 md:py-6 lg:py-8 text-black dark:text-white">
     <div className="space-y-12 px-4 md:px-14 pt-6">
-      
-     
-
       {/* Intro Text */}
       <p ref={introTextRef} className="text-2xl text-left" style={{ opacity: 0, transform: 'translateY(50px)' }}>
       With over 15 years of experience leading end to end design in fintech, education, and e-commerce, I translate deep user research into scalable interfaces. My expertise covers the full product lifecycle, from initial strategy and user research to front-end development in React and Next.js.
@@ -571,15 +564,14 @@ export default function Home() {
     ) : (
       <>
         <span className="w-2 h-2 rounded-full bg-green-500 mr-2"></span>
-        <span className="font-medium">Discuss opportunities</span>
+        <span className="font-medium">Let's work together</span>
       </>
     )}
   </button>
-  <a href="/about" className="flex items-center w-full sm:w-fit border border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-    <span className="font-medium">View experience</span>
+  <a href="https://calendly.com/jenjo700/30min" target="_blank" rel="noopener noreferrer" className="flex items-center w-full sm:w-fit border border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+    <span className="font-medium">Schedule a call</span>
   </a>
 </div>
-
     </div>
   </div>
 </section>
@@ -646,7 +638,6 @@ export default function Home() {
               <h2 ref={featuredTitleRef} className="text-3xl md:text-4xl font-light text-black dark:text-white mb-3">
                 Crypto Portfolio Manager
               </h2>
-             
             </div>
 
             {/* Challenge */}
@@ -797,7 +788,7 @@ export default function Home() {
         rootMargin="-50px"
       />
     )}
-    <a href="/skills" className="flex items-center w-full sm:w-fit bg-black dark:bg-white text-white dark:text-black rounded-xl px-6 py-3 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors font-medium">
+    <a href="/process" className="flex items-center w-full sm:w-fit bg-black dark:bg-white text-white dark:text-black rounded-xl px-6 py-3 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors font-medium">
       <span>View my process</span>
       <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -894,23 +885,6 @@ export default function Home() {
     </div>
   </div>
 </section>
-
-
-
-      {/* Experience Section
-      <section id="experience" className="px-8 py-4">
-        <div className="max-w-4xl mx-auto">
-          <p className="text-2xl text-left">
-            10+ years of experience leading end-to-end design for complex digital products across fintech, education, and e-commerce. Expert in translating user research into intuitive interfaces and scalable design systems.
-          </p>
-        </div>
-      </section> */}
-
-     
-
-
-
-
 
       <Footer />
     </div>

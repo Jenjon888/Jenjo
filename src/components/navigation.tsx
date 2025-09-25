@@ -92,14 +92,14 @@ export default function Navigation() {
                         About
                     </Link>
                     <Link 
-                        href="/experience" 
+                        href="/process" 
                         className={`transition-all duration-300 ease-out ${
-                            isActive('/experience') 
+                            isActive('/process') 
                                 ? 'text-orange-500' 
                                 : 'text-black dark:text-white hover:scale-105'
                         }`}
                     >
-                        Experience
+                        Process
                     </Link>
                     <Link 
                         href="/case-studies" 
@@ -112,6 +112,16 @@ export default function Navigation() {
                         Case Studies
                     </Link>
                     <Link 
+                        href="/experience" 
+                        className={`transition-all duration-300 ease-out ${
+                            isActive('/experience') 
+                                ? 'text-orange-500' 
+                                : 'text-black dark:text-white hover:scale-105'
+                        }`}
+                    >
+                        Experience
+                    </Link>
+                    <Link 
                         href="/blog" 
                         className={`transition-all duration-300 ease-out ${
                             isActive('/blog') 
@@ -120,16 +130,6 @@ export default function Navigation() {
                         }`}
                     >
                         Blog
-                    </Link>
-                    <Link 
-                        href="/skills" 
-                        className={`transition-all duration-300 ease-out ${
-                            isActive('/skills') 
-                                ? 'text-orange-500' 
-                                : 'text-black dark:text-white hover:scale-105'
-                        }`}
-                    >
-                        Skills
                     </Link>
                     <Link 
                         href="/contact" 
@@ -246,15 +246,15 @@ export default function Navigation() {
                                         About
                                     </Link>
                                     <Link 
-                                        href="/experience" 
+                                        href="/process" 
                                         onClick={closeMobileMenu}
                                         className={`block px-4 py-3 text-lg rounded-lg transition-all duration-300 ease-out ${
-                                            isActive('/experience') 
+                                            isActive('/process') 
                                                 ? 'text-orange-500 bg-orange-50 dark:bg-orange-900/20' 
                                                 : 'text-black dark:text-white hover:scale-105 hover:shadow-md'
                                         }`}
                                     >
-                                        Experience
+                                        Process
                                     </Link>
                                     <Link 
                                         href="/case-studies" 
@@ -268,6 +268,17 @@ export default function Navigation() {
                                         Case Studies
                                     </Link>
                                     <Link 
+                                        href="/experience" 
+                                        onClick={closeMobileMenu}
+                                        className={`block px-4 py-3 text-lg rounded-lg transition-all duration-300 ease-out ${
+                                            isActive('/experience') 
+                                                ? 'text-orange-500 bg-orange-50 dark:bg-orange-900/20' 
+                                                : 'text-black dark:text-white hover:scale-105 hover:shadow-md'
+                                        }`}
+                                    >
+                                        Experience
+                                    </Link>
+                                    <Link 
                                         href="/blog" 
                                         onClick={closeMobileMenu}
                                         className={`block px-4 py-3 text-lg rounded-lg transition-all duration-300 ease-out ${
@@ -277,17 +288,6 @@ export default function Navigation() {
                                         }`}
                                     >
                                         Blog
-                                    </Link>
-                                    <Link 
-                                        href="/skills" 
-                                        onClick={closeMobileMenu}
-                                        className={`block px-4 py-3 text-lg rounded-lg transition-all duration-300 ease-out ${
-                                            isActive('/skills') 
-                                                ? 'text-orange-500 bg-orange-50 dark:bg-orange-900/20' 
-                                                : 'text-black dark:text-white hover:scale-105 hover:shadow-md'
-                                        }`}
-                                    >
-                                        Skills
                                     </Link>
                                     <Link 
                                         href="/contact" 

@@ -88,16 +88,18 @@ export default function HeroSection() {
 
                             <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-4 mt-6 justify-start sm:justify-start" style={{ opacity: 0, scale: 0.5, filter: "blur(20px)" }}>
                                 <Link 
-                                    href="/case-studies"
+                                    href="/contact"
                                     className="flex items-center w-full sm:w-fit bg-black dark:bg-white text-white dark:text-black rounded-xl px-6 py-3 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
                                 >
-                                    <span className="font-medium">View case studies</span>
+                                    <span className="font-medium">Let's work together</span>
                                 </Link>
                                 <Link 
-                                    href="/experience"
+                                    href="https://calendly.com/jenjo700/30min"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="flex items-center w-full sm:w-fit border border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl px-6 py-3 hover:text-orange-500 hover:border-orange-500 transition-colors"
                                 >
-                                    <span className="font-medium">View CV</span>
+                                    <span className="font-medium">Schedule a call</span>
                                 </Link>
                                 
                             </div>

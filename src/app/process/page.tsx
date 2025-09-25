@@ -8,7 +8,7 @@ import SplitText from '@/components/SplitText'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-export default function Skills() {
+export default function Process() {
   const [activeSection, setActiveSection] = useState(0)
   const researchImageRef = useRef<HTMLDivElement>(null)
   const researchSectionRef = useRef<HTMLDivElement>(null)
@@ -388,7 +388,7 @@ export default function Skills() {
       </section>
 
       {/* Main Content */}
-      <div className="flex-1 max-w-6xl mx-auto px-4 pb-16">
+      <div className="flex-1 max-w-6xl mx-auto px-4 md:px-12 pb-16">
         
         {/* Tab Navigation */}
         <div className="mb-16 border-b border-gray-200 dark:border-gray-700">

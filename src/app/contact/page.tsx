@@ -79,7 +79,7 @@ export default function Contact() {
       </div>
 
       {/* Contact Options */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 px-4 pb-20">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 px-4 md:px-12 pb-20">
 
         {/* Option 1 | Calendly */}
         <div>
