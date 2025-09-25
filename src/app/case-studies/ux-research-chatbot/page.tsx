@@ -93,9 +93,9 @@ export default function CaseStudyPage() {
       {/* Hero Image with Parallax Effect */}
       <section className="px-4 pt-16">
         <div className="max-w-6xl mx-auto">
-          <div ref={parallaxContainerRef} className="w-full h-[600px] md:h-[800px] relative overflow-hidden rounded-lg">
+          <div ref={heroContainerRef} className="w-full h-[600px] md:h-[800px] relative overflow-hidden rounded-lg">
             <Image
-              ref={parallaxImageRef}
+              ref={heroImageRef}
               src="/chatbot.jpg"
               alt="UX Research Chatbot Interface"
               fill
@@ -166,6 +166,7 @@ export default function CaseStudyPage() {
             <div className="max-w-6xl mx-auto">
               <div className="w-full h-[480px] relative overflow-hidden rounded-lg">
                 <Image
+                  ref={image1Ref}
                   src="/20.jpg"
                   alt="Project Overview - Chatbot concept and conversation flow"
                   fill

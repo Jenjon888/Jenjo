@@ -253,8 +253,9 @@ export default function CaseStudyPage() {
 
           {/* Image Placeholder - Between Challenge and Approach */}
           {/* <section className="py-8">
-            <div className="w-full h-[480px] relative overflow-hidden">
+            <div ref={image2ContainerRef} className="w-full h-[480px] relative overflow-hidden">
               <Image
+                ref={image2Ref}
                 src="/crypto/2.png"
                 alt="Problem Analysis - User pain points and market research"
                 fill
@@ -302,8 +303,9 @@ export default function CaseStudyPage() {
 
                      {/* Image Placeholder - Between Challenge and Approach */}
            <section className="py-8">
-             <div className="w-full h-[400px] md:h-[680px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
+             <div ref={image3ContainerRef} className="w-full h-[400px] md:h-[680px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
                <Image
+                 ref={image3Ref}
                  src="/crypto/3.png"
                  alt="Problem Analysis - User pain points and market research"
                  fill
@@ -316,16 +318,18 @@ export default function CaseStudyPage() {
           {/* <section className="py-8">
             <div className="w-full">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-                <div className="w-full h-[420px] relative overflow-hidden">
+                <div ref={image4ContainerRef} className="w-full h-[420px] relative overflow-hidden">
                   <Image
+                    ref={image4Ref}
                     src="/crypto/3.png"
                     alt="Design Process - Figma wireframes and prototypes"
                     fill
                     className="object-cover"
                   />
                 </div>
-                <div className="w-full h-[420px] relative overflow-hidden">
+                <div ref={image5ContainerRef} className="w-full h-[420px] relative overflow-hidden">
                   <Image
+                    ref={image5Ref}
                     src="/crypto/4.png"
                     alt="Development Implementation - React components and API integration"
                     fill
@@ -386,8 +390,9 @@ export default function CaseStudyPage() {
 
                     {/* Image Placeholder - Between Challenge and Approach */}
           <section className="py-8">
-            <div className="w-full h-[500px] md:h-[980px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
+            <div ref={image6ContainerRef} className="w-full h-[500px] md:h-[980px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
               <Image
+                ref={image6Ref}
                 src="/crypto/6.png"
                 alt="Problem Analysis - User pain points and market research"
                 fill
@@ -397,8 +402,9 @@ export default function CaseStudyPage() {
           </section>
 
           <section className="py-8">
-            <div className="w-full h-[500px] md:h-[980px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
+            <div ref={image7ContainerRef} className="w-full h-[500px] md:h-[980px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
               <Image
+                ref={image7Ref}
                 src="/crypto/5.png"
                 alt="Problem Analysis - User pain points and market research"
                 fill
