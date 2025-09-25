@@ -1,10 +1,82 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
+import { useEffect, useRef } from "react"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger)
+}
 
 export default function CaseStudyPage() {
+  // Create refs for all image containers
+  const heroContainerRef = useRef<HTMLDivElement>(null)
+  const heroImageRef = useRef<HTMLImageElement>(null)
+  const image1ContainerRef = useRef<HTMLDivElement>(null)
+  const image1Ref = useRef<HTMLImageElement>(null)
+  const image2ContainerRef = useRef<HTMLDivElement>(null)
+  const image2Ref = useRef<HTMLImageElement>(null)
+  const image3ContainerRef = useRef<HTMLDivElement>(null)
+  const image3Ref = useRef<HTMLImageElement>(null)
+  const image4ContainerRef = useRef<HTMLDivElement>(null)
+  const image4Ref = useRef<HTMLImageElement>(null)
+  const image5ContainerRef = useRef<HTMLDivElement>(null)
+  const image5Ref = useRef<HTMLImageElement>(null)
+  const image6ContainerRef = useRef<HTMLDivElement>(null)
+  const image6Ref = useRef<HTMLImageElement>(null)
+  const image7ContainerRef = useRef<HTMLDivElement>(null)
+  const image7Ref = useRef<HTMLImageElement>(null)
+  const image8ContainerRef = useRef<HTMLDivElement>(null)
+  const image8Ref = useRef<HTMLImageElement>(null)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    // Create parallax effect for all images
+    const createParallaxEffect = (container: HTMLElement | null, image: HTMLImageElement | null) => {
+      if (container && image) {
+        gsap.fromTo(image, 
+          { 
+            scale: 1.2,
+            y: -50
+          },
+          {
+            scale: 1,
+            y: 0,
+            duration: 1.2,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: container,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1
+            }
+          }
+        )
+      }
+    }
+
+    // Apply parallax to all images
+    createParallaxEffect(heroContainerRef.current, heroImageRef.current)
+    createParallaxEffect(image1ContainerRef.current, image1Ref.current)
+    createParallaxEffect(image2ContainerRef.current, image2Ref.current)
+    createParallaxEffect(image3ContainerRef.current, image3Ref.current)
+    createParallaxEffect(image4ContainerRef.current, image4Ref.current)
+    createParallaxEffect(image5ContainerRef.current, image5Ref.current)
+    createParallaxEffect(image6ContainerRef.current, image6Ref.current)
+    createParallaxEffect(image7ContainerRef.current, image7Ref.current)
+    createParallaxEffect(image8ContainerRef.current, image8Ref.current)
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+    }
+  }, [])
+
   return (
     <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
       <Navigation />
@@ -30,11 +102,12 @@ export default function CaseStudyPage() {
         </div>
       </section>
 
-      {/* Hero Image */}
+      {/* Hero Image with Parallax Effect */}
       <section className="px-4 pt-16">
         <div className="max-w-6xl mx-auto">
-          <div className="w-full h-[500px] md:h-[800px] relative overflow-hidden rounded-lg">
+          <div ref={heroContainerRef} className="w-full h-[500px] md:h-[800px] relative overflow-hidden rounded-lg">
             <Image
+              ref={heroImageRef}
               src="/crypto/7.png"
               alt="Crypto Portfolio Manager Dashboard"
               fill
@@ -104,8 +177,9 @@ export default function CaseStudyPage() {
 
           {/* Image Placeholder - Between What We Did and Challenge */}
           {/* <section className="py-8">
-            <div className="w-full h-[980px] relative overflow-hidden">
+            <div ref={image1ContainerRef} className="w-full h-[980px] relative overflow-hidden">
               <Image
+                ref={image1Ref}
                 src="/crypto/6.png"
                 alt="Project Overview - Initial concepts and project scope"
                 fill

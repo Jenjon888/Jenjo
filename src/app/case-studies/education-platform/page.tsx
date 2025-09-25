@@ -1,10 +1,88 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
+import { useEffect, useRef } from "react"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger)
+}
 
 export default function EducationPlatformCaseStudy() {
+  // Create refs for all image containers
+  const heroContainerRef = useRef<HTMLDivElement>(null)
+  const heroImageRef = useRef<HTMLImageElement>(null)
+  const image1ContainerRef = useRef<HTMLDivElement>(null)
+  const image1Ref = useRef<HTMLImageElement>(null)
+  const image2ContainerRef = useRef<HTMLDivElement>(null)
+  const image2Ref = useRef<HTMLImageElement>(null)
+  const image3ContainerRef = useRef<HTMLDivElement>(null)
+  const image3Ref = useRef<HTMLImageElement>(null)
+  const image4ContainerRef = useRef<HTMLDivElement>(null)
+  const image4Ref = useRef<HTMLImageElement>(null)
+  const image5ContainerRef = useRef<HTMLDivElement>(null)
+  const image5Ref = useRef<HTMLImageElement>(null)
+  const image6ContainerRef = useRef<HTMLDivElement>(null)
+  const image6Ref = useRef<HTMLImageElement>(null)
+  const grid1ContainerRef = useRef<HTMLDivElement>(null)
+  const grid1ImageRef = useRef<HTMLImageElement>(null)
+  const grid2ContainerRef = useRef<HTMLDivElement>(null)
+  const grid2ImageRef = useRef<HTMLImageElement>(null)
+  const final1ContainerRef = useRef<HTMLDivElement>(null)
+  const final1ImageRef = useRef<HTMLImageElement>(null)
+  const final2ContainerRef = useRef<HTMLDivElement>(null)
+  const final2ImageRef = useRef<HTMLImageElement>(null)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    // Create parallax effect for all images
+    const createParallaxEffect = (container: HTMLElement | null, image: HTMLImageElement | null) => {
+      if (container && image) {
+        gsap.fromTo(image, 
+          { 
+            scale: 1.2,
+            y: -50
+          },
+          {
+            scale: 1,
+            y: 0,
+            duration: 1.2,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: container,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1
+            }
+          }
+        )
+      }
+    }
+
+    // Apply parallax to all images
+    createParallaxEffect(heroContainerRef.current, heroImageRef.current)
+    createParallaxEffect(image1ContainerRef.current, image1Ref.current)
+    createParallaxEffect(image2ContainerRef.current, image2Ref.current)
+    createParallaxEffect(image3ContainerRef.current, image3Ref.current)
+    createParallaxEffect(image4ContainerRef.current, image4Ref.current)
+    createParallaxEffect(image5ContainerRef.current, image5Ref.current)
+    createParallaxEffect(image6ContainerRef.current, image6Ref.current)
+    createParallaxEffect(grid1ContainerRef.current, grid1ImageRef.current)
+    createParallaxEffect(grid2ContainerRef.current, grid2ImageRef.current)
+    createParallaxEffect(final1ContainerRef.current, final1ImageRef.current)
+    createParallaxEffect(final2ContainerRef.current, final2ImageRef.current)
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+    }
+  }, [])
+
   return (
     <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
       <Navigation />
@@ -30,11 +108,12 @@ export default function EducationPlatformCaseStudy() {
         </div>
       </section>
 
-      {/* Hero Image */}
+      {/* Hero Image with Parallax Effect */}
       <section className="px-4 pt-16">
         <div className="max-w-6xl mx-auto">
-          <div className="w-full h-[600px] md:h-[800px] relative overflow-hidden rounded-lg">
+          <div ref={heroContainerRef} className="w-full h-[600px] md:h-[800px] relative overflow-hidden rounded-lg">
             <Image
+              ref={heroImageRef}
               src="/medify.jpg"
               alt="Education Platform Interface"
               fill
@@ -90,8 +169,9 @@ export default function EducationPlatformCaseStudy() {
           </section>
 
                     <section className="pb-8">
-            <div className="w-full h-[680px] relative overflow-hidden">
+            <div ref={image1ContainerRef} className="w-full h-[680px] relative overflow-hidden">
             <Image
+              ref={image1Ref}
               src="/medify/5.jpg"
                   alt="Medify Platform Overview - GAMSAT exam preparation interface"
               fill
@@ -138,8 +218,9 @@ export default function EducationPlatformCaseStudy() {
 
           {/* Challenge Visual */}
           {/* <section className="py-8">
-            <div className="w-full h-[680px] relative overflow-hidden">
+            <div ref={image5ContainerRef} className="w-full h-[680px] relative overflow-hidden">
             <Image
+              ref={image5Ref}
               src="/medify/5.jpg"
                   alt="Medify Platform Overview - GAMSAT exam preparation interface"
               fill
@@ -312,8 +393,9 @@ export default function EducationPlatformCaseStudy() {
         
       </section>
       {/* <section className="py-8">
-            <div className="w-full h-[540px] relative overflow-hidden">
+            <div ref={image6ContainerRef} className="w-full h-[540px] relative overflow-hidden">
             <Image
+              ref={image6Ref}
               src="/medify/4.jpg"
                   alt="Medify Platform Overview - GAMSAT exam preparation interface"
               fill
@@ -359,8 +441,9 @@ export default function EducationPlatformCaseStudy() {
       </section>
 
       <section className="">
-            <div className="w-full h-[540px] relative overflow-hidden">
+            <div ref={image2ContainerRef} className="w-full h-[540px] relative overflow-hidden">
             <Image
+              ref={image2Ref}
               src="/medify/3.jpg"
                   alt="Medify Platform Overview - GAMSAT exam preparation interface"
               fill
@@ -370,8 +453,9 @@ export default function EducationPlatformCaseStudy() {
       </section>
 
                 <section className="">
-            <div className="w-full h-[540px] relative overflow-hidden">
+            <div ref={image3ContainerRef} className="w-full h-[540px] relative overflow-hidden">
             <Image
+              ref={image3Ref}
               src="/medify/4.jpg"
                   alt="Medify Platform Overview - GAMSAT exam preparation interface"
               fill
@@ -381,8 +465,9 @@ export default function EducationPlatformCaseStudy() {
       </section>
 
       <section className="pb-8">
-            <div className="w-full h-[680px] relative overflow-hidden">
+            <div ref={image4ContainerRef} className="w-full h-[680px] relative overflow-hidden">
             <Image
+              ref={image4Ref}
               src="/medify/6.jpg"
                   alt="Medify Platform Overview - GAMSAT exam preparation interface"
               fill
@@ -396,16 +481,18 @@ export default function EducationPlatformCaseStudy() {
           {/* <section className="py-8">
             <div className="w-full">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-                <div className="w-full h-[680px] relative overflow-hidden">
+                <div ref={grid1ContainerRef} className="w-full h-[680px] relative overflow-hidden">
                   <Image
+                    ref={grid1ImageRef}
                     src="/medify/1.jpg"
                     alt="Tutorial Design - Learning interface and content structure"
                     fill
                     className="object-cover"
                   />
                 </div>
-                <div className="w-full h-[680px] relative overflow-hidden">
+                <div ref={grid2ContainerRef} className="w-full h-[680px] relative overflow-hidden">
             <Image
+              ref={grid2ImageRef}
               src="/medify/2.jpg"
                     alt="Navigation & Accessibility - User-friendly interface design"
               fill
@@ -494,8 +581,9 @@ export default function EducationPlatformCaseStudy() {
                       {/* Design Process Visuals */}
                       {/* <section className="px-4 py-8">
             <div className="max-w-6xl mx-auto">
-              <div className="w-full h-[720px] relative overflow-hidden rounded-lg">
+              <div ref={final1ContainerRef} className="w-full h-[720px] relative overflow-hidden rounded-lg">
             <Image
+              ref={final1ImageRef}
               src="/medify/6.jpg"
                   alt="Medify Platform Overview - GAMSAT exam preparation interface"
               fill
@@ -507,8 +595,9 @@ export default function EducationPlatformCaseStudy() {
 
                 {/* <section className="px-4 py-8">
             <div className="max-w-6xl mx-auto">
-              <div className="w-full h-[480px] relative overflow-hidden rounded-lg">
+              <div ref={final2ContainerRef} className="w-full h-[480px] relative overflow-hidden rounded-lg">
             <Image
+              ref={final2ImageRef}
               src="/medify/4.jpg"
                   alt="Medify Platform Overview - GAMSAT exam preparation interface"
               fill

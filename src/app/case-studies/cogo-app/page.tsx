@@ -1,11 +1,90 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
 import FadeContent from './FadeContent'
+import { useEffect, useRef } from "react"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger)
+}
 
 export default function CogoAppCaseStudy() {
+  // Create refs for all image containers
+  const heroContainerRef = useRef<HTMLDivElement>(null)
+  const heroImageRef = useRef<HTMLImageElement>(null)
+  const image1ContainerRef = useRef<HTMLDivElement>(null)
+  const image1Ref = useRef<HTMLImageElement>(null)
+  const image2ContainerRef = useRef<HTMLDivElement>(null)
+  const image2Ref = useRef<HTMLImageElement>(null)
+  const image3ContainerRef = useRef<HTMLDivElement>(null)
+  const image3Ref = useRef<HTMLImageElement>(null)
+  const image4ContainerRef = useRef<HTMLDivElement>(null)
+  const image4Ref = useRef<HTMLImageElement>(null)
+  const image5ContainerRef = useRef<HTMLDivElement>(null)
+  const image5Ref = useRef<HTMLImageElement>(null)
+  const image6ContainerRef = useRef<HTMLDivElement>(null)
+  const image6Ref = useRef<HTMLImageElement>(null)
+  const image7ContainerRef = useRef<HTMLDivElement>(null)
+  const image7Ref = useRef<HTMLImageElement>(null)
+  const image8ContainerRef = useRef<HTMLDivElement>(null)
+  const image8Ref = useRef<HTMLImageElement>(null)
+  const image9ContainerRef = useRef<HTMLDivElement>(null)
+  const image9Ref = useRef<HTMLImageElement>(null)
+  const image10ContainerRef = useRef<HTMLDivElement>(null)
+  const image10Ref = useRef<HTMLImageElement>(null)
+  const image11ContainerRef = useRef<HTMLDivElement>(null)
+  const image11Ref = useRef<HTMLImageElement>(null)
+  const image12ContainerRef = useRef<HTMLDivElement>(null)
+  const image12Ref = useRef<HTMLImageElement>(null)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    // Create parallax effect for all images
+    const createParallaxEffect = (container: HTMLElement | null, image: HTMLImageElement | null) => {
+      if (container && image) {
+        gsap.fromTo(image, 
+          { 
+            scale: 1.2,
+            y: -50
+          },
+          {
+            scale: 1,
+            y: 0,
+            duration: 1.2,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: container,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1
+            }
+          }
+        )
+      }
+    }
+
+    // Apply parallax to all active images
+    createParallaxEffect(heroContainerRef.current, heroImageRef.current)
+    createParallaxEffect(image1ContainerRef.current, image1Ref.current)
+    createParallaxEffect(image2ContainerRef.current, image2Ref.current)
+    createParallaxEffect(image3ContainerRef.current, image3Ref.current)
+    createParallaxEffect(image4ContainerRef.current, image4Ref.current)
+    createParallaxEffect(image7ContainerRef.current, image7Ref.current)
+    createParallaxEffect(image8ContainerRef.current, image8Ref.current)
+    createParallaxEffect(image11ContainerRef.current, image11Ref.current)
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+    }
+  }, [])
+
   return (
     <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
       <Navigation />
@@ -31,11 +110,12 @@ export default function CogoAppCaseStudy() {
         </div>
       </section>
 
-      {/* Hero Image */}
+      {/* Hero Image with Parallax Effect */}
       <section className="px-4 pt-16">
         <div className="max-w-6xl mx-auto">
-          <div className="w-full h-[600px] md:h-[800px] relative overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
+          <div ref={heroContainerRef} className="w-full h-[600px] md:h-[800px] relative overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
             <Image
+              ref={heroImageRef}
               src="/cogo/3.jpg"
               alt="CoGo App Interface"
               fill
@@ -126,8 +206,9 @@ export default function CogoAppCaseStudy() {
 
                     {/* Image - Design Process Visuals */}
           <section>
-            <div className="w-full h-[680px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
+            <div ref={image1ContainerRef} className="w-full h-[680px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
               <Image
+                ref={image1Ref}
                 src="/cogo/9.jpeg"
                 alt="CoGo App Final Design - Improved User Experience"
                 fill
@@ -168,8 +249,9 @@ export default function CogoAppCaseStudy() {
 
                 {/* Image - Between Challenge and Approach */}
                     <section className="py-8">
-            <div className="w-full h-[640px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
+            <div ref={image2ContainerRef} className="w-full h-[640px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
               <Image
+                ref={image2Ref}
                 src="/cogo/7.jpg"
                 alt="CoGo App Interface - Value Selection"
                 fill
@@ -297,8 +379,9 @@ export default function CogoAppCaseStudy() {
 
                               {/* Image - Design Process Visuals */}
                               <section>
-            <div className="w-full h-[680px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
+            <div ref={image3ContainerRef} className="w-full h-[680px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
               <Image
+                ref={image3Ref}
                 src="/cogo/6.png"
                 alt="CoGo App Final Design - Improved User Experience"
                 fill
@@ -308,8 +391,9 @@ export default function CogoAppCaseStudy() {
           </section>
 
           <section>
-            <div className="w-full h-[580px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
+            <div ref={image4ContainerRef} className="w-full h-[580px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
               <Image
+                ref={image4Ref}
                 src="/cogo/5.png"
                 alt="CoGo App Final Design - Improved User Experience"
                 fill
@@ -322,16 +406,18 @@ export default function CogoAppCaseStudy() {
                    {/* <section className="py-8">
             <div className="w-full">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-                <div className="w-full h-[480px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
+                <div ref={image5ContainerRef} className="w-full h-[480px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
                   <Image
+                    ref={image5Ref}
                     src="/cogo/1.jpg"
                     alt="Value Selection Interface"
                     fill
                     className="object-cover"
                   />
                 </div>
-                <div className="w-full h-[480px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
+                <div ref={image6ContainerRef} className="w-full h-[480px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
                   <Image
+                    ref={image6Ref}
                     src="/cogo/2.jpg"
                     alt="Rewards System"
                     fill
@@ -389,8 +475,9 @@ export default function CogoAppCaseStudy() {
 
                     {/* Image - Between Challenge and Approach */}
                     <section className="">
-            <div className="w-full h-[640px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
+            <div ref={image7ContainerRef} className="w-full h-[640px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
               <Image
+                ref={image7Ref}
                 src="/cogo/12.png"
                 alt="CoGo App Interface - Value Selection"
                 fill
@@ -401,8 +488,9 @@ export default function CogoAppCaseStudy() {
 
                                         {/* Image - Between Challenge and Approach */}
                                         <section className="pb-8">
-            <div className="w-full h-[640px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
+            <div ref={image8ContainerRef} className="w-full h-[640px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
               <Image
+                ref={image8Ref}
                 src="/cogo/8.jpg"
                 alt="CoGo App Interface - Value Selection"
                 fill
@@ -455,8 +543,9 @@ export default function CogoAppCaseStudy() {
 
           {/* Image - Design Process Visuals */}
           {/* <section>
-            <div className="w-full h-[480px] relative overflow-hidden">
+            <div ref={image9ContainerRef} className="w-full h-[480px] relative overflow-hidden">
               <Image
+                ref={image9Ref}
                 src="/cogo/4.jpg"
                 alt="CoGo App Final Design - Improved User Experience"
                 fill
@@ -467,8 +556,9 @@ export default function CogoAppCaseStudy() {
 
           {/* Image - Design Process Visuals */}
           {/* <section>
-            <div className="w-full h-[640px] relative overflow-hidden">
+            <div ref={image10ContainerRef} className="w-full h-[640px] relative overflow-hidden">
               <Image
+                ref={image10Ref}
                 src="/cogo/9.jpeg"
                 alt="CoGo App Final Design - Improved User Experience"
                 fill
@@ -479,8 +569,9 @@ export default function CogoAppCaseStudy() {
 
                               {/* Image - Between Challenge and Approach */}
                               <section className="py-8">
-            <div className="w-full h-[340px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
+            <div ref={image11ContainerRef} className="w-full h-[340px] relative overflow-hidden border border-gray-200 dark:border-gray-700">
               <Image
+                ref={image11Ref}
                 src="/cogo/11.jpg"
                 alt="CoGo App Interface - Value Selection"
                 fill

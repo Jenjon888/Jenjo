@@ -1,10 +1,55 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
+import { useEffect, useRef } from "react"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger)
+}
 
 export default function YLDDesignSystemCaseStudy() {
+  const parallaxContainerRef = useRef<HTMLDivElement>(null)
+  const parallaxImageRef = useRef<HTMLImageElement>(null)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const container = parallaxContainerRef.current
+    const image = parallaxImageRef.current
+
+    if (container && image) {
+      // Create the same parallax slide effect as the test page
+      gsap.fromTo(image, 
+        { 
+          scale: 1.2,
+          y: -50
+        },
+        {
+          scale: 1,
+          y: 0,
+          duration: 1.2,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: container,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1
+          }
+        }
+      )
+    }
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+    }
+  }, [])
+
   return (
     <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
       <Navigation />
@@ -26,11 +71,12 @@ export default function YLDDesignSystemCaseStudy() {
         </div>
       </section>
 
-      {/* Hero Image */}
+      {/* Hero Image with Parallax Effect */}
       <section className="px-4 pt-16">
         <div className="max-w-6xl mx-auto">
-          <div className="w-full h-[500px] md:h-[800px] relative overflow-hidden rounded-lg">
+          <div ref={parallaxContainerRef} className="w-full h-[500px] md:h-[800px] relative overflow-hidden rounded-lg">
             <Image
+              ref={parallaxImageRef}
               src="/DS1.png"
               alt="Multi-Brand Design System Components"
               fill

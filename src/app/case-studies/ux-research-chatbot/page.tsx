@@ -1,10 +1,70 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react"
 import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
+import { useEffect, useRef } from "react"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger)
+}
 
 export default function CaseStudyPage() {
+  // Create refs for all image containers
+  const heroContainerRef = useRef<HTMLDivElement>(null)
+  const heroImageRef = useRef<HTMLImageElement>(null)
+  const image1ContainerRef = useRef<HTMLDivElement>(null)
+  const image1Ref = useRef<HTMLImageElement>(null)
+  const image2ContainerRef = useRef<HTMLDivElement>(null)
+  const image2Ref = useRef<HTMLImageElement>(null)
+  const image3ContainerRef = useRef<HTMLDivElement>(null)
+  const image3Ref = useRef<HTMLImageElement>(null)
+  const image4ContainerRef = useRef<HTMLDivElement>(null)
+  const image4Ref = useRef<HTMLImageElement>(null)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    // Create parallax effect for all images
+    const createParallaxEffect = (container: HTMLElement | null, image: HTMLImageElement | null) => {
+      if (container && image) {
+        gsap.fromTo(image, 
+          { 
+            scale: 1.2,
+            y: -50
+          },
+          {
+            scale: 1,
+            y: 0,
+            duration: 1.2,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: container,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1
+            }
+          }
+        )
+      }
+    }
+
+    // Apply parallax to all images
+    createParallaxEffect(heroContainerRef.current, heroImageRef.current)
+    createParallaxEffect(image1ContainerRef.current, image1Ref.current)
+    createParallaxEffect(image2ContainerRef.current, image2Ref.current)
+    createParallaxEffect(image3ContainerRef.current, image3Ref.current)
+    createParallaxEffect(image4ContainerRef.current, image4Ref.current)
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+    }
+  }, [])
+
   return (
     <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
       <Navigation />
@@ -30,11 +90,12 @@ export default function CaseStudyPage() {
         </div>
       </section>
 
-      {/* Hero Image */}
+      {/* Hero Image with Parallax Effect */}
       <section className="px-4 pt-16">
         <div className="max-w-6xl mx-auto">
-          <div className="w-full h-[600px] md:h-[800px] relative overflow-hidden rounded-lg">
+          <div ref={parallaxContainerRef} className="w-full h-[600px] md:h-[800px] relative overflow-hidden rounded-lg">
             <Image
+              ref={parallaxImageRef}
               src="/chatbot.jpg"
               alt="UX Research Chatbot Interface"
               fill

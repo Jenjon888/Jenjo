@@ -23,6 +23,528 @@ export default function TestPage() {
   const pageContentRef = useRef<HTMLDivElement>(null)
   const particlesRef = useRef<HTMLDivElement>(null)
 
+  // Initialize scroll-triggered effects
+  useEffect(() => {
+    // Parallax slide effect
+    const parallaxContainer = document.querySelector('.parallax-slide-container')
+    const parallaxBg = document.querySelector('.parallax-slide-bg')
+
+    if (parallaxContainer && parallaxBg) {
+      gsap.fromTo(parallaxBg, 
+        { 
+          scale: 1.2,
+          y: -50
+        },
+        {
+          scale: 1,
+          y: 0,
+          duration: 1.2,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: parallaxContainer,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1
+          }
+        }
+      )
+    }
+
+    // Image overlay effects
+    // Vertical overlay effect
+    const overlayContainer = document.querySelector('.image-overlay-container')
+    const overlayTop = document.querySelector('.image-overlay-top')
+
+    if (overlayContainer && overlayTop) {
+      // Set initial state for the overlay image
+      gsap.set(overlayTop, { 
+        clipPath: "inset(0% 0% 100% 0%)" 
+      })
+
+      // Animate the overlay image as user scrolls
+      gsap.to(overlayTop, {
+        clipPath: "inset(0% 0% 0% 0%)",
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: overlayContainer,
+          start: "top 80%",
+          end: "bottom 20%",
+          scrub: 1
+        }
+      })
+    }
+
+    // Horizontal overlay effect
+    const horizontalContainer = document.querySelector('.image-overlay-horizontal-container')
+    const horizontalTop = document.querySelector('.image-overlay-horizontal-top')
+
+    if (horizontalContainer && horizontalTop) {
+      // Set initial state for the overlay image
+      gsap.set(horizontalTop, { 
+        clipPath: "inset(0% 100% 0% 0%)" 
+      })
+
+      // Animate the overlay image as user scrolls
+      gsap.to(horizontalTop, {
+        clipPath: "inset(0% 0% 0% 0%)",
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: horizontalContainer,
+          start: "top 80%",
+          end: "bottom 20%",
+          scrub: 1
+        }
+      })
+    }
+
+    // Diagonal overlay effect
+    const diagonalContainer = document.querySelector('.image-overlay-diagonal-container')
+    const diagonalTop = document.querySelector('.image-overlay-diagonal-top')
+
+    if (diagonalContainer && diagonalTop) {
+      // Set initial state for the overlay image
+      gsap.set(diagonalTop, { 
+        clipPath: "polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)" 
+      })
+
+      // Animate the overlay image as user scrolls
+      gsap.to(diagonalTop, {
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: diagonalContainer,
+          start: "top 80%",
+          end: "bottom 20%",
+          scrub: 1
+        }
+      })
+    }
+
+    // Circle reveal overlay effect
+    const circleContainer = document.querySelector('.image-overlay-circle-container')
+    const circleTop = document.querySelector('.image-overlay-circle-top')
+
+    if (circleContainer && circleTop) {
+      // Set initial state for the overlay image
+      gsap.set(circleTop, { 
+        clipPath: "circle(0% at 50% 50%)" 
+      })
+
+      // Animate the overlay image as user scrolls
+      gsap.to(circleTop, {
+        clipPath: "circle(100% at 50% 50%)",
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: circleContainer,
+          start: "top 80%",
+          end: "bottom 20%",
+          scrub: 1
+        }
+      })
+    }
+
+    // Auto image effect - 3 image sequence
+    const autoContainer = document.querySelector('.auto-image-container')
+    const autoImage1 = document.querySelector('.auto-image-1')
+    const autoImage2 = document.querySelector('.auto-image-2')
+    const autoImage3 = document.querySelector('.auto-image-3')
+
+    if (autoContainer && autoImage1 && autoImage2 && autoImage3) {
+      // Set initial states - all images start hidden
+      gsap.set(autoImage1, { 
+        clipPath: "inset(0% 0% 0% 0%)" // Image 1 visible initially
+      })
+      gsap.set(autoImage2, { 
+        clipPath: "inset(100% 0% 0% 0%)" // Hidden at top
+      })
+      gsap.set(autoImage3, { 
+        clipPath: "polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%)" // Hidden as center line
+      })
+
+      // Create timeline for auto sequence
+      const autoTimeline = gsap.timeline({ 
+        repeat: -1, // Infinite loop
+        repeatDelay: 1 // 1 second pause between cycles
+      })
+
+      // Sequence: Image 1 → Image 2 (slide down) → Image 3 (circle reveal) → Image 1 (diagonal reveal)
+      autoTimeline
+        // Show image 1 for 2 seconds
+        .to({}, { duration: 2 })
+        
+        // Transition 1: Image 1 to Image 2 (slide down)
+        .to(autoImage2, {
+          clipPath: "inset(0% 0% 0% 0%)",
+          duration: 1.5,
+          ease: "power2.inOut"
+        })
+        
+        // Show image 2 for 2 seconds
+        .to({}, { duration: 2 })
+        
+        // Transition 2: Image 2 to Image 3 (split reveal outward)
+        .to(autoImage2, {
+          clipPath: "polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%)",
+          duration: 1.5,
+          ease: "power2.inOut"
+        })
+        .to(autoImage3, {
+          clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+          duration: 1.5,
+          ease: "power2.inOut"
+        }, "<")
+        
+        // Show image 3 for 2 seconds
+        .to({}, { duration: 2 })
+        
+        // Transition 3: Image 3 to Image 1 (diagonal reveal from top-left)
+        .to(autoImage1, {
+          clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+          duration: 1.5,
+          ease: "power2.inOut"
+        })
+        
+        // Reset for next cycle - prepare for smooth loop
+        .set(autoImage1, { clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)" }) // Hide image 1 diagonally
+        .set(autoImage2, { clipPath: "inset(100% 0% 0% 0%)" })
+        .set(autoImage3, { clipPath: "polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%)" })
+    }
+
+    // Auto image effect - blur transitions
+    const blurContainer = document.querySelector('.blur-image-container')
+    const blurImage1 = document.querySelector('.blur-image-1')
+    const blurImage2 = document.querySelector('.blur-image-2')
+    const blurImage3 = document.querySelector('.blur-image-3')
+
+    if (blurContainer && blurImage1 && blurImage2 && blurImage3) {
+      // Set initial states - all images start with different blur levels
+      gsap.set(blurImage1, { 
+        filter: "blur(0px)",
+        opacity: 1
+      })
+      gsap.set(blurImage2, { 
+        filter: "blur(20px)",
+        opacity: 0
+      })
+      gsap.set(blurImage3, { 
+        filter: "blur(20px)",
+        opacity: 0
+      })
+
+      // Create timeline for blur sequence
+      const blurTimeline = gsap.timeline({ 
+        repeat: -1, // Infinite loop
+        repeatDelay: 1 // 1 second pause between cycles
+      })
+
+      // Sequence: Image 1 → Image 2 (blur transition) → Image 3 (blur transition) → Image 1 (blur transition)
+      blurTimeline
+        // Show image 1 for 2 seconds
+        .to({}, { duration: 2 })
+        
+        // Transition 1: Image 1 to Image 2 (blur out image 1, blur in image 2)
+        .to(blurImage1, {
+          filter: "blur(20px)",
+          opacity: 0,
+          duration: 1.5,
+          ease: "power2.inOut"
+        })
+        .to(blurImage2, {
+          filter: "blur(0px)",
+          opacity: 1,
+          duration: 1.5,
+          ease: "power2.inOut"
+        }, "<") // Start at the same time as previous animation
+        
+        // Show image 2 for 2 seconds
+        .to({}, { duration: 2 })
+        
+        // Transition 2: Image 2 to Image 3 (blur out image 2, blur in image 3)
+        .to(blurImage2, {
+          filter: "blur(20px)",
+          opacity: 0,
+          duration: 1.5,
+          ease: "power2.inOut"
+        })
+        .to(blurImage3, {
+          filter: "blur(0px)",
+          opacity: 1,
+          duration: 1.5,
+          ease: "power2.inOut"
+        }, "<") // Start at the same time as previous animation
+        
+        // Show image 3 for 2 seconds
+        .to({}, { duration: 2 })
+        
+        // Transition 3: Image 3 to Image 1 (blur out image 3, blur in image 1)
+        .to(blurImage3, {
+          filter: "blur(20px)",
+          opacity: 0,
+          duration: 1.5,
+          ease: "power2.inOut"
+        })
+        .to(blurImage1, {
+          filter: "blur(0px)",
+          opacity: 1,
+          duration: 1.5,
+          ease: "power2.inOut"
+        }, "<") // Start at the same time as previous animation
+        
+        // Reset for next cycle
+        .set(blurImage2, { filter: "blur(20px)", opacity: 0 })
+        .set(blurImage3, { filter: "blur(20px)", opacity: 0 })
+    }
+
+    // Auto image effect - combined clip-path & blur
+    const combinedContainer = document.querySelector('.combined-image-container')
+    const combinedImage1 = document.querySelector('.combined-image-1')
+    const combinedImage2 = document.querySelector('.combined-image-2')
+    const combinedImage3 = document.querySelector('.combined-image-3')
+    const combinedImage4 = document.querySelector('.combined-image-4')
+
+    if (combinedContainer && combinedImage1 && combinedImage2 && combinedImage3 && combinedImage4) {
+      // Set initial states - combine clip-path and blur effects
+      gsap.set(combinedImage1, { 
+        clipPath: "inset(0% 0% 0% 0%)",
+        filter: "blur(0px)",
+        opacity: 1
+      })
+      gsap.set(combinedImage2, { 
+        clipPath: "inset(100% 0% 0% 0%)", // Hidden at top
+        filter: "blur(15px)",
+        opacity: 0
+      })
+      gsap.set(combinedImage3, { 
+        clipPath: "polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%)", // Hidden as center line
+        filter: "blur(15px)",
+        opacity: 0
+      })
+      gsap.set(combinedImage4, { 
+        clipPath: "inset(100% 0% 0% 0%)", // Hidden at top
+        filter: "blur(15px)",
+        opacity: 0
+      })
+
+      // Create timeline for combined sequence
+      const combinedTimeline = gsap.timeline({ 
+        repeat: -1, // Infinite loop
+        repeatDelay: 1 // 1 second pause between cycles
+      })
+
+      // Sequence: Image 1 → Image 2 (slide down + blur) → Image 3 (slide up + blur) → Image 4 (slide down + blur) → Image 1 (slide up + blur)
+      combinedTimeline
+        // Show image 1 for 2 seconds
+        .to({}, { duration: 2 })
+        
+        // Transition 1: Image 1 to Image 2 (slide down + blur transition)
+        .to(combinedImage1, {
+          filter: "blur(15px)",
+          opacity: 0,
+          duration: 1.5,
+          ease: "power2.inOut"
+        })
+        .to(combinedImage2, {
+          clipPath: "inset(0% 0% 0% 0%)",
+          filter: "blur(0px)",
+          opacity: 1,
+          duration: 1.5,
+          ease: "power2.inOut"
+        }, "<") // Start at the same time as previous animation
+        
+        // Show image 2 for 2 seconds
+        .to({}, { duration: 2 })
+        
+        // Transition 2: Image 2 to Image 3 (split reveal + blur transition)
+        .to(combinedImage2, {
+          clipPath: "polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%)",
+          filter: "blur(15px)",
+          opacity: 0,
+          duration: 1.5,
+          ease: "power2.inOut"
+        })
+        .to(combinedImage3, {
+          clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+          filter: "blur(0px)",
+          opacity: 1,
+          duration: 1.5,
+          ease: "power2.inOut"
+        }, "<") // Start at the same time as previous animation
+        
+        // Show image 3 for 2 seconds
+        .to({}, { duration: 2 })
+        
+        // Transition 3: Image 3 to Image 4 (slide down + blur transition)
+        .to(combinedImage3, {
+          filter: "blur(15px)",
+          opacity: 0,
+          duration: 1.5,
+          ease: "power2.inOut"
+        })
+        .to(combinedImage4, {
+          clipPath: "inset(0% 0% 0% 0%)",
+          filter: "blur(0px)",
+          opacity: 1,
+          duration: 1.5,
+          ease: "power2.inOut"
+        }, "<") // Start at the same time as previous animation
+        
+        // Show image 4 for 2 seconds
+        .to({}, { duration: 2 })
+        
+        // Transition 4: Image 4 to Image 1 (slide up + blur transition)
+        .to(combinedImage4, {
+          filter: "blur(15px)",
+          opacity: 0,
+          duration: 1.5,
+          ease: "power2.inOut"
+        })
+        .to(combinedImage1, {
+          clipPath: "inset(0% 0% 0% 0%)",
+          filter: "blur(0px)",
+          opacity: 1,
+          duration: 1.5,
+          ease: "power2.inOut"
+        }, "<") // Start at the same time as previous animation
+        
+        // Reset for next cycle - prepare for smooth loop
+        .set(combinedImage2, { clipPath: "inset(100% 0% 0% 0%)", filter: "blur(15px)", opacity: 0 })
+        .set(combinedImage3, { clipPath: "polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%)", filter: "blur(15px)", opacity: 0 })
+        .set(combinedImage4, { clipPath: "inset(100% 0% 0% 0%)", filter: "blur(15px)", opacity: 0 })
+    }
+
+    // Auto image effect - 15 image showcase with mixed transitions
+    const showcaseContainer = document.querySelector('.showcase-image-container')
+    const showcaseImages = document.querySelectorAll('[class*="showcase-image-"]')
+
+    console.log('Showcase container found:', !!showcaseContainer)
+    console.log('Showcase images found:', showcaseImages.length)
+
+    if (showcaseContainer && showcaseImages.length >= 15) {
+      // Set initial states - all images hidden except the first
+      showcaseImages.forEach((img, index) => {
+        if (index === 0) {
+          gsap.set(img, { 
+            opacity: 1,
+            zIndex: 15
+          })
+        } else {
+          gsap.set(img, { 
+            opacity: 0,
+            zIndex: index
+          })
+        }
+      })
+
+      // Create timeline for showcase sequence with mixed transitions
+      const showcaseTimeline = gsap.timeline({ 
+        repeat: -1, // Infinite loop
+        repeatDelay: 0.5 // Short pause between cycles
+      })
+
+      // Define transition types for variety
+      const transitions = ['slideDown', 'slideUp', 'split', 'circle', 'diagonal']
+
+      // Create sequence for all 15 images
+      for (let i = 0; i < 15; i++) {
+        const currentImg = showcaseImages[i]
+        const nextImg = showcaseImages[(i + 1) % 15]
+        const transitionType = transitions[i % transitions.length]
+
+        // Show current image for 1.5 seconds
+        showcaseTimeline.to({}, { duration: 1.5 })
+
+        // Transition to next image based on type
+        if (transitionType === 'slideDown') {
+          gsap.set(nextImg, { clipPath: "inset(100% 0% 0% 0%)", opacity: 1, zIndex: 16 })
+          showcaseTimeline
+            .to(currentImg, {
+              clipPath: "inset(0% 0% 100% 0%)",
+              opacity: 0,
+              duration: 1.2,
+              ease: "power2.inOut"
+            })
+            .to(nextImg, {
+              clipPath: "inset(0% 0% 0% 0%)",
+              duration: 1.2,
+              ease: "power2.inOut"
+            }, "<")
+        } else if (transitionType === 'slideUp') {
+          gsap.set(nextImg, { clipPath: "inset(0% 0% 100% 0%)", opacity: 1, zIndex: 16 })
+          showcaseTimeline
+            .to(currentImg, {
+              clipPath: "inset(100% 0% 0% 0%)",
+              opacity: 0,
+              duration: 1.2,
+              ease: "power2.inOut"
+            })
+            .to(nextImg, {
+              clipPath: "inset(0% 0% 0% 0%)",
+              duration: 1.2,
+              ease: "power2.inOut"
+            }, "<")
+        } else if (transitionType === 'split') {
+          gsap.set(nextImg, { clipPath: "polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%)", opacity: 1, zIndex: 16 })
+          showcaseTimeline
+            .to(currentImg, {
+              clipPath: "polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%)",
+              opacity: 0,
+              duration: 1.2,
+              ease: "power2.inOut"
+            })
+            .to(nextImg, {
+              clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+              duration: 1.2,
+              ease: "power2.inOut"
+            }, "<")
+        } else if (transitionType === 'circle') {
+          gsap.set(nextImg, { clipPath: "circle(0% at 50% 50%)", opacity: 1, zIndex: 16 })
+          showcaseTimeline
+            .to(currentImg, {
+              clipPath: "circle(0% at 50% 50%)",
+              opacity: 0,
+              duration: 1.2,
+              ease: "power2.inOut"
+            })
+            .to(nextImg, {
+              clipPath: "circle(100% at 50% 50%)",
+              duration: 1.2,
+              ease: "power2.inOut"
+            }, "<")
+        } else if (transitionType === 'diagonal') {
+          gsap.set(nextImg, { clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)", opacity: 1, zIndex: 16 })
+          showcaseTimeline
+            .to(currentImg, {
+              clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)",
+              opacity: 0,
+              duration: 1.2,
+              ease: "power2.inOut"
+            })
+            .to(nextImg, {
+              clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+              duration: 1.2,
+              ease: "power2.inOut"
+            }, "<")
+        }
+      }
+
+      // Reset all images for next cycle
+      showcaseTimeline.set(showcaseImages[0], { opacity: 1, zIndex: 15 })
+      showcaseImages.forEach((img, index) => {
+        if (index !== 0) {
+          gsap.set(img, { opacity: 0, zIndex: index })
+        }
+      })
+    }
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+    }
+  }, [])
+
   // Theme transition functions
   const transitionEffects = {
     fade: () => {
@@ -594,10 +1116,233 @@ export default function TestPage() {
       {/* Test Content Area */}
       <main ref={pageContentRef} className="px-8 py-16">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-4xl font-semibold mb-8 text-center">CTA Button Testing</h1>
+          <h1 className="text-4xl font-semibold mb-8 text-center">Image Effects Testing</h1>
           <p className="text-center text-gray-600 dark:text-gray-400 mb-12">
-            Test different button styles and hover effects for your hero section
+            Test different image hover effects and animations
           </p>
+
+          {/* Auto Image Effect - 15 Image Showcase with Mixed Transitions */}
+          <div className="mb-16">
+            <h2 className="text-2xl font-semibold mb-8 text-center">Auto Image Effect - 15 Image Showcase with Mixed Transitions</h2>
+            <div className="relative h-96 lg:h-[500px] overflow-hidden rounded-xl">
+              <div className="absolute inset-0 showcase-image-container">
+                {/* All 15 images stacked */}
+                <img src="/show/P1.jpg" alt="Showcase Image 1" className="absolute inset-0 w-full h-full object-cover showcase-image-1" />
+                <img src="/show/P2.jpg" alt="Showcase Image 2" className="absolute inset-0 w-full h-full object-cover showcase-image-2" />
+                <img src="/show/P3.png" alt="Showcase Image 3" className="absolute inset-0 w-full h-full object-cover showcase-image-3" />
+                <img src="/show/P4.jpg" alt="Showcase Image 4" className="absolute inset-0 w-full h-full object-cover showcase-image-4" />
+                <img src="/show/P5.jpeg" alt="Showcase Image 5" className="absolute inset-0 w-full h-full object-cover showcase-image-5" />
+                <img src="/show/P6.jpg" alt="Showcase Image 6" className="absolute inset-0 w-full h-full object-cover showcase-image-6" />
+                <img src="/show/P7.jpeg" alt="Showcase Image 7" className="absolute inset-0 w-full h-full object-cover showcase-image-7" />
+                <img src="/show/P8.jpg" alt="Showcase Image 8" className="absolute inset-0 w-full h-full object-cover showcase-image-8" />
+                <img src="/show/P9.png" alt="Showcase Image 9" className="absolute inset-0 w-full h-full object-cover showcase-image-9" />
+                <img src="/show/P10.jpg" alt="Showcase Image 10" className="absolute inset-0 w-full h-full object-cover showcase-image-10" />
+                <img src="/show/P11.jpg" alt="Showcase Image 11" className="absolute inset-0 w-full h-full object-cover showcase-image-11" />
+                <img src="/show/P12.jpg" alt="Showcase Image 12" className="absolute inset-0 w-full h-full object-cover showcase-image-12" />
+                <img src="/show/P13.jpg" alt="Showcase Image 13" className="absolute inset-0 w-full h-full object-cover showcase-image-13" />
+                <img src="/show/P14.jpg" alt="Showcase Image 14" className="absolute inset-0 w-full h-full object-cover showcase-image-14" />
+                <img src="/show/P15.jpg" alt="Showcase Image 15" className="absolute inset-0 w-full h-full object-cover showcase-image-15" />
+              </div>
+            </div>
+          </div>
+
+          {/* Parallax Slide Effect */}
+          <div className="mb-16">
+            <h2 className="text-2xl font-semibold mb-8 text-center">Parallax Slide Effect</h2>
+            <div className="relative h-96 lg:h-[500px] overflow-hidden rounded-xl">
+              <div className="absolute inset-0 parallax-slide-container">
+                <img 
+                  src="/skills/design2.jpg" 
+                  alt="Design Process" 
+                  className="w-full h-full object-cover parallax-slide-bg"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Scroll Image Overlay Effect - Vertical */}
+          <div className="mb-16">
+            <h2 className="text-2xl font-semibold mb-8 text-center">Scroll Image Overlay Effect - Vertical</h2>
+            <div className="relative h-96 lg:h-[500px] overflow-hidden rounded-xl">
+              <div className="absolute inset-0 image-overlay-container">
+                {/* First image - base layer */}
+                <img 
+                  src="/medify.jpg" 
+                  alt="Medify Healthcare App" 
+                  className="w-full h-full object-cover image-overlay-base"
+                />
+                
+                {/* Second image - overlay layer */}
+                <img 
+                  src="/hsbc.jpg" 
+                  alt="HSBC Banking Solution" 
+                  className="absolute inset-0 w-full h-full object-cover image-overlay-top"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Scroll Image Overlay Effect - Horizontal */}
+          <div className="mb-16">
+            <h2 className="text-2xl font-semibold mb-8 text-center">Scroll Image Overlay Effect - Horizontal</h2>
+            <div className="relative h-96 lg:h-[500px] overflow-hidden rounded-xl">
+              <div className="absolute inset-0 image-overlay-horizontal-container">
+                {/* First image - base layer */}
+                <img 
+                  src="/YLD.jpg" 
+                  alt="YLD Design System" 
+                  className="w-full h-full object-cover image-overlay-horizontal-base"
+                />
+                
+                {/* Second image - overlay layer */}
+                <img 
+                  src="/cogo/1.jpg" 
+                  alt="CoGo Sustainability App" 
+                  className="absolute inset-0 w-full h-full object-cover image-overlay-horizontal-top"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Scroll Image Overlay Effect - Diagonal */}
+          <div className="mb-16">
+            <h2 className="text-2xl font-semibold mb-8 text-center">Scroll Image Overlay Effect - Diagonal</h2>
+            <div className="relative h-96 lg:h-[500px] overflow-hidden rounded-xl">
+              <div className="absolute inset-0 image-overlay-diagonal-container">
+                {/* First image - base layer */}
+                <img 
+                  src="/crypto/1.jpeg" 
+                  alt="Crypto Trading Platform" 
+                  className="w-full h-full object-cover image-overlay-diagonal-base"
+                />
+                
+                {/* Second image - overlay layer */}
+                <img 
+                  src="/skills/design2.jpg" 
+                  alt="Design Process" 
+                  className="absolute inset-0 w-full h-full object-cover image-overlay-diagonal-top"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Scroll Image Overlay Effect - Circle Reveal */}
+          <div className="mb-16">
+            <h2 className="text-2xl font-semibold mb-8 text-center">Scroll Image Overlay Effect - Circle Reveal</h2>
+            <div className="relative h-96 lg:h-[500px] overflow-hidden rounded-xl">
+              <div className="absolute inset-0 image-overlay-circle-container">
+                {/* First image - base layer */}
+                <img 
+                  src="/blog/AI2.jpg" 
+                  alt="AI Technology" 
+                  className="w-full h-full object-cover image-overlay-circle-base"
+                />
+                
+                {/* Second image - overlay layer */}
+                <img 
+                  src="/uxchat/chatbot.avif" 
+                  alt="AI Chatbot Interface" 
+                  className="absolute inset-0 w-full h-full object-cover image-overlay-circle-top"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Auto Image Effect - 3 Image Sequence */}
+          <div className="mb-16">
+            <h2 className="text-2xl font-semibold mb-8 text-center">Auto Image Effect - 3 Image Sequence</h2>
+            <div className="relative h-96 lg:h-[500px] overflow-hidden rounded-xl">
+              <div className="absolute inset-0 auto-image-container">
+                {/* First image - base layer */}
+                <img 
+                  src="/medify.jpg" 
+                  alt="Medify Healthcare App" 
+                  className="w-full h-full object-cover auto-image-1"
+                />
+                
+                {/* Second image - overlay layer */}
+                <img 
+                  src="/hsbc.jpg" 
+                  alt="HSBC Banking Solution" 
+                  className="absolute inset-0 w-full h-full object-cover auto-image-2"
+                />
+                
+                {/* Third image - overlay layer */}
+                <img 
+                  src="/YLD.jpg" 
+                  alt="YLD Design System" 
+                  className="absolute inset-0 w-full h-full object-cover auto-image-3"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Auto Image Effect - Blur Transitions */}
+          <div className="mb-16">
+            <h2 className="text-2xl font-semibold mb-8 text-center">Auto Image Effect - Blur Transitions</h2>
+            <div className="relative h-96 lg:h-[500px] overflow-hidden rounded-xl">
+              <div className="absolute inset-0 blur-image-container">
+                {/* First image - base layer */}
+                <img 
+                  src="/cogo/1.jpg" 
+                  alt="CoGo Sustainability App" 
+                  className="w-full h-full object-cover blur-image-1"
+                />
+                
+                {/* Second image - overlay layer */}
+                <img 
+                  src="/crypto/1.jpeg" 
+                  alt="Crypto Trading Platform" 
+                  className="absolute inset-0 w-full h-full object-cover blur-image-2"
+                />
+                
+                {/* Third image - overlay layer */}
+                <img 
+                  src="/skills/design2.jpg" 
+                  alt="Design Process" 
+                  className="absolute inset-0 w-full h-full object-cover blur-image-3"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Auto Image Effect - Combined Clip-Path & Blur */}
+          <div className="mb-16">
+            <h2 className="text-2xl font-semibold mb-8 text-center">Auto Image Effect - Combined Clip-Path & Blur</h2>
+            <div className="relative h-96 lg:h-[500px] overflow-hidden rounded-xl">
+              <div className="absolute inset-0 combined-image-container">
+                {/* First image - base layer */}
+                <img 
+                  src="/blog/AI2.jpg" 
+                  alt="AI Technology" 
+                  className="w-full h-full object-cover combined-image-1"
+                />
+                
+                {/* Second image - overlay layer */}
+                <img 
+                  src="/uxchat/chatbot.avif" 
+                  alt="AI Chatbot Interface" 
+                  className="absolute inset-0 w-full h-full object-cover combined-image-2"
+                />
+                
+                {/* Third image - overlay layer */}
+                <img 
+                  src="/medify.jpg" 
+                  alt="Medify Healthcare App" 
+                  className="absolute inset-0 w-full h-full object-cover combined-image-3"
+                />
+                
+                {/* Fourth image - overlay layer */}
+                <img 
+                  src="/blk-logo2.png" 
+                  alt="Jenjo Logo" 
+                  className="absolute inset-0 w-full h-full object-contain bg-white combined-image-4"
+                />
+              </div>
+            </div>
+          </div>
+
+
         </div>
       </main>
 
