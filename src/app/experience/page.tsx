@@ -1,8 +1,34 @@
+'use client'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 import SplitText from '@/components/SplitText'
+import { Download } from 'lucide-react'
+import { useState } from 'react'
+import { BlackSlideLeftDownloadButton } from '@/components/ui/slide-buttons'
 
 export default function Experience() {
+  const [isDownloading, setIsDownloading] = useState(false)
+
+  const handleDownload = async () => {
+    setIsDownloading(true)
+    try {
+      // Create a temporary link element to trigger download
+      const link = document.createElement('a')
+      link.href = '/JJCV.pdf'
+      link.download = 'JJCV.pdf'
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      
+      // Simulate download time for better UX
+      await new Promise(resolve => setTimeout(resolve, 1500))
+    } catch (error) {
+      console.error('Download failed:', error)
+    } finally {
+      setIsDownloading(false)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
       <Navigation />
@@ -34,42 +60,30 @@ export default function Experience() {
            <h2 className="text-2xl md:text-3xl font-medium text-black dark:text-white">
             Current CV
           </h2>
-             <div className="flex items-center gap-3 mb-8">
+             <div className="flex items-center gap-3 mb-6">
                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                <span className="text-black dark:text-white">Available</span>
              </div>
 
-             {/* Quick Stats */}
-             <div className="space-y-6">
-               <div>
-                 <h2 className="text-lg font-medium text-black dark:text-white mb-4">Quick Stats</h2>
-                 <div className="space-y-3 text-sm">
-                   <div className="flex justify-between">
-                     <span className="text-gray-600 dark:text-gray-400">Experience</span>
-                     <span className="text-black dark:text-white font-medium">15+ years</span>
-                   </div>
-                   <div className="flex justify-between">
-                     <span className="text-gray-600 dark:text-gray-400">Projects</span>
-                     <span className="text-black dark:text-white font-medium">50+</span>
-                   </div>
-                   <div className="flex justify-between">
-                     <span className="text-gray-600 dark:text-gray-400">Industries</span>
-                     <span className="text-black dark:text-white font-medium">Fintech, EdTech, Banking</span>
-                   </div>
-                 </div>
-               </div>
+             {/* Download CV Button */}
+             <BlackSlideLeftDownloadButton 
+               onClick={handleDownload}
+               disabled={isDownloading}
+               className="mb-8"
+             >
+               {isDownloading ? (
+                 <>
+                   <div className="w-4 h-4 border-2 border-white dark:border-black border-t-transparent rounded-full animate-spin"></div>
+                   <span className="font-medium">Downloading...</span>
+                 </>
+               ) : (
+                 <>
+                   <Download size={16} />
+                   <span className="font-medium">Download CV</span>
+                 </>
+               )}
+             </BlackSlideLeftDownloadButton>
 
-               {/* Key Achievements */}
-               {/* <div>
-                 <h3 className="text-lg font-medium text-black dark:text-white mb-4">Key Results</h3>
-                 <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-2">
-                   <li>• 40% faster component development</li>
-                   <li>• 25% increase in dev efficiency</li>
-                   <li>• 20% improvement in user satisfaction</li>
-                   <li>• 50% reduction in navigation errors</li>
-                 </ul>
-               </div> */}
-             </div>
            </div>
          </div>
 

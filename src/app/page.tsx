@@ -10,6 +10,7 @@ import TiltedTextCard from '@/components/TiltedTextCard'
 import SplitText from '@/components/SplitText'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { BlackSlideLeftButton, BlackSlideLeftSubmitButton, BeamBorderButton } from '@/components/ui/slide-buttons'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -551,10 +552,9 @@ export default function Home() {
 
       {/* CTA Buttons */}
 <div ref={ctaButtonsRef} className="w-full mt-8 pt-8 md:pt-16 flex flex-col sm:flex-row gap-4">
-  <button 
+  <BlackSlideLeftSubmitButton 
     onClick={handleContactClick}
     disabled={isContactLoading}
-    className="flex items-center w-full sm:w-fit bg-black dark:bg-white text-white dark:text-black rounded-xl px-6 py-3 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
   >
     {isContactLoading ? (
       <>
@@ -567,10 +567,11 @@ export default function Home() {
         <span className="font-medium">Let's work together</span>
       </>
     )}
-  </button>
-  <a href="https://calendly.com/jenjo700/30min" target="_blank" rel="noopener noreferrer" className="flex items-center w-full sm:w-fit border border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-    <span className="font-medium">Schedule a call</span>
-  </a>
+  </BlackSlideLeftSubmitButton>
+  <BeamBorderButton 
+    text="Schedule a call"
+    href="https://calendly.com/jenjo700/30min"
+  />
 </div>
     </div>
   </div>
@@ -652,21 +653,16 @@ export default function Home() {
 
             {/* CTA Buttons */}
             <div ref={featuredButtonsRef} className="flex flex-col sm:flex-row gap-4 pt-4">
-              <a 
+              <BlackSlideLeftButton 
+                text="View Case Study"
                 href="/case-studies/crypto-ai-portfolio"
-                className="flex items-center w-full sm:w-fit bg-black dark:bg-white text-white dark:text-black rounded-xl px-6 py-3 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
-              >
-                <span className="font-medium">View Case Study</span>
-                <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
-              <a 
+                className="whitespace-nowrap"
+              />
+              <BeamBorderButton 
+                text="All Case Studies"
                 href="/case-studies"
-                className="flex items-center w-full sm:w-fit border border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl px-6 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              >
-                <span className="font-medium">All Case Studies</span>
-              </a>
+                className="whitespace-nowrap"
+              />
             </div>
           </div>
         </div>
@@ -788,12 +784,10 @@ export default function Home() {
         rootMargin="-50px"
       />
     )}
-    <a href="/process" className="flex items-center w-full sm:w-fit bg-black dark:bg-white text-white dark:text-black rounded-xl px-6 py-3 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors font-medium">
-      <span>View my process</span>
-      <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-      </svg>
-    </a>
+    <BlackSlideLeftButton 
+      text="View my process"
+      href="/process"
+    />
   </div>
 
   {/* Cards Grid */}

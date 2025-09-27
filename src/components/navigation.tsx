@@ -3,13 +3,14 @@ import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Download, Menu, X } from 'lucide-react'
+import { Menu, X, ArrowRight, ArrowUpRight } from 'lucide-react'
 import { Loading } from './loading'
 import ThemeToggle from './ThemeToggle'
+import { OrangeSlideLeftButton } from '@/components/ui/slide-buttons'
 
 export default function Navigation() {
     const [isScrolled, setIsScrolled] = useState(false)
-    const [isDownloading, setIsDownloading] = useState(false)
+    const [isContactLoading, setIsContactLoading] = useState(false)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const pathname = usePathname()
 
@@ -29,24 +30,11 @@ export default function Navigation() {
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
-    const handleDownload = async () => {
-        setIsDownloading(true)
-        try {
-            // Create a temporary link element to trigger download
-            const link = document.createElement('a')
-            link.href = '/JJCV.pdf'
-            link.download = 'JJCV.pdf'
-            document.body.appendChild(link)
-            link.click()
-            document.body.removeChild(link)
-            
-            // Simulate download time for better UX
-            await new Promise(resolve => setTimeout(resolve, 1500))
-        } catch (error) {
-            console.error('Download failed:', error)
-        } finally {
-            setIsDownloading(false)
-        }
+    const handleContactClick = async () => {
+        setIsContactLoading(true)
+        // Simulate navigation delay
+        await new Promise(resolve => setTimeout(resolve, 500))
+        window.location.href = '/contact'
     }
 
     const toggleMobileMenu = () => {
@@ -146,45 +134,38 @@ export default function Navigation() {
                 {/* Desktop Actions (lg and above) */}
                 <div className="hidden lg:flex items-center gap-4">
                     <ThemeToggle />
-                    <button 
-                        onClick={handleDownload}
-                        disabled={isDownloading}
-                        className="bg-white dark:bg-black text-black dark:text-white px-6 py-2 rounded-xl font-medium transition-colors flex items-center gap-2 disabled:cursor-not-allowed"
+                    <OrangeSlideLeftButton 
+                        onClick={handleContactClick}
+                        disabled={isContactLoading}
                     >
-                        <>
-                            Download CV
-                            <Download 
-                                size={16} 
-                                className={`transition-all duration-300 ${
-                                    isDownloading 
-                                        ? 'animate-spin text-orange-500' 
-                                        : ''
-                                }`}
-                            />
-                        </>
-                    </button>
+                        {isContactLoading ? (
+                            <>
+                                <Loading size="sm" />
+                                <span className="font-medium ml-2">Loading...</span>
+                            </>
+                        ) : (
+                            <span className="font-medium">Start a project</span>
+                        )}
+                    </OrangeSlideLeftButton>
                 </div>
 
                 {/* Tablet Actions (md to lg) */}
                 <div className="hidden md:flex lg:hidden items-center gap-3">
                     <ThemeToggle />
-                    <button 
-                        onClick={handleDownload}
-                        disabled={isDownloading}
-                        className="bg-white dark:bg-black text-black dark:text-white px-4 py-2 rounded-xl font-medium transition-colors flex items-center gap-2 disabled:cursor-not-allowed text-sm"
+                    <OrangeSlideLeftButton 
+                        onClick={handleContactClick}
+                        disabled={isContactLoading}
+                        className="text-sm pl-4"
                     >
-                        <>
-                            <span className="hidden sm:inline">Download CV</span>
-                            <Download 
-                                size={16} 
-                                className={`transition-all duration-300 ${
-                                    isDownloading 
-                                        ? 'animate-spin text-orange-500' 
-                                        : ''
-                                }`}
-                            />
-                        </>
-                    </button>
+                        {isContactLoading ? (
+                            <>
+                                <Loading size="sm" />
+                                <span className="font-medium ml-2">Loading...</span>
+                            </>
+                        ) : (
+                            <span className="font-medium hidden sm:inline">Start a project</span>
+                        )}
+                    </OrangeSlideLeftButton>
                     <button
                         onClick={toggleMobileMenu}
                         className="text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
@@ -303,28 +284,25 @@ export default function Navigation() {
                                 </div>
                             </nav>
 
-                            {/* Mobile Download Button */}
+                            {/* Mobile CTA Button */}
                             <div className="p-6 border-t border-gray-200 dark:border-gray-700">
-                                <button 
+                                <OrangeSlideLeftButton 
                                     onClick={() => {
-                                        handleDownload()
+                                        handleContactClick()
                                         closeMobileMenu()
                                     }}
-                                    disabled={isDownloading}
-                                    className="w-full bg-black dark:bg-white text-white dark:text-black px-6 py-3 rounded-xl font-medium transition-colors flex items-center justify-center gap-2 disabled:cursor-not-allowed"
+                                    disabled={isContactLoading}
+                                    className="w-full py-3"
                                 >
-                                    <>
-                                        Download CV
-                                        <Download 
-                                            size={16} 
-                                            className={`transition-all duration-300 ${
-                                                isDownloading 
-                                                    ? 'animate-spin text-orange-500' 
-                                                    : ''
-                                            }`}
-                                        />
-                                    </>
-                                </button>
+                                    {isContactLoading ? (
+                                        <>
+                                            <Loading size="sm" />
+                                            <span className="font-medium ml-2">Loading...</span>
+                                        </>
+                                    ) : (
+                                        <span className="font-medium">Start a project</span>
+                                    )}
+                                </OrangeSlideLeftButton>
                             </div>
                         </div>
                     </div>

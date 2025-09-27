@@ -2,6 +2,7 @@
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 import Image from 'next/image'
+import Link from 'next/link'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
 import SplitText from '@/components/SplitText'
@@ -17,6 +18,8 @@ export default function About() {
   const titleRef = useRef<HTMLDivElement>(null)
   const tagRef = useRef<HTMLDivElement>(null)
   const clientFeedbackTitleRef = useRef<HTMLHeadingElement>(null)
+  const ctaButtonsRef1 = useRef<HTMLDivElement>(null)
+  const ctaButtonsRef2 = useRef<HTMLDivElement>(null)
 
   const testimonials = [
     {
@@ -161,6 +164,47 @@ export default function About() {
       })
     }
 
+    // CTA Buttons Fade In Effects
+    if (ctaButtonsRef1.current && contentSectionRef.current) {
+      gsap.set(ctaButtonsRef1.current, { 
+        opacity: 0,
+        y: 30
+      })
+      
+      gsap.to(ctaButtonsRef1.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ctaButtonsRef1.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse"
+        }
+      })
+    }
+
+    if (ctaButtonsRef2.current && testimonialsSectionRef.current) {
+      gsap.set(ctaButtonsRef2.current, { 
+        opacity: 0,
+        y: 30
+      })
+      
+      gsap.to(ctaButtonsRef2.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ctaButtonsRef2.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse"
+        }
+      })
+    }
+
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill())
     }
@@ -172,16 +216,7 @@ export default function About() {
       
       {/* Page Title */}
 
-      {/* Availability Badge */}
-      <div className="flex justify-center px-4 pt-8 pb-4">
-        <div ref={tagRef} className="flex flex-col sm:flex-row sm:items-center gap-3 w-full sm:w-auto" style={{ opacity: 0, transform: "translateY(30px)" }}>
-          <div className="flex items-center justify-center bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 px-4 py-2 rounded-full w-full sm:w-auto">
-            <span className="w-2 h-2 rounded-full bg-green-500 mr-2"></span>
-            <span className="text-sm font-medium">Open to new opportunities</span>
-          </div>
-          <span className="text-sm text-gray-600 dark:text-gray-400 hidden sm:block">London-based, open to remote</span>
-        </div>
-      </div>
+
 
 
       {/* Content Sections - Minimal Layout */}

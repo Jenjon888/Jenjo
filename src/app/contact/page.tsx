@@ -4,6 +4,7 @@ import Footer from '@/components/footer'
 import { Loading } from '@/components/loading'
 import { useState } from 'react'
 import SplitText from '@/components/SplitText'
+import { BlackSlideLeftButton, BlackSlideLeftSubmitButton } from '@/components/ui/slide-buttons'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -113,14 +114,10 @@ export default function Contact() {
             </ul>
           </div>
           
-          <a
-            href="https://calendly.com/jenjo700/30min" 
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center w-fit bg-black dark:bg-white text-white dark:text-black rounded-xl px-6 py-3 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
-          >
-            <span className="font-medium">Schedule Discovery Call</span>
-          </a>
+          <BlackSlideLeftButton
+            text="Schedule Discovery Call"
+            href="https://calendly.com/jenjo700/30min"
+          />
         </div>
 
         {/* Option 2 | Contact Form */}
@@ -242,10 +239,8 @@ export default function Contact() {
               </div>
             </div>
 
-            <button
-              type="submit"
+            <BlackSlideLeftSubmitButton
               disabled={isSubmitting}
-              className="inline-flex items-center w-fit bg-black dark:bg-white text-white dark:text-black rounded-xl px-6 py-3 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? (
                 <>
@@ -255,7 +250,7 @@ export default function Contact() {
               ) : (
                 <span className="font-medium">Send Message</span>
               )}
-            </button>
+            </BlackSlideLeftSubmitButton>
             
             {submitStatus === 'success' && (
               <div className="mt-4 p-4 bg-green-100 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-xl">

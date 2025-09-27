@@ -1,12 +1,26 @@
 'use client'
 import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, ArrowUpRight } from 'lucide-react'
 import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 import { useRef, useEffect, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useTheme } from '@/contexts/ThemeContext'
+import { BlackSlideLeftButton, BeamBorderButton } from '@/components/ui/slide-buttons'
+import { 
+  InVisionIcon,
+  SketchIcon,
+  FigmaIcon, 
+  ReactIcon,
+  NextJSIcon, 
+  JavaScriptIcon,
+  VercelIcon,
+  GitHubIcon,
+  JiraIcon, 
+  TrelloIcon,
+  NetlifyIcon
+} from '@/components/ui/tech-icons'
 // Spline integration temporarily disabled due to package issues
 // import dynamic from 'next/dynamic'
 // const Spline = dynamic(() => import('@splinetool/react-spline'), {
@@ -15,6 +29,661 @@ import { useTheme } from '@/contexts/ThemeContext'
 // })
 
 gsap.registerPlugin(ScrollTrigger)
+
+// BlobButton Component
+const BlobButton = ({ 
+  text = "View our Work", 
+  onClick = () => {},
+  className = "" 
+}: {
+  text?: string;
+  onClick?: () => void;
+  className?: string;
+}) => {
+  return (
+    <button
+      onClick={onClick}
+      className={`relative inline-flex items-center gap-3 pl-4 pr-2 py-2 font-medium text-black transition-all duration-300 ease-out hover:-translate-y-1 bg-[#c6ff4d] hover:bg-[#b2ff00] rounded-full ${className}`}
+    >
+      <span>{text}</span>
+      <div className="w-6 h-6 bg-black rounded-full flex items-center justify-center">
+        <ArrowUpRight className="w-3 h-3 text-[#c6ff4d]" />
+      </div>
+    </button>
+  );
+};
+
+// Slide Effect Button Components
+const SlideLeftButton = ({ 
+  text = "Let's work together", 
+  href = "/contact",
+  variant = "primary",
+  className = "" 
+}: {
+  text?: string;
+  href?: string;
+  variant?: "primary" | "secondary";
+  className?: string;
+}) => {
+  const isPrimary = variant === "primary";
+  
+  return (
+    <Link 
+      href={href}
+      className={`group relative inline-flex items-center justify-center w-full sm:w-fit px-6 py-2 font-medium transition-all duration-300 ease-out overflow-hidden ${className}`}
+      style={{ 
+        borderRadius: '9999px',
+        WebkitBorderRadius: '9999px',
+        MozBorderRadius: '9999px',
+        WebkitBackfaceVisibility: 'hidden',
+        backfaceVisibility: 'hidden',
+        WebkitTransform: 'translateZ(0)',
+        transform: 'translateZ(0)',
+        backgroundColor: isPrimary ? '#000000' : 'transparent',
+        color: isPrimary ? '#ffffff' : '#374151',
+        border: isPrimary ? 'none' : '1px solid #6b7280'
+      }}
+    >
+      {/* Slide left effect */}
+      <div 
+        className="absolute inset-0 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"
+        style={{ 
+          backgroundColor: isPrimary ? '#ffffff' : '#f97316',
+          borderRadius: '9999px'
+        }}
+      />
+      
+      {/* Text content */}
+      <span 
+        className="relative z-10 transition-colors duration-300"
+        style={{ 
+          color: isPrimary ? '#ffffff' : '#374151'
+        }}
+      >
+        {text}
+      </span>
+      
+      {/* Hover text color change */}
+      <style jsx>{`
+        .group:hover span {
+          color: ${isPrimary ? '#000000' : '#ffffff'} !important;
+        }
+      `}</style>
+    </Link>
+  );
+};
+
+const SlideRightButton = ({ 
+  text = "Let's work together", 
+  href = "/contact",
+  variant = "primary",
+  className = "" 
+}: {
+  text?: string;
+  href?: string;
+  variant?: "primary" | "secondary";
+  className?: string;
+}) => {
+  const isPrimary = variant === "primary";
+  
+  return (
+    <Link 
+      href={href}
+      className={`group relative inline-flex items-center justify-center w-full sm:w-fit px-6 py-2 font-medium transition-all duration-300 ease-out overflow-hidden ${className}`}
+      style={{ 
+        borderRadius: '9999px',
+        WebkitBorderRadius: '9999px',
+        MozBorderRadius: '9999px',
+        WebkitBackfaceVisibility: 'hidden',
+        backfaceVisibility: 'hidden',
+        WebkitTransform: 'translateZ(0)',
+        transform: 'translateZ(0)',
+        backgroundColor: isPrimary ? '#000000' : 'transparent',
+        color: isPrimary ? '#ffffff' : '#374151',
+        border: isPrimary ? 'none' : '1px solid #6b7280'
+      }}
+    >
+      {/* Slide right effect */}
+      <div 
+        className="absolute inset-0 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"
+        style={{ 
+          backgroundColor: isPrimary ? '#ffffff' : '#f97316',
+          borderRadius: '9999px'
+        }}
+      />
+      
+      {/* Text content */}
+      <span 
+        className="relative z-10 transition-colors duration-300"
+        style={{ 
+          color: isPrimary ? '#ffffff' : '#374151'
+        }}
+      >
+        {text}
+      </span>
+      
+      {/* Hover text color change */}
+      <style jsx>{`
+        .group:hover span {
+          color: ${isPrimary ? '#000000' : '#ffffff'} !important;
+        }
+      `}</style>
+    </Link>
+  );
+};
+
+const SlideUpButton = ({ 
+  text = "Let's work together", 
+  href = "/contact",
+  variant = "primary",
+  className = "" 
+}: {
+  text?: string;
+  href?: string;
+  variant?: "primary" | "secondary";
+  className?: string;
+}) => {
+  const isPrimary = variant === "primary";
+  
+  return (
+    <Link 
+      href={href}
+      className={`group relative inline-flex items-center justify-center w-full sm:w-fit px-6 py-2 font-medium transition-all duration-300 ease-out overflow-hidden ${className}`}
+      style={{ 
+        borderRadius: '9999px',
+        WebkitBorderRadius: '9999px',
+        MozBorderRadius: '9999px',
+        WebkitBackfaceVisibility: 'hidden',
+        backfaceVisibility: 'hidden',
+        WebkitTransform: 'translateZ(0)',
+        transform: 'translateZ(0)',
+        backgroundColor: isPrimary ? '#000000' : 'transparent',
+        color: isPrimary ? '#ffffff' : '#374151',
+        border: isPrimary ? 'none' : '1px solid #6b7280'
+      }}
+    >
+      {/* Slide up effect */}
+      <div 
+        className="absolute inset-0 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"
+        style={{ 
+          backgroundColor: isPrimary ? '#ffffff' : '#f97316',
+          borderRadius: '9999px'
+        }}
+      />
+      
+      {/* Text content */}
+      <span 
+        className="relative z-10 transition-colors duration-300"
+        style={{ 
+          color: isPrimary ? '#ffffff' : '#374151'
+        }}
+      >
+        {text}
+      </span>
+      
+      {/* Hover text color change */}
+      <style jsx>{`
+        .group:hover span {
+          color: ${isPrimary ? '#000000' : '#ffffff'} !important;
+        }
+      `}</style>
+    </Link>
+  );
+};
+
+const SlideDownButton = ({ 
+  text = "Let's work together", 
+  href = "/contact",
+  variant = "primary",
+  className = "" 
+}: {
+  text?: string;
+  href?: string;
+  variant?: "primary" | "secondary";
+  className?: string;
+}) => {
+  const isPrimary = variant === "primary";
+  
+  return (
+    <Link 
+      href={href}
+      className={`group relative inline-flex items-center justify-center w-full sm:w-fit px-6 py-2 font-medium transition-all duration-300 ease-out overflow-hidden ${className}`}
+      style={{ 
+        borderRadius: '9999px',
+        WebkitBorderRadius: '9999px',
+        MozBorderRadius: '9999px',
+        WebkitBackfaceVisibility: 'hidden',
+        backfaceVisibility: 'hidden',
+        WebkitTransform: 'translateZ(0)',
+        transform: 'translateZ(0)',
+        backgroundColor: isPrimary ? '#000000' : 'transparent',
+        color: isPrimary ? '#ffffff' : '#374151',
+        border: isPrimary ? 'none' : '1px solid #6b7280'
+      }}
+    >
+      {/* Slide down effect */}
+      <div 
+        className="absolute inset-0 transform -translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"
+        style={{ 
+          backgroundColor: isPrimary ? '#ffffff' : '#f97316',
+          borderRadius: '9999px'
+        }}
+      />
+      
+      {/* Text content */}
+      <span 
+        className="relative z-10 transition-colors duration-300"
+        style={{ 
+          color: isPrimary ? '#ffffff' : '#374151'
+        }}
+      >
+        {text}
+      </span>
+      
+      {/* Hover text color change */}
+      <style jsx>{`
+        .group:hover span {
+          color: ${isPrimary ? '#000000' : '#ffffff'} !important;
+        }
+      `}</style>
+    </Link>
+  );
+};
+
+const SlideCenterButton = ({ 
+  text = "Let's work together", 
+  href = "/contact",
+  variant = "primary",
+  className = "" 
+}: {
+  text?: string;
+  href?: string;
+  variant?: "primary" | "secondary";
+  className?: string;
+}) => {
+  const isPrimary = variant === "primary";
+  
+  return (
+    <Link 
+      href={href}
+      className={`group relative inline-flex items-center justify-center w-full sm:w-fit px-6 py-2 font-medium transition-all duration-300 ease-out overflow-hidden ${className}`}
+      style={{ 
+        borderRadius: '9999px',
+        WebkitBorderRadius: '9999px',
+        MozBorderRadius: '9999px',
+        WebkitBackfaceVisibility: 'hidden',
+        backfaceVisibility: 'hidden',
+        WebkitTransform: 'translateZ(0)',
+        transform: 'translateZ(0)',
+        backgroundColor: isPrimary ? '#000000' : 'transparent',
+        color: isPrimary ? '#ffffff' : '#374151',
+        border: isPrimary ? 'none' : '1px solid #6b7280'
+      }}
+    >
+      {/* Slide center effect */}
+      <div 
+        className="absolute inset-0 transform scale-0 group-hover:scale-100 transition-transform duration-300 ease-out origin-center"
+        style={{ 
+          backgroundColor: isPrimary ? '#ffffff' : '#f97316',
+          borderRadius: '9999px'
+        }}
+      />
+      
+      {/* Text content */}
+      <span 
+        className="relative z-10 transition-colors duration-300"
+        style={{ 
+          color: isPrimary ? '#ffffff' : '#374151'
+        }}
+      >
+        {text}
+      </span>
+      
+      {/* Hover text color change */}
+      <style jsx>{`
+        .group:hover span {
+          color: ${isPrimary ? '#000000' : '#ffffff'} !important;
+        }
+      `}</style>
+    </Link>
+  );
+};
+
+// White Background Slide Effect Buttons
+const WhiteSlideLeftButton = ({ 
+  text = "Let's work together", 
+  href = "/contact",
+  className = "" 
+}: {
+  text?: string;
+  href?: string;
+  className?: string;
+}) => {
+  return (
+    <Link 
+      href={href}
+      className={`group relative inline-flex items-center justify-center w-full sm:w-fit px-6 py-2 font-medium transition-all duration-300 ease-out overflow-hidden bg-white text-black border border-gray-200 ${className}`}
+      style={{ 
+        borderRadius: '9999px',
+        WebkitBorderRadius: '9999px',
+        MozBorderRadius: '9999px',
+        WebkitBackfaceVisibility: 'hidden',
+        backfaceVisibility: 'hidden',
+        WebkitTransform: 'translateZ(0)',
+        transform: 'translateZ(0)'
+      }}
+    >
+      {/* Slide left effect */}
+      <div 
+        className="absolute inset-0 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out bg-black"
+        style={{ borderRadius: '9999px' }}
+      />
+      
+      {/* Text content */}
+      <span className="relative z-10 transition-colors duration-300 text-black group-hover:text-white">
+        {text}
+      </span>
+    </Link>
+  );
+};
+
+const WhiteSlideRightButton = ({ 
+  text = "Let's work together", 
+  href = "/contact",
+  className = "" 
+}: {
+  text?: string;
+  href?: string;
+  className?: string;
+}) => {
+  return (
+    <Link 
+      href={href}
+      className={`group relative inline-flex items-center justify-center w-full sm:w-fit px-6 py-2 font-medium transition-all duration-300 ease-out overflow-hidden bg-white text-black border border-gray-200 ${className}`}
+      style={{ 
+        borderRadius: '9999px',
+        WebkitBorderRadius: '9999px',
+        MozBorderRadius: '9999px',
+        WebkitBackfaceVisibility: 'hidden',
+        backfaceVisibility: 'hidden',
+        WebkitTransform: 'translateZ(0)',
+        transform: 'translateZ(0)'
+      }}
+    >
+      {/* Slide right effect */}
+      <div 
+        className="absolute inset-0 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out bg-black"
+        style={{ borderRadius: '9999px' }}
+      />
+      
+      {/* Text content */}
+      <span className="relative z-10 transition-colors duration-300 text-black group-hover:text-white">
+        {text}
+      </span>
+    </Link>
+  );
+};
+
+const WhiteSlideUpButton = ({ 
+  text = "Let's work together", 
+  href = "/contact",
+  className = "" 
+}: {
+  text?: string;
+  href?: string;
+  className?: string;
+}) => {
+  return (
+    <Link 
+      href={href}
+      className={`group relative inline-flex items-center justify-center w-full sm:w-fit px-6 py-2 font-medium transition-all duration-300 ease-out overflow-hidden bg-white text-black border border-gray-200 ${className}`}
+      style={{ 
+        borderRadius: '9999px',
+        WebkitBorderRadius: '9999px',
+        MozBorderRadius: '9999px',
+        WebkitBackfaceVisibility: 'hidden',
+        backfaceVisibility: 'hidden',
+        WebkitTransform: 'translateZ(0)',
+        transform: 'translateZ(0)'
+      }}
+    >
+      {/* Slide up effect */}
+      <div 
+        className="absolute inset-0 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out bg-black"
+        style={{ borderRadius: '9999px' }}
+      />
+      
+      {/* Text content */}
+      <span className="relative z-10 transition-colors duration-300 text-black group-hover:text-white">
+        {text}
+      </span>
+    </Link>
+  );
+};
+
+const WhiteSlideDownButton = ({ 
+  text = "Let's work together", 
+  href = "/contact",
+  className = "" 
+}: {
+  text?: string;
+  href?: string;
+  className?: string;
+}) => {
+  return (
+    <Link 
+      href={href}
+      className={`group relative inline-flex items-center justify-center w-full sm:w-fit px-6 py-2 font-medium transition-all duration-300 ease-out overflow-hidden bg-white text-black border border-gray-200 ${className}`}
+      style={{ 
+        borderRadius: '9999px',
+        WebkitBorderRadius: '9999px',
+        MozBorderRadius: '9999px',
+        WebkitBackfaceVisibility: 'hidden',
+        backfaceVisibility: 'hidden',
+        WebkitTransform: 'translateZ(0)',
+        transform: 'translateZ(0)'
+      }}
+    >
+      {/* Slide down effect */}
+      <div 
+        className="absolute inset-0 transform -translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out bg-black"
+        style={{ borderRadius: '9999px' }}
+      />
+      
+      {/* Text content */}
+      <span className="relative z-10 transition-colors duration-300 text-black group-hover:text-white">
+        {text}
+      </span>
+    </Link>
+  );
+};
+
+const WhiteSlideCenterButton = ({ 
+  text = "Let's work together", 
+  href = "/contact",
+  className = "" 
+}: {
+  text?: string;
+  href?: string;
+  className?: string;
+}) => {
+  return (
+    <Link 
+      href={href}
+      className={`group relative inline-flex items-center justify-center w-full sm:w-fit px-6 py-2 font-medium transition-all duration-300 ease-out overflow-hidden bg-white text-black border border-gray-200 ${className}`}
+      style={{ 
+        borderRadius: '9999px',
+        WebkitBorderRadius: '9999px',
+        MozBorderRadius: '9999px',
+        WebkitBackfaceVisibility: 'hidden',
+        backfaceVisibility: 'hidden',
+        WebkitTransform: 'translateZ(0)',
+        transform: 'translateZ(0)'
+      }}
+    >
+      {/* Slide center effect */}
+      <div 
+        className="absolute inset-0 transform scale-0 group-hover:scale-100 transition-transform duration-300 ease-out origin-center bg-black"
+        style={{ borderRadius: '9999px' }}
+      />
+      
+      {/* Text content */}
+      <span className="relative z-10 transition-colors duration-300 text-black group-hover:text-white">
+        {text}
+      </span>
+    </Link>
+  );
+};
+
+
+const BlackSlideRightButton = ({ 
+  text = "Let's work together", 
+  href = "/contact",
+  className = "" 
+}: {
+  text?: string;
+  href?: string;
+  className?: string;
+}) => {
+  return (
+    <Link 
+      href={href}
+      className={`group relative inline-flex items-center justify-center w-full sm:w-fit px-6 py-2 font-medium transition-all duration-300 ease-out overflow-hidden bg-black text-white ${className}`}
+      style={{ 
+        borderRadius: '9999px',
+        WebkitBorderRadius: '9999px',
+        MozBorderRadius: '9999px',
+        WebkitBackfaceVisibility: 'hidden',
+        backfaceVisibility: 'hidden',
+        WebkitTransform: 'translateZ(0)',
+        transform: 'translateZ(0)'
+      }}
+    >
+      {/* Slide right effect */}
+      <div 
+        className="absolute inset-0 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out bg-white"
+        style={{ borderRadius: '9999px' }}
+      />
+      
+      {/* Text content */}
+      <span className="relative z-10 transition-colors duration-300 text-white group-hover:text-black">
+        {text}
+      </span>
+    </Link>
+  );
+};
+
+const BlackSlideUpButton = ({ 
+  text = "Let's work together", 
+  href = "/contact",
+  className = "" 
+}: {
+  text?: string;
+  href?: string;
+  className?: string;
+}) => {
+  return (
+    <Link 
+      href={href}
+      className={`group relative inline-flex items-center justify-center w-full sm:w-fit px-6 py-2 font-medium transition-all duration-300 ease-out overflow-hidden bg-black text-white ${className}`}
+      style={{ 
+        borderRadius: '9999px',
+        WebkitBorderRadius: '9999px',
+        MozBorderRadius: '9999px',
+        WebkitBackfaceVisibility: 'hidden',
+        backfaceVisibility: 'hidden',
+        WebkitTransform: 'translateZ(0)',
+        transform: 'translateZ(0)'
+      }}
+    >
+      {/* Slide up effect */}
+      <div 
+        className="absolute inset-0 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out bg-white"
+        style={{ borderRadius: '9999px' }}
+      />
+      
+      {/* Text content */}
+      <span className="relative z-10 transition-colors duration-300 text-white group-hover:text-black">
+        {text}
+      </span>
+    </Link>
+  );
+};
+
+const BlackSlideDownButton = ({ 
+  text = "Let's work together", 
+  href = "/contact",
+  className = "" 
+}: {
+  text?: string;
+  href?: string;
+  className?: string;
+}) => {
+  return (
+    <Link 
+      href={href}
+      className={`group relative inline-flex items-center justify-center w-full sm:w-fit px-6 py-2 font-medium transition-all duration-300 ease-out overflow-hidden bg-black text-white ${className}`}
+      style={{ 
+        borderRadius: '9999px',
+        WebkitBorderRadius: '9999px',
+        MozBorderRadius: '9999px',
+        WebkitBackfaceVisibility: 'hidden',
+        backfaceVisibility: 'hidden',
+        WebkitTransform: 'translateZ(0)',
+        transform: 'translateZ(0)'
+      }}
+    >
+      {/* Slide down effect */}
+      <div 
+        className="absolute inset-0 transform -translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out bg-white"
+        style={{ borderRadius: '9999px' }}
+      />
+      
+      {/* Text content */}
+      <span className="relative z-10 transition-colors duration-300 text-white group-hover:text-black">
+        {text}
+      </span>
+    </Link>
+  );
+};
+
+const BlackSlideCenterButton = ({ 
+  text = "Let's work together", 
+  href = "/contact",
+  className = "" 
+}: {
+  text?: string;
+  href?: string;
+  className?: string;
+}) => {
+  return (
+    <Link 
+      href={href}
+      className={`group relative inline-flex items-center justify-center w-full sm:w-fit px-6 py-2 font-medium transition-all duration-300 ease-out overflow-hidden bg-black text-white ${className}`}
+      style={{ 
+        borderRadius: '9999px',
+        WebkitBorderRadius: '9999px',
+        MozBorderRadius: '9999px',
+        WebkitBackfaceVisibility: 'hidden',
+        backfaceVisibility: 'hidden',
+        WebkitTransform: 'translateZ(0)',
+        transform: 'translateZ(0)'
+      }}
+    >
+      {/* Slide center effect */}
+      <div 
+        className="absolute inset-0 transform scale-0 group-hover:scale-100 transition-transform duration-300 ease-out origin-center bg-white"
+        style={{ borderRadius: '9999px' }}
+      />
+      
+      {/* Text content */}
+      <span className="relative z-10 transition-colors duration-300 text-white group-hover:text-black">
+        {text}
+      </span>
+    </Link>
+  );
+};
+
 
 export default function TestPage() {
   const { theme, toggleTheme } = useTheme()
@@ -28,6 +697,11 @@ export default function TestPage() {
   const transitionOverlayRef = useRef<HTMLDivElement>(null)
   const pageContentRef = useRef<HTMLDivElement>(null)
   const particlesRef = useRef<HTMLDivElement>(null)
+  
+  // Refs for CTA buttons
+  const ctaButtonsRef1 = useRef<HTMLDivElement>(null)
+  const ctaButtonsRef2 = useRef<HTMLDivElement>(null)
+  const ctaButtonsRef3 = useRef<HTMLDivElement>(null)
 
   // Initialize scroll-triggered effects
   useEffect(() => {
@@ -546,6 +1220,67 @@ export default function TestPage() {
       })
     }
 
+    // CTA Buttons Fade In Effects
+    if (ctaButtonsRef1.current) {
+      gsap.set(ctaButtonsRef1.current, { 
+        opacity: 0,
+        y: 30
+      })
+      
+      gsap.to(ctaButtonsRef1.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ctaButtonsRef1.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse"
+        }
+      })
+    }
+
+    if (ctaButtonsRef2.current) {
+      gsap.set(ctaButtonsRef2.current, { 
+        opacity: 0,
+        y: 30
+      })
+      
+      gsap.to(ctaButtonsRef2.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ctaButtonsRef2.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse"
+        }
+      })
+    }
+
+    if (ctaButtonsRef3.current) {
+      gsap.set(ctaButtonsRef3.current, { 
+        opacity: 0,
+        y: 30
+      })
+      
+      gsap.to(ctaButtonsRef3.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ctaButtonsRef3.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse"
+        }
+      })
+    }
+
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill())
     }
@@ -870,6 +1605,22 @@ export default function TestPage() {
         </div>
       </section>
       
+      {/* CTA Buttons Section 1 - After Hero */}
+      <section className="py-16 px-8">
+        <div className="max-w-6xl mx-auto text-center">
+          <div ref={ctaButtonsRef1} className="flex flex-col sm:flex-row gap-4 justify-center" style={{ opacity: 0, transform: "translateY(30px)" }}>
+            <BlackSlideLeftButton 
+              text="Let's work together"
+              href="/contact"
+            />
+            <BeamBorderButton 
+              text="Schedule a call"
+              href="https://calendly.com/jenjo700/30min"
+            />
+          </div>
+        </div>
+      </section>
+      
       {/* Spline Examples Section */}
       <section className="py-16 px-8">
         <div className="max-w-6xl mx-auto">
@@ -952,6 +1703,22 @@ export default function TestPage() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* CTA Buttons Section 2 - After Showcase */}
+      <section className="py-16 px-8">
+        <div className="max-w-6xl mx-auto text-center">
+          <div ref={ctaButtonsRef2} className="flex flex-col sm:flex-row gap-4 justify-center" style={{ opacity: 0, transform: "translateY(30px)" }}>
+            <BlackSlideLeftButton 
+              text="Let's work together"
+              href="/contact"
+            />
+            <BeamBorderButton 
+              text="Schedule a call"
+              href="https://calendly.com/jenjo700/30min"
+            />
           </div>
         </div>
       </section>
@@ -1053,200 +1820,480 @@ export default function TestPage() {
         </div>
       </div>
 
-      {/* CTA Button Testing Section */}
+      {/* BlobButton Component Showcase */}
       <div className="px-8 py-4">
         <div className="max-w-6xl mx-auto">
           <div className="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 mb-8">
-            <h2 className="text-2xl font-semibold mb-4 text-center">🎯 CTA Button Style Tests</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-center">🟢 BlobButton Component</h2>
             <p className="text-gray-600 dark:text-gray-400 text-center mb-6">
-              Different button styles for the hero section - test which ones work best!
+              A reusable React component that matches the organic blob design from the screenshot
             </p>
             
-            <div className="space-y-12">
-              {/* Primary & Secondary Button Combinations */}
-              <div>
-                <h3 className="text-lg font-medium mb-6 text-center">Primary & Secondary Combinations</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  
-                  {/* Option 1: Classic Primary/Secondary */}
-                  <div className="space-y-4">
-                    <h4 className="font-medium text-center">Classic Primary/Secondary</h4>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                      <button className="bg-black dark:bg-white text-white dark:text-black px-8 py-4 rounded-xl font-medium hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors">
-                        Discuss opportunities
-                      </button>
-                      <button className="border-2 border-black dark:border-white text-black dark:text-white px-8 py-4 rounded-xl font-medium hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-colors">
-                        View experience
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Option 2: Orange Accent Primary */}
-                  <div className="space-y-4">
-                    <h4 className="font-medium text-center">Orange Accent Primary</h4>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                      <button className="bg-orange-500 text-white px-8 py-4 rounded-xl font-medium hover:bg-orange-600 transition-colors">
-                        Discuss opportunities
-                      </button>
-                      <button className="border-2 border-orange-500 text-orange-500 px-8 py-4 rounded-xl font-medium hover:bg-orange-500 hover:text-white transition-colors">
-                        View experience
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Option 3: Gradient Primary */}
-                  <div className="space-y-4">
-                    <h4 className="font-medium text-center">Gradient Primary</h4>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                      <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-4 rounded-xl font-medium hover:from-orange-600 hover:to-red-600 transition-all">
-                        Discuss opportunities
-                      </button>
-                      <button className="border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-8 py-4 rounded-xl font-medium hover:border-orange-500 hover:text-orange-500 transition-colors">
-                        View experience
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Option 4: Minimalist */}
-                  <div className="space-y-4">
-                    <h4 className="font-medium text-center">Minimalist</h4>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                      <button className="bg-black dark:bg-white text-white dark:text-black px-8 py-4 rounded-lg font-medium hover:opacity-80 transition-opacity">
-                        Discuss opportunities
-                      </button>
-                      <button className="text-gray-600 dark:text-gray-400 px-8 py-4 font-medium hover:text-black dark:hover:text-white transition-colors underline decoration-2 underline-offset-4">
-                        View experience
-                      </button>
-                    </div>
-                  </div>
-
+            <div className="flex flex-col items-center space-y-8">
+              {/* Default BlobButton */}
+              <div className="text-center">
+                <h3 className="text-lg font-medium mb-4">Default BlobButton</h3>
+                <BlobButton />
+              </div>
+              
+              {/* Custom Text BlobButton */}
+              <div className="text-center">
+                <h3 className="text-lg font-medium mb-4">Custom Text</h3>
+                <BlobButton text="Start a Project" />
+              </div>
+              
+              {/* Multiple BlobButtons */}
+              <div className="text-center">
+                <h3 className="text-lg font-medium mb-4">Multiple Buttons</h3>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <BlobButton text="View our Work" />
+                  <BlobButton text="Get in Touch" />
+                  <BlobButton text="See Portfolio" />
                 </div>
               </div>
+              
+              {/* With Click Handler */}
+              <div className="text-center">
+                <h3 className="text-lg font-medium mb-4">With Click Handler</h3>
+                <BlobButton 
+                  text="Click Me!" 
+                  onClick={() => alert('BlobButton clicked!')} 
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-              {/* Classic Primary/Secondary with Unique Hover Effects */}
-              <div>
-                <h3 className="text-lg font-medium mb-6 text-center">Classic Style with Unique Hover Effects</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  
-                  {/* Hover Effect 1: Scale & Glow */}
-                  <div className="space-y-4">
-                    <h4 className="font-medium text-center">Scale & Glow</h4>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                      <button className="bg-black dark:bg-white text-white dark:text-black px-8 py-4 rounded-xl font-medium hover:scale-105 hover:shadow-lg hover:shadow-orange-500/25 transition-all duration-300">
-                        Discuss opportunities
-                      </button>
-                      <button className="border-2 border-black dark:border-white text-black dark:text-white px-8 py-4 rounded-xl font-medium hover:scale-105 hover:shadow-lg hover:shadow-orange-500/25 hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-all duration-300">
-                        View experience
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Hover Effect 2: Slide & Fill */}
-                  <div className="space-y-4">
-                    <h4 className="font-medium text-center">Slide & Fill</h4>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                      <button className="relative bg-black dark:bg-white text-white dark:text-black px-8 py-4 rounded-xl font-medium overflow-hidden group">
-                        <span className="relative z-10">Discuss opportunities</span>
-                        <div className="absolute inset-0 bg-orange-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                        <span className="relative z-10 group-hover:text-white transition-colors duration-300">Discuss opportunities</span>
-                      </button>
-                      <button className="relative border-2 border-black dark:border-white text-black dark:text-white px-8 py-4 rounded-xl font-medium overflow-hidden group">
-                        <span className="relative z-10">View experience</span>
-                        <div className="absolute inset-0 bg-orange-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                        <span className="relative z-10 group-hover:text-white transition-colors duration-300">View experience</span>
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Hover Effect 3: Bounce & Rotate */}
-                  <div className="space-y-4">
-                    <h4 className="font-medium text-center">Bounce & Rotate</h4>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                      <button className="bg-black dark:bg-white text-white dark:text-black px-8 py-4 rounded-xl font-medium hover:scale-110 hover:rotate-1 hover:shadow-xl transition-all duration-300 ease-out">
-                        Discuss opportunities
-                      </button>
-                      <button className="border-2 border-black dark:border-white text-black dark:text-white px-8 py-4 rounded-xl font-medium hover:scale-110 hover:-rotate-1 hover:shadow-xl hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-all duration-300 ease-out">
-                        View experience
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Hover Effect 4: Gradient Sweep */}
-                  <div className="space-y-4">
-                    <h4 className="font-medium text-center">Gradient Sweep</h4>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                      <button className="relative bg-black dark:bg-white text-white dark:text-black px-8 py-4 rounded-xl font-medium overflow-hidden group">
-                        <span className="relative z-10">Discuss opportunities</span>
-                        <div className="absolute inset-0 bg-gradient-to-r from-orange-500 via-red-500 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        <span className="relative z-10 group-hover:text-white transition-colors duration-300">Discuss opportunities</span>
-                      </button>
-                      <button className="relative border-2 border-black dark:border-white text-black dark:text-white px-8 py-4 rounded-xl font-medium overflow-hidden group">
-                        <span className="relative z-10">View experience</span>
-                        <div className="absolute inset-0 bg-gradient-to-r from-orange-500 via-red-500 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        <span className="relative z-10 group-hover:text-white transition-colors duration-300">View experience</span>
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Hover Effect 5: Magnetic Pull */}
-                  <div className="space-y-4">
-                    <h4 className="font-medium text-center">Magnetic Pull</h4>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                      <button className="bg-black dark:bg-white text-white dark:text-black px-8 py-4 rounded-xl font-medium hover:scale-105 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 ease-out">
-                        Discuss opportunities
-                      </button>
-                      <button className="border-2 border-black dark:border-white text-black dark:text-white px-8 py-4 rounded-xl font-medium hover:scale-105 hover:-translate-y-2 hover:shadow-2xl hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-all duration-300 ease-out">
-                        View experience
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Hover Effect 6: Pulse & Glow */}
-                  <div className="space-y-4">
-                    <h4 className="font-medium text-center">Pulse & Glow</h4>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                      <button className="bg-black dark:bg-white text-white dark:text-black px-8 py-4 rounded-xl font-medium hover:animate-pulse hover:shadow-lg hover:shadow-orange-500/50 transition-all duration-300">
-                        Discuss opportunities
-                      </button>
-                      <button className="border-2 border-black dark:border-white text-black dark:text-white px-8 py-4 rounded-xl font-medium hover:animate-pulse hover:shadow-lg hover:shadow-orange-500/50 hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-all duration-300">
-                        View experience
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Hover Effect 7: Slide Up & Reveal */}
-                  <div className="space-y-4">
-                    <h4 className="font-medium text-center">Slide Up & Reveal</h4>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                      <button className="relative bg-black dark:bg-white text-white dark:text-black px-8 py-4 rounded-xl font-medium overflow-hidden group">
-                        <span className="relative z-10">Discuss opportunities</span>
-                        <div className="absolute inset-0 bg-orange-500 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                        <span className="absolute inset-0 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">Discuss opportunities</span>
-                      </button>
-                      <button className="relative border-2 border-black dark:border-white text-black dark:text-white px-8 py-4 rounded-xl font-medium overflow-hidden group group-hover:border-transparent transition-colors duration-300">
-                        <span className="relative z-10 group-hover:text-white transition-colors duration-300">View experience</span>
-                        <div className="absolute inset-0 bg-orange-500 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                        <span className="absolute inset-0 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">View experience</span>
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Hover Effect 8: 3D Tilt */}
-                  <div className="space-y-4">
-                    <h4 className="font-medium text-center">3D Tilt</h4>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                      <button className="bg-black dark:bg-white text-white dark:text-black px-8 py-4 rounded-xl font-medium hover:rotate-x-12 hover:rotate-y-12 hover:scale-105 hover:shadow-2xl transition-all duration-300 ease-out" style={{transformStyle: 'preserve-3d'}}>
-                        Discuss opportunities
-                      </button>
-                      <button className="border-2 border-black dark:border-white text-black dark:text-white px-8 py-4 rounded-xl font-medium hover:rotate-x-12 hover:-rotate-y-12 hover:scale-105 hover:shadow-2xl hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-all duration-300 ease-out" style={{transformStyle: 'preserve-3d'}}>
-                        View experience
-                      </button>
-                    </div>
-                  </div>
-
+            {/* Availability Badge - Exact Copy from About Page */}
+            <div className="flex justify-center px-4 pt-8 pb-4">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 w-full sm:w-auto">
+                <div className="flex items-center justify-center bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 px-4 py-2 rounded-full w-full sm:w-auto">
+                  <span className="w-2 h-2 rounded-full bg-green-500 mr-2"></span>
+                  <span className="text-sm font-medium">Open to new opportunities</span>
                 </div>
+                <span className="text-sm text-gray-600 dark:text-gray-400 hidden sm:block">London-based, open to remote</span>
+              </div>
+            </div>
+
+            {/* CTA Button Testing Section */}
+            <div className="px-8 py-4">
+              <div className="max-w-6xl mx-auto">
+                <div className="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 mb-8">
+                  <h2 className="text-2xl font-semibold mb-4 text-center">🎯 CTA Button Style Tests</h2>
+                  <p className="text-gray-600 dark:text-gray-400 text-center mb-6">
+                    Different button styles for the hero section - test which ones work best!
+                  </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Original Lime Green */}
+              <div className="flex flex-col items-center space-y-2">
+                <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">Lime Green</h4>
+                <BlobButton />
               </div>
 
+              {/* Orange */}
+              <div className="flex flex-col items-center space-y-2">
+                <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">Orange</h4>
+                <button
+                  className="relative inline-flex items-center gap-3 px-4 py-2 font-medium text-white transition-all duration-300 ease-out hover:-translate-y-1 bg-orange-500 hover:bg-orange-600 rounded-full"
+                >
+                  <span>View our Work</span>
+                  <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                    <ArrowUpRight className="w-3 h-3 text-orange-500" />
+                  </div>
+                </button>
+              </div>
+
+              {/* Blue */}
+              <div className="flex flex-col items-center space-y-2">
+                <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">Blue</h4>
+                <button
+                  className="relative inline-flex items-center gap-3 px-4 py-2 font-medium text-white transition-all duration-300 ease-out hover:-translate-y-1 bg-blue-500 hover:bg-blue-600 rounded-full"
+                >
+                  <span>View our Work</span>
+                  <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                    <ArrowUpRight className="w-3 h-3 text-blue-500" />
+                  </div>
+                </button>
+              </div>
+
+              {/* Deep Yellow */}
+              <div className="flex flex-col items-center space-y-2">
+                <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">Deep Yellow</h4>
+                <button
+                  className="relative inline-flex items-center gap-3 px-4 py-2 font-medium text-black transition-all duration-300 ease-out hover:-translate-y-1 bg-yellow-400 hover:bg-yellow-500 rounded-full"
+                >
+                  <span>View our Work</span>
+                  <div className="w-6 h-6 bg-black rounded-full flex items-center justify-center">
+                    <ArrowUpRight className="w-3 h-3 text-yellow-400" />
+                  </div>
+                </button>
+              </div>
+
+              {/* Burnt Orange */}
+              <div className="flex flex-col items-center space-y-2">
+                <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">Burnt Orange</h4>
+                <button
+                  className="relative inline-flex items-center gap-3 px-4 py-2 font-medium text-white transition-all duration-300 ease-out hover:-translate-y-1 bg-orange-700 hover:bg-orange-800 rounded-full"
+                >
+                  <span>View our Work</span>
+                  <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                    <ArrowUpRight className="w-3 h-3 text-orange-700" />
+                  </div>
+                </button>
+              </div>
+
+              {/* Purple */}
+              <div className="flex flex-col items-center space-y-2">
+                <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">Purple</h4>
+                <button
+                  className="relative inline-flex items-center gap-3 px-4 py-2 font-medium text-white transition-all duration-300 ease-out hover:-translate-y-1 bg-purple-500 hover:bg-purple-600 rounded-full"
+                >
+                  <span>View our Work</span>
+                  <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                    <ArrowUpRight className="w-3 h-3 text-purple-500" />
+                  </div>
+                </button>
+              </div>
+
+              {/* Teal */}
+              <div className="flex flex-col items-center space-y-2">
+                <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">Teal</h4>
+                <button
+                  className="relative inline-flex items-center gap-3 px-4 py-2 font-medium text-white transition-all duration-300 ease-out hover:-translate-y-1 bg-teal-500 hover:bg-teal-600 rounded-full"
+                >
+                  <span>View our Work</span>
+                  <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                    <ArrowUpRight className="w-3 h-3 text-teal-500" />
+                  </div>
+                </button>
+              </div>
+
+              {/* Red */}
+              <div className="flex flex-col items-center space-y-2">
+                <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">Red</h4>
+                <button
+                  className="relative inline-flex items-center gap-3 px-4 py-2 font-medium text-white transition-all duration-300 ease-out hover:-translate-y-1 bg-red-500 hover:bg-red-600 rounded-full"
+                >
+                  <span>View our Work</span>
+                  <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                    <ArrowUpRight className="w-3 h-3 text-red-500" />
+                  </div>
+                </button>
+              </div>
+
+              {/* Pink */}
+              <div className="flex flex-col items-center space-y-2">
+                <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">Pink</h4>
+                <button
+                  className="relative inline-flex items-center gap-3 px-4 py-2 font-medium text-white transition-all duration-300 ease-out hover:-translate-y-1 bg-pink-500 hover:bg-pink-600 rounded-full"
+                >
+                  <span>View our Work</span>
+                  <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                    <ArrowUpRight className="w-3 h-3 text-pink-500" />
+                  </div>
+                </button>
+              </div>
+
+
+              {/* Test 10: Icon Circle Changes to White */}
+              <div className="flex flex-col items-center space-y-2">
+                <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">Test 10: Icon Circle → White</h4>
+                <button
+                  className="relative inline-flex items-center gap-3 pl-4 pr-2 py-2 font-medium text-black transition-all duration-300 ease-out overflow-hidden group active:scale-95"
+                  style={{ 
+                    backgroundColor: '#ff8c00',
+                    borderRadius: '9999px',
+                    WebkitBorderRadius: '9999px',
+                    MozBorderRadius: '9999px',
+                    WebkitBackfaceVisibility: 'hidden',
+                    backfaceVisibility: 'hidden',
+                    WebkitTransform: 'translateZ(0)',
+                    transform: 'translateZ(0)'
+                  } as React.CSSProperties}
+                >
+                  <span className="relative z-10">View our Work</span>
+                  <div className="absolute inset-0 bg-yellow-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" style={{ borderRadius: '9999px' }}></div>
+                  <div className="relative z-10 w-6 h-6 bg-black rounded-full flex items-center justify-center transition-colors duration-300 group-hover:bg-white">
+                    <ArrowUpRight className="w-3 h-3 transition-colors duration-300 group-hover:text-black" style={{ color: '#ff8c00' }} />
+                  </div>
+                </button>
+              </div>
+
+              {/* Test 2: Keep Black Circle - Icon → Yellow */}
+              <div className="flex flex-col items-center space-y-2">
+                <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">Test 2: Keep Black Circle - Icon → Yellow</h4>
+                <button
+                  className="relative inline-flex items-center gap-3 pl-4 pr-2 py-2 font-medium text-black transition-all duration-300 ease-out overflow-hidden group active:scale-95"
+                  style={{ 
+                    backgroundColor: '#ff8c00',
+                    borderRadius: '9999px',
+                    WebkitBorderRadius: '9999px',
+                    MozBorderRadius: '9999px',
+                    WebkitBackfaceVisibility: 'hidden',
+                    backfaceVisibility: 'hidden',
+                    WebkitTransform: 'translateZ(0)',
+                    transform: 'translateZ(0)'
+                  } as React.CSSProperties}
+                >
+                  <span className="relative z-10">View our Work</span>
+                  <div className="absolute inset-0 bg-yellow-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" style={{ borderRadius: '9999px' }}></div>
+                  <div className="relative z-10 w-6 h-6 bg-black rounded-full flex items-center justify-center">
+                    <ArrowUpRight className="w-3 h-3 text-orange-500 transition-colors duration-300 group-hover:text-yellow-400" />
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Slide Effect Button Showcase */}
+      <div className="px-8 py-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 mb-8">
+            <h2 className="text-2xl font-semibold mb-4 text-center">🎯 Slide Effect Button Showcase</h2>
+            <p className="text-gray-600 dark:text-gray-400 text-center mb-6">
+              Different slide effects with various color combinations - hover to see the animations!
+            </p>
+            
+            {/* Original Variants */}
+            <div className="mb-8">
+              <h3 className="text-lg font-semibold mb-4 text-center">Original Variants (Primary/Secondary)</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="flex flex-col items-center space-y-2">
+                  <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">Slide Left</h4>
+                  <SlideLeftButton 
+                    text="Let's work together"
+                    href="/contact"
+                    variant="primary"
+                  />
+                </div>
+                <div className="flex flex-col items-center space-y-2">
+                  <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">Slide Right</h4>
+                  <SlideRightButton 
+                    text="Let's work together"
+                    href="/contact"
+                    variant="primary"
+                  />
+                </div>
+                <div className="flex flex-col items-center space-y-2">
+                  <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">Slide Up</h4>
+                  <SlideUpButton 
+                    text="Let's work together"
+                    href="/contact"
+                    variant="primary"
+                  />
+                </div>
+                <div className="flex flex-col items-center space-y-2">
+                  <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">Slide Down</h4>
+                  <SlideDownButton 
+                    text="Let's work together"
+                    href="/contact"
+                    variant="primary"
+                  />
+                </div>
+                <div className="flex flex-col items-center space-y-2">
+                  <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">Slide Center</h4>
+                  <SlideCenterButton 
+                    text="Let's work together"
+                    href="/contact"
+                    variant="primary"
+                  />
+                </div>
+                <div className="flex flex-col items-center space-y-2">
+                  <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">Beam Border</h4>
+                  <BeamBorderButton 
+                    text="Schedule a call"
+                    href="https://calendly.com/jenjo700/30min"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* White Background Variants */}
+            <div className="mb-8">
+              <h3 className="text-lg font-semibold mb-4 text-center">White Background Variants</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="flex flex-col items-center space-y-2">
+                  <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">White Slide Left</h4>
+                  <WhiteSlideLeftButton 
+                    text="Let's work together"
+                    href="/contact"
+                  />
+                </div>
+                <div className="flex flex-col items-center space-y-2">
+                  <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">White Slide Right</h4>
+                  <WhiteSlideRightButton 
+                    text="Let's work together"
+                    href="/contact"
+                  />
+                </div>
+                <div className="flex flex-col items-center space-y-2">
+                  <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">White Slide Up</h4>
+                  <WhiteSlideUpButton 
+                    text="Let's work together"
+                    href="/contact"
+                  />
+                </div>
+                <div className="flex flex-col items-center space-y-2">
+                  <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">White Slide Down</h4>
+                  <WhiteSlideDownButton 
+                    text="Let's work together"
+                    href="/contact"
+                  />
+                </div>
+                <div className="flex flex-col items-center space-y-2">
+                  <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">White Slide Center</h4>
+                  <WhiteSlideCenterButton 
+                    text="Let's work together"
+                    href="/contact"
+                  />
+                </div>
+                <div className="flex flex-col items-center space-y-2">
+                  <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">White Variants</h4>
+                  <div className="flex flex-col gap-2">
+                    <WhiteSlideLeftButton 
+                      text="Small"
+                      href="/contact"
+                      className="px-4 py-1 text-sm"
+                    />
+                    <WhiteSlideRightButton 
+                      text="Medium"
+                      href="/contact"
+                      className="px-6 py-2"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Black Background Variants */}
+            <div className="mb-8">
+              <h3 className="text-lg font-semibold mb-4 text-center">Black Background Variants</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="flex flex-col items-center space-y-2">
+                  <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">Black Slide Left</h4>
+                  <BlackSlideLeftButton 
+                    text="Let's work together"
+                    href="/contact"
+                  />
+                </div>
+                <div className="flex flex-col items-center space-y-2">
+                  <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">Black Slide Right</h4>
+                  <BlackSlideRightButton 
+                    text="Let's work together"
+                    href="/contact"
+                  />
+                </div>
+                <div className="flex flex-col items-center space-y-2">
+                  <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">Black Slide Up</h4>
+                  <BlackSlideUpButton 
+                    text="Let's work together"
+                    href="/contact"
+                  />
+                </div>
+                <div className="flex flex-col items-center space-y-2">
+                  <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">Black Slide Down</h4>
+                  <BlackSlideDownButton 
+                    text="Let's work together"
+                    href="/contact"
+                  />
+                </div>
+                <div className="flex flex-col items-center space-y-2">
+                  <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">Black Slide Center</h4>
+                  <BlackSlideCenterButton 
+                    text="Let's work together"
+                    href="/contact"
+                  />
+                </div>
+                <div className="flex flex-col items-center space-y-2">
+                  <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">Black Variants</h4>
+                  <div className="flex flex-col gap-2">
+                    <BlackSlideLeftButton 
+                      text="Small"
+                      href="/contact"
+                      className="px-4 py-1 text-sm"
+                    />
+                    <BlackSlideRightButton 
+                      text="Medium"
+                      href="/contact"
+                      className="px-6 py-2"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Comparison Section */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-center">All Variants Comparison</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="flex flex-col items-center space-y-2">
+                  <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">Slide Left Comparison</h4>
+                  <div className="flex flex-col gap-2">
+                    <SlideLeftButton 
+                      text="Original"
+                      href="/contact"
+                      variant="primary"
+                      className="px-4 py-1 text-sm"
+                    />
+                    <WhiteSlideLeftButton 
+                      text="White BG"
+                      href="/contact"
+                      className="px-4 py-1 text-sm"
+                    />
+                    <BlackSlideLeftButton 
+                      text="Black BG"
+                      href="/contact"
+                      className="px-4 py-1 text-sm"
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-col items-center space-y-2">
+                  <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">Slide Right Comparison</h4>
+                  <div className="flex flex-col gap-2">
+                    <SlideRightButton 
+                      text="Original"
+                      href="/contact"
+                      variant="primary"
+                      className="px-4 py-1 text-sm"
+                    />
+                    <WhiteSlideRightButton 
+                      text="White BG"
+                      href="/contact"
+                      className="px-4 py-1 text-sm"
+                    />
+                    <BlackSlideRightButton 
+                      text="Black BG"
+                      href="/contact"
+                      className="px-4 py-1 text-sm"
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-col items-center space-y-2">
+                  <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400">Slide Center Comparison</h4>
+                  <div className="flex flex-col gap-2">
+                    <SlideCenterButton 
+                      text="Original"
+                      href="/contact"
+                      variant="primary"
+                      className="px-4 py-1 text-sm"
+                    />
+                    <WhiteSlideCenterButton 
+                      text="White BG"
+                      href="/contact"
+                      className="px-4 py-1 text-sm"
+                    />
+                    <BlackSlideCenterButton 
+                      text="Black BG"
+                      href="/contact"
+                      className="px-4 py-1 text-sm"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1445,6 +2492,58 @@ export default function TestPage() {
             </div>
           </div>
 
+          {/* Tech Icons Section - Moved from Hero */}
+          <div className="mb-16">
+            <h2 className="text-2xl font-semibold mb-8 text-center">🛠️ Tech Icons (From Hero Section)</h2>
+            <div className="bg-gray-100 dark:bg-gray-800 rounded-xl p-8">
+              <p className="text-gray-600 dark:text-gray-400 text-center mb-8">
+                These tech icons were previously in the hero section. You can experiment with different layouts, animations, and styles here.
+              </p>
+              
+              {/* Tech Icons Grid */}
+              <div className="flex items-center justify-center">
+                <div className="grid grid-cols-3 gap-8 opacity-60">
+                  <div className="flex flex-col items-center space-y-2 group">
+                    <div className="p-4 transition-all duration-300">
+                      <FigmaIcon size={32} />
+                    </div>
+                    <span className="text-xs font-semibold text-gray-400 dark:text-gray-400 group-hover:text-orange-500 transition-colors">Figma</span>
+                  </div>
+                  <div className="flex flex-col items-center space-y-2 group">
+                    <div className="p-4 transition-all duration-300">
+                      <ReactIcon size={32} />
+                    </div>
+                    <span className="text-xs font-semibold text-gray-400 dark:text-gray-400 group-hover:text-orange-500 transition-colors">React</span>
+                  </div>
+                  <div className="flex flex-col items-center space-y-2 group">
+                    <div className="p-4 transition-all duration-300">
+                      <NextJSIcon size={32} />
+                    </div>
+                    <span className="text-xs font-semibold text-gray-400 dark:text-gray-400 group-hover:text-orange-500 transition-colors">Next.js</span>
+                  </div>
+                  <div className="flex flex-col items-center space-y-2 group">
+                    <div className="p-4 transition-all duration-300">
+                      <SketchIcon size={32} />
+                    </div>
+                    <span className="text-xs font-semibold text-gray-400 dark:text-gray-400 group-hover:text-orange-500 transition-colors">Sketch</span>
+                  </div>
+                  <div className="flex flex-col items-center space-y-2 group">
+                    <div className="p-4 transition-all duration-300">
+                      <JavaScriptIcon size={32} />
+                    </div>
+                    <span className="text-xs font-semibold text-gray-400 dark:text-gray-400 group-hover:text-orange-500 transition-colors">JavaScript</span>
+                  </div>
+                  <div className="flex flex-col items-center space-y-2 group">
+                    <div className="p-4 transition-all duration-300">
+                      <GitHubIcon size={32} />
+                    </div>
+                    <span className="text-xs font-semibold text-gray-400 dark:text-gray-400 group-hover:text-orange-500 transition-colors">GitHub</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Auto Image Effect - Combined Clip-Path & Blur */}
           <div className="mb-16">
             <h2 className="text-2xl font-semibold mb-8 text-center">Auto Image Effect - Combined Clip-Path & Blur</h2>
@@ -1484,6 +2583,22 @@ export default function TestPage() {
 
         </div>
       </main>
+
+      {/* CTA Buttons Section 3 - After Image Effects */}
+      <section className="py-16 px-8">
+        <div className="max-w-6xl mx-auto text-center">
+          <div ref={ctaButtonsRef3} className="flex flex-col sm:flex-row gap-4 justify-center" style={{ opacity: 0, transform: "translateY(30px)" }}>
+            <BlackSlideLeftButton 
+              text="Let's work together"
+              href="/contact"
+            />
+            <BeamBorderButton 
+              text="Schedule a call"
+              href="https://calendly.com/jenjo700/30min"
+            />
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>

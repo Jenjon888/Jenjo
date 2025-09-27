@@ -7,28 +7,15 @@ import { InteractiveGlobe } from '@/components/interactive-globe'
 import { HeroBackgroundAnimation } from '@/components/hero-background-animation'
 import { LogoLoop } from '@/components/LogoLoop'
 import { useTheme } from '@/contexts/ThemeContext'
-import { 
-  InVisionIcon,
-  SketchIcon,
-  FigmaIcon, 
-  ReactIcon,
-  NextJSIcon, 
-  JavaScriptIcon,
-  VercelIcon,
-  GitHubIcon,
-  JiraIcon, 
-  TrelloIcon,
-  NetlifyIcon
-} from '@/components/ui/tech-icons'
 import Navigation from '@/components/navigation'
 import { gsap } from 'gsap'
+import { BlackSlideLeftButton, BeamBorderButton } from '@/components/ui/slide-buttons'
 
 export default function HeroSection() {
     const { theme } = useTheme()
     const titleRef = useRef<HTMLHeadingElement>(null)
     const subtitleRef = useRef<HTMLParagraphElement>(null)
     const buttonsRef = useRef<HTMLDivElement>(null)
-    const techIconsRef = useRef<HTMLDivElement>(null)
     
     // Helper function to get the correct logo based on theme
     const getLogo = (logoName: string) => {
@@ -40,14 +27,14 @@ export default function HeroSection() {
         const tl = gsap.timeline()
         
         // Set initial states with blur effect
-        gsap.set([titleRef.current, subtitleRef.current, buttonsRef.current, techIconsRef.current], {
+        gsap.set([titleRef.current, subtitleRef.current, buttonsRef.current], {
             opacity: 0,
             scale: 0.5,
             filter: "blur(20px)"
         })
 
         // Animate elements simultaneously with blur-to-focus effect
-        tl.to([titleRef.current, subtitleRef.current, buttonsRef.current, techIconsRef.current], {
+        tl.to([titleRef.current, subtitleRef.current, buttonsRef.current], {
             opacity: 1,
             scale: 1,
             filter: "blur(0px)",
@@ -55,17 +42,6 @@ export default function HeroSection() {
             ease: "power3.out",
             stagger: 0.1
         })
-
-        // Subtle floating animation for tech icons
-        if (techIconsRef.current) {
-            gsap.to(techIconsRef.current, {
-                y: -10,
-                duration: 3,
-                ease: "power1.inOut",
-                yoyo: true,
-                repeat: -1
-            })
-        }
     }, [])
     return (
         <>
@@ -87,70 +63,17 @@ export default function HeroSection() {
                             </p>
 
                             <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-4 mt-6 justify-start sm:justify-start" style={{ opacity: 0, scale: 0.5, filter: "blur(20px)" }}>
-                                <Link 
+                                <BlackSlideLeftButton 
+                                    text="Let's work together"
                                     href="/contact"
-                                    className="flex items-center w-full sm:w-fit bg-black dark:bg-white text-white dark:text-black rounded-xl px-6 py-3 hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
-                                >
-                                    <span className="font-medium">Let's work together</span>
-                                </Link>
-                                <Link 
+                                />
+                                <BeamBorderButton 
+                                    text="Schedule a call"
                                     href="https://calendly.com/jenjo700/30min"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center w-full sm:w-fit border border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl px-6 py-3 hover:text-orange-500 hover:border-orange-500 transition-colors"
-                                >
-                                    <span className="font-medium">Schedule a call</span>
-                                </Link>
-                                
+                                />
                             </div>
                         </div>
 
-                        {/* RIGHT VISUAL - Subtle Tech Stack */}
-                        <div ref={techIconsRef} className="mt-10 lg:mt-0 lg:ml-12 flex-1 relative z-20" style={{ opacity: 0, scale: 0.5, filter: "blur(20px)" }}>
-                            <div className="w-full h-[400px] flex items-center justify-center">
-                                <div className="relative w-full h-full flex items-center justify-center">
-                                    {/* Subtle floating tech icons */}
-                                    <div className="grid grid-cols-3 gap-8 opacity-60 relative z-30">
-                                        <div className="flex flex-col items-center space-y-2 group">
-                                            <div className="p-4 transition-all duration-300">
-                                                <FigmaIcon size={32} />
-                                            </div>
-                                            <span className="text-xs font-semibold text-gray-400 dark:text-gray-400 text-black group-hover:text-orange-500 transition-colors opacity-100">Figma</span>
-                                        </div>
-                                        <div className="flex flex-col items-center space-y-2 group">
-                                            <div className="p-4 transition-all duration-300">
-                                                <ReactIcon size={32} />
-                                            </div>
-                                            <span className="text-xs font-semibold text-gray-400 dark:text-gray-400 text-black group-hover:text-orange-500 transition-colors opacity-100">React</span>
-                                        </div>
-                                        <div className="flex flex-col items-center space-y-2 group">
-                                            <div className="p-4 transition-all duration-300">
-                                                <NextJSIcon size={32} />
-                                            </div>
-                                            <span className="text-xs font-semibold text-gray-400 dark:text-gray-400 text-black group-hover:text-orange-500 transition-colors opacity-100">Next.js</span>
-                                        </div>
-                                        <div className="flex flex-col items-center space-y-2 group">
-                                            <div className="p-4 transition-all duration-300">
-                                                <SketchIcon size={32} />
-                                            </div>
-                                            <span className="text-xs font-semibold text-gray-400 dark:text-gray-400 text-black group-hover:text-orange-500 transition-colors opacity-100">Sketch</span>
-                                        </div>
-                                        <div className="flex flex-col items-center space-y-2 group">
-                                            <div className="p-4 transition-all duration-300">
-                                                <JavaScriptIcon size={32} />
-                                            </div>
-                                            <span className="text-xs font-semibold text-gray-400 dark:text-gray-400 text-black group-hover:text-orange-500 transition-colors opacity-100">JavaScript</span>
-                                        </div>
-                                        <div className="flex flex-col items-center space-y-2 group">
-                                            <div className="p-4 transition-all duration-300">
-                                                <GitHubIcon size={32} />
-                                            </div>
-                                            <span className="text-xs font-semibold text-gray-400 dark:text-gray-400 text-black group-hover:text-orange-500 transition-colors opacity-100">GitHub</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     
                 </section>
