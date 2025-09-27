@@ -42,16 +42,18 @@ export const WhiteSlideLeftButton = ({
 export const BlackSlideLeftButton = ({ 
   text = "Let's work together", 
   href = "/contact",
-  className = "" 
+  className = "",
+  fullWidth = false
 }: {
   text?: string;
   href?: string;
   className?: string;
+  fullWidth?: boolean;
 }) => {
   return (
     <Link 
       href={href}
-      className={`group relative inline-flex items-center justify-center w-full sm:w-fit px-6 py-2 font-medium transition-all duration-300 ease-out overflow-hidden bg-black dark:bg-white text-white dark:text-black ${className}`}
+      className={`group relative inline-flex items-center justify-center ${fullWidth ? 'w-full' : 'w-full sm:w-fit'} px-6 py-2 font-medium transition-all duration-300 ease-out overflow-hidden bg-black dark:bg-white text-white dark:text-black ${className}`}
       style={{ 
         borderRadius: '9999px',
         WebkitBorderRadius: '9999px',
@@ -82,20 +84,22 @@ export const BlackSlideLeftSubmitButton = ({
   disabled = false,
   onClick,
   children,
-  className = "" 
+  className = "",
+  fullWidth = false
 }: {
   text?: string;
   disabled?: boolean;
   onClick?: () => void;
   children?: React.ReactNode;
   className?: string;
+  fullWidth?: boolean;
 }) => {
   return (
     <button
       type="submit"
       onClick={onClick}
       disabled={disabled}
-      className={`group relative inline-flex items-center justify-center w-fit px-6 py-2 font-medium transition-all duration-300 ease-out overflow-hidden bg-black dark:bg-white text-white dark:text-black disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
+      className={`group relative inline-flex items-center justify-center ${fullWidth ? 'w-full' : 'w-full sm:w-fit'} px-6 py-2 font-medium transition-all duration-300 ease-out overflow-hidden bg-black dark:bg-white text-white dark:text-black disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
       style={{ 
         borderRadius: '9999px',
         WebkitBorderRadius: '9999px',
@@ -170,7 +174,8 @@ export const OrangeSlideLeftButton = ({
   onClick,
   disabled = false,
   children,
-  className = "" 
+  className = "",
+  iconPosition = "end" // "end" for mobile, "default" for desktop
 }: {
   text?: string;
   href?: string;
@@ -178,6 +183,7 @@ export const OrangeSlideLeftButton = ({
   disabled?: boolean;
   children?: React.ReactNode;
   className?: string;
+  iconPosition?: "end" | "default";
 }) => {
   const ButtonComponent = href ? Link : 'button';
   const buttonProps = href ? { href } : { onClick, disabled };
@@ -185,7 +191,7 @@ export const OrangeSlideLeftButton = ({
   return (
     <ButtonComponent
       {...buttonProps}
-      className={`group relative inline-flex items-center gap-3 pl-6 pr-2 py-2 font-medium transition-all duration-300 ease-out overflow-hidden bg-black dark:bg-orange-500 text-orange-500 dark:text-black disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
+      className={`group relative inline-flex items-center ${iconPosition === "end" ? "justify-between" : "gap-3"} pl-6 pr-2 py-2 font-medium transition-all duration-300 ease-out overflow-hidden bg-black dark:bg-orange-500 text-orange-500 dark:text-black disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
       style={{ 
         borderRadius: '9999px',
         WebkitBorderRadius: '9999px',
@@ -232,7 +238,7 @@ export const BeamBorderButton = ({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`flex items-center w-full sm:w-fit border border-gray-600 text-gray-700 dark:text-gray-300 px-6 py-2 hover:text-orange-500 dark:hover:text-orange-500 hover:border-orange-500 dark:hover:border-orange-500 transition-colors ${className}`}
+      className={`flex items-center justify-center sm:justify-start w-full sm:w-fit border border-gray-600 text-gray-700 dark:text-gray-300 px-6 py-2 hover:text-orange-500 dark:hover:text-orange-500 hover:border-orange-500 dark:hover:border-orange-500 transition-colors ${className}`}
       style={{ 
         borderRadius: '9999px',
         WebkitBorderRadius: '9999px',

@@ -293,6 +293,7 @@ export default function Navigation() {
                                     }}
                                     disabled={isContactLoading}
                                     className="w-full py-3"
+                                    iconPosition="end"
                                 >
                                     {isContactLoading ? (
                                         <>

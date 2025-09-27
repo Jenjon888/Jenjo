@@ -555,6 +555,7 @@ export default function Home() {
   <BlackSlideLeftSubmitButton 
     onClick={handleContactClick}
     disabled={isContactLoading}
+    fullWidth={true}
   >
     {isContactLoading ? (
       <>
