@@ -12,12 +12,13 @@ export default function CaseStudies() {
   const highlights = [
     {
       id: 1,
-      title: "Crypto Portfolio Manager",
-      description: "How do we help launch a premium crypto portfolio management platform fast, without compromising on performance or scalability?",
+      title: "Crypto Portfolio Platform",
+      description: "Launching a premium crypto portfolio management platform with focus on performance and scalability.",
       metric: "40%",
       metricDescription: "increase in task completion after onboarding redesign",
       link: "/case-studies/crypto-ai-portfolio",
-      image: "/charts.png"
+      image: "/charts.png",
+      year: "2024"
     },
     {
       id: 2,
@@ -26,7 +27,8 @@ export default function CaseStudies() {
       metric: "1",
       metricDescription: "Awwwards nomination",
       link: "/case-studies/ux-research-chatbot",
-      image: "/chatbot.jpg"
+      image: "/chatbot.jpg",
+      year: "2025"
     },
     {
       id: 3,
@@ -35,7 +37,8 @@ export default function CaseStudies() {
       metric: "+20",
       metricDescription: "dynamic features for enhanced user experience",
       link: "/case-studies/banking-app",
-      image: "/hsbc.jpg"
+      image: "/hsbc.jpg",
+      year: "2019"
     },
     {
       id: 4,
@@ -44,7 +47,8 @@ export default function CaseStudies() {
       metric: "90+",
       metricDescription: "students onboarded in the first month",
       link: "/case-studies/education-platform",
-      image: "/medify.jpg"
+      image: "/medify.jpg",
+      year: "2022"
     },
     {
       id: 5,
@@ -53,7 +57,8 @@ export default function CaseStudies() {
       metric: "50+",
       metricDescription: "components designed and documented",
       link: "/case-studies/yld-design-system",
-      image: "/DS1.png"
+      image: "/DS1.png",
+      year: "2023"
     },
     {
       id: 6,
@@ -62,7 +67,8 @@ export default function CaseStudies() {
       metric: "2.5k",
       metricDescription: "users actively reducing their carbon footprint",
       link: "/case-studies/cogo-app",
-      image: "/1m_8.jpg"
+      image: "/1m_8.jpg",
+      year: "2019"
     }
   ]
 
@@ -98,7 +104,7 @@ export default function CaseStudies() {
               <div key={item.id} className="group">
                 {/* Image */}
                 <Link href={item.link} className="block">
-                  <div className="relative w-full h-96 md:h-96 overflow-hidden rounded-lg cursor-pointer">
+                  <div className="relative w-full h-96 md:h-96 overflow-hidden rounded-xl cursor-pointer">
                     <Image
                       src={item.image || "/20.jpg"}
                       alt={item.title}
@@ -108,10 +114,15 @@ export default function CaseStudies() {
                   </div>
                 </Link>
 
-                {/* Title - Below Image, Above Description */}
-                <h3 className="mt-4 text-xl font-light text-black dark:text-white">
-                  {item.title}
-                </h3>
+                {/* Title and Year - Below Image, Above Description */}
+                <div className="mt-4 flex items-center justify-between">
+                  <h3 className="text-xl font-light text-black dark:text-white">
+                    {item.title}
+                  </h3>
+                  <span className="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                    {item.year}
+                  </span>
+                </div>
 
                 {/* Description */}
                 <p className="mt-3 text-base text-black dark:text-white leading-relaxed">

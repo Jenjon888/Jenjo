@@ -4,7 +4,7 @@ import Footer from '@/components/footer'
 import SplitText from '@/components/SplitText'
 import { Download } from 'lucide-react'
 import { useState } from 'react'
-import { BlackSlideLeftDownloadButton } from '@/components/ui/slide-buttons'
+import Link from 'next/link'
 
 export default function Experience() {
   const [isDownloading, setIsDownloading] = useState(false)
@@ -55,40 +55,43 @@ export default function Experience() {
       {/* Main Content */}
       <div className="flex flex-col lg:flex-row min-h-screen">
          {/* Left Column - CV Info and Stats */}
-         <div className="lg:w-1/3 lg:pr-12 lg:pl-8 lg:py-8 lg:fixed lg:top-20 lg:left-0 lg:h-screen lg:bg-white lg:dark:bg-black px-4 py-8 lg:px-0 lg:py-0">
+         <div className="lg:w-1/3 lg:px-12 lg:py-8 lg:fixed lg:top-20 lg:left-0 lg:h-screen lg:bg-white lg:dark:bg-black px-4 py-8 lg:py-0">
            <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 lg:bg-transparent lg:dark:bg-transparent lg:rounded-none lg:p-0 pt-8 pl-5 -mt-5">
-           <h2 className="text-2xl md:text-3xl font-medium text-black dark:text-white">
-            Current CV
-          </h2>
-             <div className="flex items-center gap-3 mb-6">
-               <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-               <span className="text-black dark:text-white">Available</span>
-             </div>
-
-             {/* Download CV Button */}
-             <BlackSlideLeftDownloadButton 
-               onClick={handleDownload}
-               disabled={isDownloading}
-               className="mb-8"
-             >
-               {isDownloading ? (
-                 <>
-                   <div className="w-4 h-4 border-2 border-white dark:border-black border-t-transparent rounded-full animate-spin"></div>
-                   <span className="font-medium">Downloading...</span>
-                 </>
-               ) : (
-                 <>
+             <div className="pt-12">
+               <div>
+                 <SplitText
+                   text="Current CV"
+                   tag="h2"
+                   className="text-2xl md:text-3xl font-medium text-black dark:text-white"
+                   splitType="chars"
+                   delay={50}
+                   duration={0.8}
+                   ease="power3.out"
+                   from={{ opacity: 0, y: 50, rotationX: -90 }}
+                   to={{ opacity: 1, y: 0, rotationX: 0 }}
+                   threshold={0.1}
+                   rootMargin="-50px"
+                 />
+               </div>
+               
+               {/* Download CV Link */}
+               <div className="mt-4">
+                 <a 
+                   href="/cv.pdf" 
+                   download="Jenjo_UX_Designer_CV.pdf"
+                   className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 transition-colors font-medium"
+                 >
+                   <span>Download</span>
                    <Download size={16} />
-                   <span className="font-medium">Download CV</span>
-                 </>
-               )}
-             </BlackSlideLeftDownloadButton>
+                 </a>
+               </div>
+             </div>
 
            </div>
          </div>
 
         {/* Right Column - Professional Experience */}
-        <div className="lg:w-2/3 lg:ml-[33.333333%] px-4 py-8 space-y-12 overflow-y-auto max-w-[600px]">
+        <div className="lg:w-2/3 lg:ml-[33.333333%] px-4 pt-4 pb-8 space-y-12 overflow-y-auto max-w-[600px]">
               
                
 
@@ -131,7 +134,15 @@ export default function Experience() {
                       <h3 className="text-xl font-medium text-black dark:text-white">Product Designer/Consultant</h3>
                       <span className="text-black dark:text-white text-sm">Jan 2023 – Jul 2023</span>
                     </div>
-                    <p className="text-gray-600 dark:text-gray-400 mb-3">YLD</p>
+                    <p className="text-gray-600 dark:text-gray-400 mb-3">
+                      YLD • 
+                      <Link 
+                        href="/case-studies/yld-design-system" 
+                        className="text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 transition-colors ml-1"
+                      >
+                        View Case Study
+                      </Link>
+                    </p>
                     <ul className="text-gray-700 dark:text-gray-300 space-y-2">
                       <li>• Co-led the development of a scalable, multi-brand design system for a financial services client, unifying the user experience and streamlining development across 24 distinct brands.</li>
                       <li>• Reduced component development time by an estimated 40% by creating comprehensive documentation and foundational guidelines on Supernova.</li>
@@ -145,7 +156,15 @@ export default function Experience() {
                       <h3 className="text-xl font-medium text-black dark:text-white">Product Designer</h3>
                       <span className="text-black dark:text-white text-sm">Apr 2022 – Sep 2022</span>
                     </div>
-                    <p className="text-gray-600 dark:text-gray-400 mb-3">Medify</p>
+                    <p className="text-gray-600 dark:text-gray-400 mb-3">
+                      Medify • 
+                      <Link 
+                        href="/case-studies/education-platform" 
+                        className="text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 transition-colors ml-1"
+                      >
+                        View Case Study
+                      </Link>
+                    </p>
                     <ul className="text-gray-700 dark:text-gray-300 space-y-2">
                       <li>• Directed the end-to-end UX/UI redesign for a responsive learning platform, delivering a new design system that increased developer efficiency by 25% and improved user satisfaction scores by an estimated 20% post-launch.</li>
                       <li>• Validated design concepts through structured usability testing with over 30 users, leveraging high-fidelity prototypes to gather insights that reduced critical navigation errors by 50%.</li>
@@ -186,7 +205,15 @@ export default function Experience() {
                       <h3 className="text-xl font-medium text-black dark:text-white">Lead Product Designer</h3>
                       <span className="text-black dark:text-white text-sm">Oct 2019 – Dec 2019</span>
                     </div>
-                    <p className="text-gray-600 dark:text-gray-400 mb-3">CoGo</p>
+                    <p className="text-gray-600 dark:text-gray-400 mb-3">
+                      CoGo • 
+                      <Link 
+                        href="/case-studies/cogo-app" 
+                        className="text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 transition-colors ml-1"
+                      >
+                        View Case Study
+                      </Link>
+                    </p>
                     <ul className="text-gray-700 dark:text-gray-300 space-y-2">
                       <li>• Led UX and UI for an ethical fintech app, collaborating with a cross-functional team of 10 to deliver a redesigned feature under a fixed five-week deadline.</li>
                       <li>• Investigated user engagement issues by conducting over 15 user interviews and focus groups, identifying critical pain points that led to a redesign increasing user retention by 10% in the first month.</li>
@@ -200,7 +227,15 @@ export default function Experience() {
                       <h3 className="text-xl font-medium text-black dark:text-white">UX Lead</h3>
                       <span className="text-black dark:text-white text-sm">Jul 2019 – Sep 2019</span>
                     </div>
-                    <p className="text-gray-600 dark:text-gray-400 mb-3">HSBC</p>
+                    <p className="text-gray-600 dark:text-gray-400 mb-3">
+                      HSBC • 
+                      <Link 
+                        href="/case-studies/banking-app" 
+                        className="text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 transition-colors ml-1"
+                      >
+                        View Case Study
+                      </Link>
+                    </p>
                     <ul className="text-gray-700 dark:text-gray-300 space-y-2">
                       <li>• Shaped the UX for HSBC Kinetic's Data & Insights features, simplifying cash flow analysis and accounting software integration for small business owners.</li>
                       <li>• Organized and analyzed regular user testing sessions to refine navigation and information architecture, presenting design rationale to Heads of Design, UX, and Development.</li>

@@ -175,7 +175,7 @@ export const OrangeSlideLeftButton = ({
   disabled = false,
   children,
   className = "",
-  iconPosition = "end" // "end" for mobile, "default" for desktop
+  iconPosition = "default" // "end" for mobile, "default" for desktop
 }: {
   text?: string;
   href?: string;
@@ -191,7 +191,7 @@ export const OrangeSlideLeftButton = ({
   return (
     <ButtonComponent
       {...buttonProps}
-      className={`group relative inline-flex items-center ${iconPosition === "end" ? "justify-between" : "gap-3"} pl-6 pr-2 py-2 font-medium transition-all duration-300 ease-out overflow-hidden bg-black dark:bg-orange-500 text-orange-500 dark:text-black disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
+      className={`group relative inline-flex items-center gap-3 pl-6 pr-2 py-2 font-medium transition-all duration-300 ease-out overflow-hidden bg-black dark:bg-orange-500 text-orange-500 dark:text-black disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
       style={{ 
         borderRadius: '9999px',
         WebkitBorderRadius: '9999px',

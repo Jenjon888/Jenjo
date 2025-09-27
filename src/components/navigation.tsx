@@ -220,7 +220,7 @@ export default function Navigation() {
                                         onClick={closeMobileMenu}
                                         className={`block px-4 py-3 text-lg rounded-lg transition-all duration-300 ease-out ${
                                             isActive('/about') 
-                                                ? 'text-orange-500 bg-orange-50 dark:bg-orange-900/20' 
+                                                ? 'text-orange-500' 
                                                 : 'text-black dark:text-white hover:scale-105 hover:shadow-md'
                                         }`}
                                     >
@@ -231,7 +231,7 @@ export default function Navigation() {
                                         onClick={closeMobileMenu}
                                         className={`block px-4 py-3 text-lg rounded-lg transition-all duration-300 ease-out ${
                                             isActive('/process') 
-                                                ? 'text-orange-500 bg-orange-50 dark:bg-orange-900/20' 
+                                                ? 'text-orange-500' 
                                                 : 'text-black dark:text-white hover:scale-105 hover:shadow-md'
                                         }`}
                                     >
@@ -242,7 +242,7 @@ export default function Navigation() {
                                         onClick={closeMobileMenu}
                                         className={`block px-4 py-3 text-lg rounded-lg transition-all duration-300 ease-out ${
                                             isActive('/case-studies') 
-                                                ? 'text-orange-500 bg-orange-50 dark:bg-orange-900/20' 
+                                                ? 'text-orange-500' 
                                                 : 'text-black dark:text-white hover:scale-105 hover:shadow-md'
                                         }`}
                                     >
@@ -253,7 +253,7 @@ export default function Navigation() {
                                         onClick={closeMobileMenu}
                                         className={`block px-4 py-3 text-lg rounded-lg transition-all duration-300 ease-out ${
                                             isActive('/experience') 
-                                                ? 'text-orange-500 bg-orange-50 dark:bg-orange-900/20' 
+                                                ? 'text-orange-500' 
                                                 : 'text-black dark:text-white hover:scale-105 hover:shadow-md'
                                         }`}
                                     >
@@ -264,7 +264,7 @@ export default function Navigation() {
                                         onClick={closeMobileMenu}
                                         className={`block px-4 py-3 text-lg rounded-lg transition-all duration-300 ease-out ${
                                             isActive('/blog') 
-                                                ? 'text-orange-500 bg-orange-50 dark:bg-orange-900/20' 
+                                                ? 'text-orange-500' 
                                                 : 'text-black dark:text-white hover:scale-105 hover:shadow-md'
                                         }`}
                                     >
@@ -275,7 +275,7 @@ export default function Navigation() {
                                         onClick={closeMobileMenu}
                                         className={`block px-4 py-3 text-lg rounded-lg transition-all duration-300 ease-out ${
                                             isActive('/contact') 
-                                                ? 'text-orange-500 bg-orange-50 dark:bg-orange-900/20' 
+                                                ? 'text-orange-500' 
                                                 : 'text-black dark:text-white hover:scale-105 hover:shadow-md'
                                         }`}
                                     >

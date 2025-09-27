@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { ImagePreloader } from "@/components/ImagePreloader";
 import { Analytics } from "@vercel/analytics/next";
+import { MicrosoftClarity } from "@/components/MicrosoftClarity";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -46,6 +47,7 @@ export default function RootLayout({
           <ImagePreloader />
           {children}
           <Analytics />
+          <MicrosoftClarity />
         </ThemeProvider>
       </body>
     </html>
