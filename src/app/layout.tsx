@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { ImagePreloader } from "@/components/ImagePreloader";
 import { Analytics } from "@vercel/analytics/next";
+import { HotjarComponent } from "@/components/Hotjar";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -46,6 +47,7 @@ export default function RootLayout({
           <ImagePreloader />
           {children}
           <Analytics />
+          <HotjarComponent />
         </ThemeProvider>
       </body>
     </html>
