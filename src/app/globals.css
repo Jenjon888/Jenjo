@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 :root {
+  --background: #ffffff;
+  --foreground: #000000;
+}
+
+.dark {
   --background: #0a0a0a;
   --foreground: #ffffff;
 }
@@ -165,5 +170,18 @@ body {
   100% {
     transform: translateY(100vh) rotate(720deg);
     opacity: 0;
+  }
+}
+
+/* Animated underline effect for CTA banners */
+@keyframes drawUnderline {
+  0% {
+    transform: scaleX(0);
+  }
+  50% {
+    transform: scaleX(1);
+  }
+  100% {
+    transform: scaleX(0);
   }
 }

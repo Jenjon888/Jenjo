@@ -5,7 +5,7 @@ import { Linkedin, Mail } from 'lucide-react'
 
 export default function Footer() {
     return (
-        <footer className="bg-white dark:bg-black text-black dark:text-white pb-6 w-full">
+        <footer className="bg-white dark:bg-black text-black dark:text-white w-full">
             <div className="w-full px-4 md:px-8">
                 {/* Mobile Layout */}
                 <div className="md:hidden">
@@ -48,7 +48,7 @@ export default function Footer() {
                         </div>
                         
                         {/* Copyright */}
-                        <p className="text-gray-400 text-sm text-center">
+                        <p className="text-gray-800 dark:text-gray-400 text-sm text-center">
                             © {new Date().getFullYear()} All rights reserved.
                         </p>
                     </div>
@@ -73,7 +73,7 @@ export default function Footer() {
                     />
                     
                     {/* Copyright */}
-                    <p className="text-gray-400 text-sm">
+                    <p className="text-gray-800 dark:text-gray-400 text-sm">
                         © {new Date().getFullYear()} All rights reserved.
                     </p>
                     

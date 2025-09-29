@@ -4,7 +4,6 @@ import Footer from '@/components/footer'
 import { ImageLoading, Loading } from '@/components/loading'
 import { BorderBeam } from '@/components/ui/border-beam'
 import Image from 'next/image'
-import { Palette, Box, Code, Gamepad2 } from 'lucide-react'
 import { useState, useRef, useEffect, useCallback } from 'react'
 import TiltedTextCard from '@/components/TiltedTextCard'
 import SplitText from '@/components/SplitText'
@@ -25,12 +24,6 @@ export default function Home() {
   const [featuredImageLoading, setFeaturedImageLoading] = useState(true)
   const [isContactLoading, setIsContactLoading] = useState(false)
   
-  // Refs for education icons animation
-  const educationSectionRef = useRef<HTMLDivElement>(null)
-  const educationTitleRef = useRef<HTMLHeadingElement>(null)
-  const educationSubtextRef = useRef<HTMLParagraphElement>(null)
-  const iconRefs = useRef<(HTMLDivElement | null)[]>([])
-  const textRefs = useRef<(HTMLParagraphElement | null)[]>([])
   
   // Refs for metrics animation
   const metricsSectionRef = useRef<HTMLDivElement>(null)
@@ -69,13 +62,6 @@ export default function Home() {
     metricTextRefs.current[index] = el
   }, [])
   
-  const setIconRef = useCallback((index: number) => (el: HTMLDivElement | null) => {
-    iconRefs.current[index] = el
-  }, [])
-  
-  const setTextRef = useCallback((index: number) => (el: HTMLParagraphElement | null) => {
-    textRefs.current[index] = el
-  }, [])
 
   const setSkillCardRef = useCallback((index: number) => (el: HTMLDivElement | null) => {
     skillCardsRef.current[index] = el
@@ -88,105 +74,6 @@ export default function Home() {
     window.location.href = '/contact'
   }
 
-  // Education section animation
-  useEffect(() => {
-    if (!educationSectionRef.current) return
-
-    const title = educationTitleRef.current
-    const subtext = educationSubtextRef.current
-    const icons = iconRefs.current.filter(Boolean)
-    const texts = textRefs.current.filter(Boolean)
-
-    // Set initial states
-    gsap.set([title, subtext], {
-      opacity: 0,
-      y: 60,
-      scale: 0.9
-    })
-    
-    
-    gsap.set([...icons, ...texts], {
-      opacity: 0,
-      y: 30,
-      scale: 0.8
-    })
-
-    // Create timeline
-    const tl = gsap.timeline(
-      isMobile() ? {} : {
-      scrollTrigger: {
-        trigger: educationSectionRef.current,
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play none none reverse"
-      }
-      }
-    )
-
-    // Animate title and subtext first
-    if (title) {
-      tl.to(title, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 1.0,
-        ease: "back.out(1.2)"
-      })
-    }
-    
-    if (subtext) {
-      tl.to(subtext, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.8,
-        ease: "power2.out"
-      }, "-=0.3")
-    }
-    
-    // Animate icons and text labels together
-    tl.to([...icons, ...texts], {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 1.2,
-      ease: "back.out(1.2)",
-      stagger: 0.2
-    }, "-=0.2")
-
-    // Add hover animations
-    icons.forEach((icon, index) => {
-      if (!icon) return
-      
-      const handleMouseEnter = () => {
-        gsap.to(icon, {
-          scale: 1.2,
-          rotation: 5,
-          duration: 0.3,
-          ease: "power2.out"
-        })
-      }
-      
-      const handleMouseLeave = () => {
-        gsap.to(icon, {
-          scale: 1,
-          rotation: 0,
-          duration: 0.3,
-          ease: "power2.out"
-        })
-      }
-
-      icon.addEventListener('mouseenter', handleMouseEnter)
-      icon.addEventListener('mouseleave', handleMouseLeave)
-
-      // Cleanup
-      return () => {
-        icon.removeEventListener('mouseenter', handleMouseEnter)
-        icon.removeEventListener('mouseleave', handleMouseLeave)
-      }
-    })
-
-  }, [])
 
   // Metrics animation
   useEffect(() => {
@@ -347,8 +234,6 @@ export default function Home() {
 
   // Skill cards animation
   useEffect(() => {
-    if (!educationSectionRef.current) return
-
     const skillCards = skillCardsRef.current.filter(Boolean)
 
     // Set initial states with blur
@@ -359,11 +244,11 @@ export default function Home() {
       filter: "blur(10px)"
     })
 
-    // Create timeline with delay after education icons animation
+    // Create timeline
     const tl = gsap.timeline(
       isMobile() ? {} : {
         scrollTrigger: {
-          trigger: educationSectionRef.current,
+          trigger: skillCards[0]?.parentElement?.parentElement,
           start: "top 80%",
           end: "bottom 20%",
           toggleActions: "play none none reverse"
@@ -371,7 +256,7 @@ export default function Home() {
       }
     )
 
-    // Delay to start after education icons animation and SplitText title animation
+    // Animate skill cards
     tl.to(skillCards, {
       opacity: 1,
       y: 0,
@@ -380,7 +265,7 @@ export default function Home() {
       duration: 0.4,
       ease: "power2.out",
       stagger: 0.05
-    }, "+=1.0")
+    })
 
   }, [])
 
@@ -457,7 +342,7 @@ export default function Home() {
 
                 {/* MAIN BODY SECTION */}
 <section ref={mainBodySectionRef} className="flex justify-center">
-  <div className="relative w-full max-w-6xl rounded-[12px] bg-transparent sm:bg-gray-100 dark:sm:bg-[#141414] pt-4 pb-0 md:py-6 lg:py-8 text-black dark:text-white">
+  <div className="relative w-full max-w-6xl pt-4 pb-0 md:py-6 lg:py-8 text-black dark:text-white">
     <div className="space-y-12 px-4 md:px-14 pt-6">
       {/* Intro Text */}
       <p ref={introTextRef} className="text-2xl text-left" style={{ opacity: 0, transform: 'translateY(50px)' }}>
@@ -491,7 +376,7 @@ export default function Home() {
     </p>
     <p 
       ref={setMetricTextRef(0)}
-      className="text-sm tracking-wide text-gray-600 dark:text-gray-400"
+      className="text-sm tracking-wide text-gray-800 dark:text-gray-400"
     >
     Increase in user task completion rates
     </p>
@@ -508,7 +393,7 @@ export default function Home() {
     </p>
     <p 
       ref={setMetricTextRef(1)}
-      className="text-sm tracking-wide text-gray-600 dark:text-gray-400"
+      className="text-sm tracking-wide text-gray-800 dark:text-gray-400"
     >
     Improvement in user satisfaction scores
     </p>
@@ -525,7 +410,7 @@ export default function Home() {
     </p>
     <p 
       ref={setMetricTextRef(2)}
-      className="text-sm tracking-wide text-gray-600 dark:text-gray-400"
+      className="text-sm tracking-wide text-gray-800 dark:text-gray-400"
     >
     Projects delivered across multiple sectors
     </p>
@@ -542,7 +427,7 @@ export default function Home() {
     </p>
     <p 
       ref={setMetricTextRef(3)}
-      className="text-sm tracking-wide text-gray-600 dark:text-gray-400"
+      className="text-sm tracking-wide text-gray-800 dark:text-gray-400"
     >
     Revenue impact from design-driven improvements
     </p>
@@ -563,7 +448,7 @@ export default function Home() {
       </>
     ) : (
       <>
-        <span className="w-2 h-2 rounded-full bg-green-500 mr-2"></span>
+    <span className="w-2 h-2 rounded-full bg-green-500 mr-2"></span>
         <span className="font-medium">Let's work together</span>
       </>
     )}
@@ -617,14 +502,14 @@ export default function Home() {
                 />
                 {/* Gradient overlay for modern look */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                </div>
-              </div>
-              
+        </div>
+      </div>
+
               {/* Floating elements for modern feel */}
               <div className="absolute -top-4 -right-4 w-24 h-24 bg-orange-500/10 rounded-full blur-xl"></div>
               <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-blue-500/10 rounded-full blur-xl"></div>
-            </div>
-          </div>
+        </div>
+      </div>
 
           {/* Right: Content */}
           <div ref={featuredContentRef} className="lg:col-span-5 space-y-8">
@@ -639,15 +524,15 @@ export default function Home() {
               <h2 ref={featuredTitleRef} className="text-3xl md:text-4xl font-light text-black dark:text-white mb-3">
                 Crypto Portfolio Manager
               </h2>
-            </div>
+        </div>
 
             {/* Challenge */}
             <div ref={featuredChallengeRef} className="space-y-4">
               <h3 className="text-lg font-medium text-gray-900 dark:text-white">Challenge</h3>
-              <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+              <p className="text-gray-800 dark:text-gray-400 leading-relaxed">
                 Design and launch a premium crypto portfolio management platform that balances sophisticated functionality with intuitive user experience, all while maintaining high performance standards.
-              </p>
-            </div>
+        </p>
+      </div>
 
 
 
@@ -663,112 +548,27 @@ export default function Home() {
                 href="/case-studies"
                 className="whitespace-nowrap"
               />
-            </div>
-          </div>
-        </div>
-    </div>
-  </section>
-
-  <section className="flex justify-center pb-2">
-  <div className="relative w-full max-w-6xl rounded-[12px] bg-gray-100 dark:bg-[#141414] py-4 md:py-6 lg:py-8 text-black dark:text-white">
-    <div className="space-y-12 px-4 md:px-14 pt-6 "> 
-      
-{/* Education */}
-<div ref={educationSectionRef} className="space-y-6">
-  {/* Title */}
-  <h2 ref={educationTitleRef} className="text-3xl md:text-5xl font-regular pb-4 md:pb-8">
-    Bachelor of Arts - Hons (2.1)
-  </h2>
-
-  {/* Subtext + Icons row */}
-  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-    {/* Subtext (left) */}
-    <p ref={educationSubtextRef} className="text-gray-600 dark:text-gray-400 sm:whitespace-nowrap sm:mr-8">
-      Digital Arts and Multimedia Computing, 1999
-    </p>
-
-    {/* Icons with full-height dividers (right) */}
-    <div className="grid grid-cols-2 gap-0 border border-gray-300 dark:border-gray-600 rounded-lg sm:flex sm:flex-nowrap sm:items-stretch sm:text-center sm:overflow-visible sm:border-0 sm:rounded-none">
-      {/* Item 1 */}
-      <div className="flex flex-col items-center p-4 border-r border-b border-gray-300 dark:border-gray-600 sm:border-0 cursor-pointer group">
-        <div 
-          ref={setIconRef(0)}
-          className="mb-2 transition-colors duration-300 group-hover:text-orange-500"
-        >
-          <Palette size={24} className="text-black dark:text-white" />
-        </div>
-        <p 
-          ref={setTextRef(0)}
-          className="text-sm text-gray-700 dark:text-gray-300 leading-tight"
-        >
-          Digital Arts
-        </p>
-      </div>
-
-
-      {/* Item 2 */}
-      <div className="flex flex-col items-center p-4 border-b border-gray-300 dark:border-gray-600 sm:border-0 cursor-pointer group">
-        <div 
-          ref={setIconRef(1)}
-          className="mb-2 transition-colors duration-300 group-hover:text-orange-500"
-        >
-          <Box size={24} className="text-black dark:text-white" />
-        </div>
-        <p 
-          ref={setTextRef(1)}
-          className="text-sm text-gray-700 dark:text-gray-300 leading-tight"
-        >
-          3D Animation
-        </p>
-      </div>
-
-
-      {/* Item 3 */}
-      <div className="flex flex-col items-center p-4 border-r border-gray-300 dark:border-gray-600 sm:border-0 cursor-pointer group">
-        <div 
-          ref={setIconRef(2)}
-          className="mb-2 transition-colors duration-300 group-hover:text-orange-500"
-        >
-          <Code size={24} className="text-black dark:text-white" />
-        </div>
-        <p 
-          ref={setTextRef(2)}
-          className="text-sm text-gray-700 dark:text-gray-300 leading-tight text-center"
-        >
-          Full Stack Development
-        </p>
-      </div>
-
-
-      {/* Item 4 */}
-      <div className="flex flex-col items-center p-4 cursor-pointer group">
-        <div 
-          ref={setIconRef(3)}
-          className="mb-2 transition-colors duration-300 group-hover:text-orange-500"
-        >
-          <Gamepad2 size={24} className="text-black dark:text-white" />
-        </div>
-        <p 
-          ref={setTextRef(3)}
-          className="text-sm text-gray-700 dark:text-gray-300 leading-tight"
-        >
-          Game Design
-        </p>
       </div>
     </div>
   </div>
 </div>
+  </section>
+
+  <section className="flex justify-center pb-2">
+  <div className="relative w-full max-w-6xl py-4 md:py-6 lg:py-8 text-black dark:text-white">
+    <div className="space-y-12 px-4 md:px-14 pt-6 "> 
 
 
 
-      {/* Skills Section */}
+
+{/* Skills Section */}
 <div className="space-y-8">
   {/* Heading */}
-  <div className="flex flex-col items-start sm:flex-row sm:items-center sm:justify-between pt-8 gap-4">
+  <div className="flex flex-col items-start sm:flex-row sm:items-center sm:justify-between pt-4 gap-4">
     {isMobile() ? (
       <h3 className="text-2xl md:text-3xl font-medium leading-snug text-left">
-        Core Expertise and Tools
-      </h3>
+  Core Expertise and Tools
+  </h3>
     ) : (
       <SplitText
         text="Core Expertise and Tools"
@@ -794,84 +594,84 @@ export default function Home() {
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 text-left">
     {/* Card 1 */}
     <TiltedTextCard>
-      <div ref={setSkillCardRef(0)} className="bg-white dark:bg-[#1f1f1f] border border-gray-200 dark:border-transparent rounded-xl px-4 py-6 flex flex-col h-full">
+      <div ref={setSkillCardRef(0)} className="bg-white dark:bg-transparent border border-gray-400 dark:border-white dark:border-opacity-20 rounded-xl px-4 py-6 flex flex-col h-full">
         <h4 className="text-lg font-semibold text-black dark:text-white mb-8">UX & Research</h4>
         <div className="flex flex-col gap-3 items-start">
-          {[
-            "User Research & Testing",
-            "Wireframing",
-            "Interaction Design",
-            "Competitive Analysis",
-            "Design Workshops",
-          ].map((item) => (
-            <span
-              key={item}
-              className="bg-gray-100 dark:bg-[#2a2a2a] px-4 py-2 rounded-full text-base text-gray-800 dark:text-gray-300 w-fit"
-            >
-              {item}
-            </span>
-          ))}
-        </div>
+        {[
+          "User Research & Testing",
+          "Wireframing",
+          "Interaction Design",
+          "Competitive Analysis",
+          "Design Workshops",
+        ].map((item) => (
+          <span
+            key={item}
+              className="bg-gray-100 dark:bg-[#2a2a2a] px-4 py-2 rounded-full text-base text-gray-900 dark:text-gray-300 w-fit"
+          >
+            {item}
+          </span>
+        ))}
       </div>
+    </div>
     </TiltedTextCard>
 
     {/* Card 2 */}
     <TiltedTextCard>
-      <div ref={setSkillCardRef(1)} className="bg-white dark:bg-[#1f1f1f] border border-gray-200 dark:border-transparent rounded-xl px-4 py-6 flex flex-col h-full">
+      <div ref={setSkillCardRef(1)} className="bg-white dark:bg-transparent border border-gray-400 dark:border-white dark:border-opacity-20 rounded-xl px-4 py-6 flex flex-col h-full">
         <h4 className="text-lg font-semibold text-black dark:text-white mb-8">UI & Visual Design</h4>
         <div className="flex flex-col gap-3 items-start">
-          {[
-            "User Interface Design",
-            "Design Systems",
+        {[
+          "User Interface Design",
+          "Design Systems",
             "Branding & Identity",
-            "Prototyping",
-            "Animation",
-          ].map((item) => (
-            <span
-              key={item}
-              className="bg-gray-100 dark:bg-[#2a2a2a] px-4 py-2 rounded-full text-base text-gray-800 dark:text-gray-300 w-fit"
-            >
-              {item}
-            </span>
-          ))}
-        </div>
+          "Prototyping",
+          "Animation",
+        ].map((item) => (
+          <span
+            key={item}
+              className="bg-gray-100 dark:bg-[#2a2a2a] px-4 py-2 rounded-full text-base text-gray-900 dark:text-gray-300 w-fit"
+          >
+            {item}
+          </span>
+        ))}
       </div>
+    </div>
     </TiltedTextCard>
 
     {/* Card 3 */}
     <TiltedTextCard>
-      <div ref={setSkillCardRef(2)} className="bg-white dark:bg-[#1f1f1f] border border-gray-200 dark:border-transparent rounded-xl px-4 py-6 flex flex-col h-full">
+      <div ref={setSkillCardRef(2)} className="bg-white dark:bg-transparent border border-gray-400 dark:border-white dark:border-opacity-20 rounded-xl px-4 py-6 flex flex-col h-full">
         <h4 className="text-lg font-semibold text-black dark:text-white mb-8">Front End Development</h4>
         <div className="flex flex-col gap-3 items-start">
-          {["React.js", "Next.js", "Vue.js", "HTML/CSS", "Tailwind UI"].map(
-            (item) => (
-              <span
-                key={item}
-                className="bg-gray-100 dark:bg-[#2a2a2a] px-4 py-2 rounded-full text-base text-gray-800 dark:text-gray-300 w-fit"
-              >
-                {item}
-              </span>
-            )
-          )}
-        </div>
+        {["React.js", "Next.js", "Vue.js", "HTML/CSS", "Tailwind UI"].map(
+          (item) => (
+            <span
+              key={item}
+                className="bg-gray-100 dark:bg-[#2a2a2a] px-4 py-2 rounded-full text-base text-gray-900 dark:text-gray-300 w-fit"
+            >
+              {item}
+            </span>
+          )
+        )}
       </div>
+    </div>
     </TiltedTextCard>
 
     {/* Card 4 */}
     <TiltedTextCard>
-      <div ref={setSkillCardRef(3)} className="bg-white dark:bg-[#1f1f1f] border border-gray-200 dark:border-transparent rounded-xl px-4 py-6 flex flex-col h-full">
+      <div ref={setSkillCardRef(3)} className="bg-white dark:bg-transparent border border-gray-400 dark:border-white dark:border-opacity-20 rounded-xl px-4 py-6 flex flex-col h-full">
         <h4 className="text-lg font-semibold text-black dark:text-white mb-8">Design Tools</h4>
         <div className="flex flex-col gap-3 items-start">
-          {["Figma", "Adobe Suite", "Supernova"].map((item) => (
-            <span
-              key={item}
-              className="bg-gray-100 dark:bg-[#2a2a2a] px-4 py-2 rounded-full text-base text-gray-800 dark:text-gray-300 w-fit"
-            >
-              {item}
-            </span>
-          ))}
-        </div>
+        {["Figma", "Adobe Suite", "Supernova"].map((item) => (
+          <span
+            key={item}
+              className="bg-gray-100 dark:bg-[#2a2a2a] px-4 py-2 rounded-full text-base text-gray-900 dark:text-gray-300 w-fit"
+          >
+            {item}
+          </span>
+        ))}
       </div>
+    </div>
     </TiltedTextCard>
   </div>
 </div>
@@ -879,6 +679,203 @@ export default function Home() {
     </div>
   </div>
 </section>
+
+      {/* Blog Posts Section */}
+      <section className="px-6 md:px-12 py-16">
+        <div className="w-full max-w-6xl mx-auto">
+          <div className="mb-8">
+            <h2 className="text-3xl font-medium text-black dark:text-white mb-4">Insights</h2>
+            <p className="text-gray-600 dark:text-gray-400">Thoughts on design, development, and the intersection of technology and user experience.</p>
+          </div>
+          
+          <div className="relative">
+            <div className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 -mx-6 md:-mx-12 px-6 md:px-12">
+              {/* Blog Post 1 */}
+              <a href="/blog/1" className="flex-shrink-0 w-80 group">
+                <div className="bg-white dark:bg-transparent rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 hover:border-orange-500 transition-colors">
+                  <div className="h-48 relative overflow-hidden">
+                    <img 
+                      src="/blog/AI2.jpg" 
+                      alt="The Future of UX Design in AI-Driven Products"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <span className="text-sm text-orange-500 font-medium">UX Design</span>
+                    <h3 className="text-lg font-semibold text-black dark:text-white mt-2 mb-3 group-hover:text-orange-500 transition-colors">
+                      The Future of UX Design in AI-Driven Products
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                      Exploring how artificial intelligence is reshaping user experience design and what designers need to know.
+                    </p>
+                    <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+                      <span>Mar 25, 2025</span>
+                      <span>5 min read</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+
+              {/* Blog Post 2 */}
+              <a href="/blog/2" className="flex-shrink-0 w-80 group">
+                <div className="bg-white dark:bg-transparent rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 hover:border-orange-500 transition-colors">
+                  <div className="h-48 relative overflow-hidden">
+                    <img 
+                      src="/blog/figma-comp.png" 
+                      alt="Building Scalable Design Systems"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <span className="text-sm text-orange-500 font-medium">Design Systems</span>
+                    <h3 className="text-lg font-semibold text-black dark:text-white mt-2 mb-3 group-hover:text-orange-500 transition-colors">
+                      Building Scalable Design Systems
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                      A comprehensive guide to creating design systems that grow with your product and team.
+                    </p>
+                    <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+                      <span>Jan 30, 2025</span>
+                      <span>7 min read</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+
+              {/* Blog Post 3 */}
+              <a href="/blog/3" className="flex-shrink-0 w-80 group">
+                <div className="bg-white dark:bg-transparent rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 hover:border-orange-500 transition-colors">
+                  <div className="h-48 relative overflow-hidden">
+                    <img 
+                      src="/blog/UR1.jpg" 
+                      alt="User Research Methods That Actually Work"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <span className="text-sm text-orange-500 font-medium">Research</span>
+                    <h3 className="text-lg font-semibold text-black dark:text-white mt-2 mb-3 group-hover:text-orange-500 transition-colors">
+                      User Research and Testing Methods That Actually Work
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                      Proven techniques for gathering meaningful insights from your users and applying them to design decisions.
+                    </p>
+                    <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+                      <span>Dec 5, 2024</span>
+                      <span>6 min read</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+
+              {/* Blog Post 4 */}
+              <a href="/blog/4" className="flex-shrink-0 w-80 group">
+                <div className="bg-white dark:bg-transparent rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 hover:border-orange-500 transition-colors">
+                  <div className="h-48 relative overflow-hidden">
+                    <img 
+                      src="/blog/design3.jpg" 
+                      alt="From Figma to React: Bridging the Design-Development Gap"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <span className="text-sm text-orange-500 font-medium">Development</span>
+                    <h3 className="text-lg font-semibold text-black dark:text-white mt-2 mb-3 group-hover:text-orange-500 transition-colors">
+                      From Figma to React: Bridging the Design-Development Gap
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                      How to create seamless handoffs between design and development teams using modern tools and processes.
+                    </p>
+                    <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+                      <span>Oct 10, 2024</span>
+                      <span>8 min read</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+
+              {/* Blog Post 5 */}
+              <a href="/blog/5" className="flex-shrink-0 w-80 group">
+                <div className="bg-white dark:bg-transparent rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 hover:border-orange-500 transition-colors">
+                  <div className="h-48 relative overflow-hidden">
+                    <img 
+                      src="/blog/colour1a.jpg" 
+                      alt="The Psychology of Color in Digital Products"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <span className="text-sm text-orange-500 font-medium">Design</span>
+                    <h3 className="text-lg font-semibold text-black dark:text-white mt-2 mb-3 group-hover:text-orange-500 transition-colors">
+                      The Psychology of Color in Digital Products
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                      Understanding how color choices impact user behavior and emotional responses in digital interfaces.
+                    </p>
+                    <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+                      <span>Sep 15, 2024</span>
+                      <span>4 min read</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+
+              {/* Blog Post 6 */}
+              <a href="/blog/6" className="flex-shrink-0 w-80 group">
+                <div className="bg-white dark:bg-transparent rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 hover:border-orange-500 transition-colors">
+                  <div className="h-48 relative overflow-hidden">
+                    <img 
+                      src="/blog/RE1.jpg" 
+                      alt="Accessibility First: Designing for Everyone"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <span className="text-sm text-orange-500 font-medium">Accessibility</span>
+                    <h3 className="text-lg font-semibold text-black dark:text-white mt-2 mb-3 group-hover:text-orange-500 transition-colors">
+                      Accessibility First: Designing for Everyone
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                      Why accessibility should be at the core of every design decision and how to implement it effectively.
+                    </p>
+                    <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+                      <span>Sep 1, 2024</span>
+                      <span>6 min read</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Banner Section */}
+      <section className="flex justify-center px-6 md:px-12 py-16">
+        <div className="w-full max-w-6xl">
+          <div className="bg-[#141414] dark:bg-transparent p-12 rounded-[12px]">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+              <div className="flex-1">
+                <h3 className="text-3xl md:text-4xl font-light text-white leading-tight">
+                  If you are working on a <span className="font-medium relative inline-block">
+                    new project
+                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 transform origin-left animate-pulse" style={{
+                      animation: 'drawUnderline 2s ease-in-out infinite'
+                    }}></span>
+                  </span>,<br />
+                  then let's talk
+                </h3>
+              </div>
+              <div className="flex-shrink-0">
+                <BlackSlideLeftButton 
+                  text="Let's Connect"
+                  href="/contact"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>

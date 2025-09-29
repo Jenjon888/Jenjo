@@ -3,7 +3,7 @@ import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ChevronLeft, ChevronRight, X } from 'lucide-react'
+import { ChevronLeft, ChevronRight, X, Palette, Box, Code, Gamepad2 } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
 import SplitText from '@/components/SplitText'
 import { gsap } from 'gsap'
@@ -22,6 +22,11 @@ export default function About() {
   const ctaButtonsRef2 = useRef<HTMLDivElement>(null)
   const quizSectionRef = useRef<HTMLDivElement>(null)
   const quizContentRef = useRef<HTMLDivElement>(null)
+  const educationSectionRef = useRef<HTMLDivElement>(null)
+  const educationTitleRef = useRef<HTMLHeadingElement>(null)
+  const educationSubtextRef = useRef<HTMLParagraphElement>(null)
+  const iconRefs = useRef<(HTMLDivElement | null)[]>([])
+  const textRefs = useRef<(HTMLParagraphElement | null)[]>([])
 
   // Quiz state
   const [quizQuestion, setQuizQuestion] = useState(0)
@@ -341,6 +346,63 @@ export default function About() {
       })
     }
 
+    // Education Section Fade In Effect
+    if (educationSectionRef.current) {
+      const title = educationTitleRef.current
+      const subtext = educationSubtextRef.current
+      const icons = iconRefs.current.filter(Boolean)
+      const texts = textRefs.current.filter(Boolean)
+
+      // Set initial states
+      gsap.set([title, subtext], {
+        opacity: 0,
+        y: 30
+      })
+      
+      gsap.set([...icons, ...texts], {
+        opacity: 0,
+        y: 20
+      })
+
+      // Create timeline
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: educationSectionRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse"
+        }
+      })
+
+      // Animate title and subtext first
+      if (title) {
+        tl.to(title, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out"
+        })
+      }
+      
+      if (subtext) {
+        tl.to(subtext, {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out"
+        }, "-=0.2")
+      }
+      
+      // Animate icons and text labels together
+      tl.to([...icons, ...texts], {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        stagger: 0.1
+      }, "-=0.2")
+    }
+
     // Quiz Section Fade In Effect
     if (quizContentRef.current && quizSectionRef.current) {
       gsap.set(quizContentRef.current, { 
@@ -402,7 +464,7 @@ export default function About() {
           {/* My Story Section */}
           <section ref={contentRef} className="space-y-6" style={{ opacity: 0, transform: "translateY(50px)" }}>
             
-            <div className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed space-y-4">
+            <div className="text-lg text-gray-800 dark:text-gray-400 leading-relaxed space-y-4">
               <p>
                 I've worked in the industry for over 15 years, across all sectors including advertising agencies, fintech, banking, hedge funds, education, and charity, working with startups and large corporations alike. I am able to fully adjust to whatever size team I'm in. Comfortable working by myself or within a team, I also have experience creating my own startups including an award-winning digital magazine and innovative social media app. I thrive in environments where I can work on projects from scratch or get involved in redesign projects. My interests include art, writing and coding.
               </p>
@@ -413,6 +475,95 @@ export default function About() {
             </div>
           </section>
 
+          {/* Education Section */}
+          <section ref={educationSectionRef} className="space-y-6">
+            <h2 className="text-3xl md:text-4xl font-medium text-black dark:text-white">
+              Education
+            </h2>
+            
+            <div className="space-y-6">
+              {/* Title */}
+              <h3 ref={educationTitleRef} className="text-2xl md:text-3xl font-regular">
+                Bachelor of Arts - Hons (2.1)
+              </h3>
+
+              {/* Subtext + Icons row */}
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                {/* Subtext (left) */}
+                <p ref={educationSubtextRef} className="text-gray-800 dark:text-gray-400 sm:whitespace-nowrap sm:mr-8">
+                  Digital Arts and Multimedia Computing, 1999
+                </p>
+
+                {/* Icons with full-height dividers (right) */}
+                <div className="grid grid-cols-2 gap-0 border border-gray-300 dark:border-gray-600 rounded-lg sm:flex sm:flex-nowrap sm:items-stretch sm:text-center sm:overflow-visible sm:border-0 sm:rounded-none">
+                  {/* Item 1 */}
+                  <div className="flex flex-col items-center p-4 border-r border-b border-gray-300 dark:border-gray-600 sm:border-0 cursor-pointer group">
+                    <div 
+                      ref={(el) => { iconRefs.current[0] = el }}
+                      className="mb-2 transition-colors duration-300 group-hover:text-orange-500"
+                    >
+                      <Palette size={24} className="text-black dark:text-white" />
+                    </div>
+                    <p 
+                      ref={(el) => { textRefs.current[0] = el }}
+                      className="text-sm text-gray-800 dark:text-gray-300 leading-tight"
+                    >
+                      Digital Arts
+                    </p>
+                  </div>
+
+                  {/* Item 2 */}
+                  <div className="flex flex-col items-center p-4 border-b border-gray-300 dark:border-gray-600 sm:border-0 cursor-pointer group">
+                    <div 
+                      ref={(el) => { iconRefs.current[1] = el }}
+                      className="mb-2 transition-colors duration-300 group-hover:text-orange-500"
+                    >
+                      <Box size={24} className="text-black dark:text-white" />
+                    </div>
+                    <p 
+                      ref={(el) => { textRefs.current[1] = el }}
+                      className="text-sm text-gray-800 dark:text-gray-300 leading-tight"
+                    >
+                      3D Animation
+                    </p>
+                  </div>
+
+                  {/* Item 3 */}
+                  <div className="flex flex-col items-center p-4 border-r border-gray-300 dark:border-gray-600 sm:border-0 cursor-pointer group">
+                    <div 
+                      ref={(el) => { iconRefs.current[2] = el }}
+                      className="mb-2 transition-colors duration-300 group-hover:text-orange-500"
+                    >
+                      <Code size={24} className="text-black dark:text-white" />
+                    </div>
+                    <p 
+                      ref={(el) => { textRefs.current[2] = el }}
+                      className="text-sm text-gray-800 dark:text-gray-300 leading-tight text-center"
+                    >
+                      Full Stack Development
+                    </p>
+                  </div>
+
+                  {/* Item 4 */}
+                  <div className="flex flex-col items-center p-4 cursor-pointer group">
+                    <div 
+                      ref={(el) => { iconRefs.current[3] = el }}
+                      className="mb-2 transition-colors duration-300 group-hover:text-orange-500"
+                    >
+                      <Gamepad2 size={24} className="text-black dark:text-white" />
+                    </div>
+                    <p 
+                      ref={(el) => { textRefs.current[3] = el }}
+                      className="text-sm text-gray-800 dark:text-gray-300 leading-tight"
+                    >
+                      Game Design
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* Quiz Section */}
           <section ref={quizSectionRef} className="space-y-6">
             <div ref={quizContentRef}>
@@ -420,7 +571,7 @@ export default function About() {
               <div className="text-center max-w-2xl mx-auto">
                 <div className="border border-black dark:bg-gray-900 p-8 rounded-xl mb-8">
                   <h3 className="text-2xl font-bold text-black dark:text-white mb-4">Ready to test your knowledge?</h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-6">
+                  <p className="text-gray-800 dark:text-gray-400 mb-6">
                     This quiz has {quizQuestions.length} questions about my background and expertise.
                   </p>
                   <button
@@ -489,7 +640,7 @@ export default function About() {
                       >
                         <div className="flex items-center justify-between">
                           <span className={`text-lg transition-colors ${
-                            'text-gray-700 dark:text-gray-300 group-hover:text-black dark:group-hover:text-white'
+                            'text-gray-800 dark:text-gray-300 group-hover:text-black dark:group-hover:text-white'
                           }`}>
                             {option}
                           </span>
@@ -527,28 +678,28 @@ export default function About() {
                   <div className="mb-8">
                     {quizScore >= 9 && (
                       <div className="mb-6">
-                        <p className="text-gray-600 dark:text-gray-400">
+                        <p className="text-gray-800 dark:text-gray-400">
                           You clearly understand UX design. 15+ years experience across startups to hedge funds - I can tell when someone gets it. Let's talk about your project.
                         </p>
                       </div>
                     )}
                     {quizScore >= 7 && quizScore <= 8 && (
                       <div className="mb-6">
-                        <p className="text-gray-600 dark:text-gray-400">
+                        <p className="text-gray-800 dark:text-gray-400">
                           Solid foundation. 15+ years across different industries - I can help you level up. What are you working on?
                         </p>
                       </div>
                     )}
                     {quizScore >= 5 && quizScore <= 6 && (
                       <div className="mb-6">
-                        <p className="text-gray-600 dark:text-gray-400">
+                        <p className="text-gray-800 dark:text-gray-400">
                           That's why you need someone like me. Award-winning products across fintech, banking, and startups. Let's work together.
                         </p>
                       </div>
                     )}
                     {quizScore < 5 && (
                       <div className="mb-6">
-                        <p className="text-gray-600 dark:text-gray-400">
+                        <p className="text-gray-800 dark:text-gray-400">
                           Why I love what I do. 15+ years turning ideas into successful products. I can help you create something amazing. Let's chat.
                         </p>
                       </div>
@@ -589,7 +740,7 @@ export default function About() {
             <h2 ref={clientFeedbackTitleRef} className="text-3xl font-medium text-black dark:text-white" style={{ opacity: 0, transform: "translateY(30px)" }}>Client Feedback</h2>
             
             <div ref={testimonialsRef} className="border border-gray-200 dark:border-gray-700 rounded-2xl p-8 space-y-6" style={{ opacity: 0, transform: "translateY(50px)" }}>
-              <blockquote className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+              <blockquote className="text-lg text-gray-800 dark:text-gray-300 leading-relaxed">
                 &ldquo;{testimonials[currentTestimonial].content}&rdquo;
               </blockquote>
               
