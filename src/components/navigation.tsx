@@ -144,7 +144,7 @@ export default function Navigation() {
                                 <span className="font-medium ml-2">Loading...</span>
                             </>
                         ) : (
-                            <span className="font-medium">Start a project</span>
+                            <span className="font-medium">Let's work</span>
                         )}
                     </OrangeSlideLeftButton>
                 </div>
@@ -163,7 +163,7 @@ export default function Navigation() {
                                 <span className="font-medium ml-2">Loading...</span>
                             </>
                         ) : (
-                            <span className="font-medium hidden sm:inline">Start a project</span>
+                            <span className="font-medium hidden sm:inline">Let's work</span>
                         )}
                     </OrangeSlideLeftButton>
                     <button
@@ -301,7 +301,7 @@ export default function Navigation() {
                                             <span className="font-medium ml-2">Loading...</span>
                                         </>
                                     ) : (
-                                        <span className="font-medium">Start a project</span>
+                                        <span className="font-medium">Let's work</span>
                                     )}
                                 </OrangeSlideLeftButton>
                             </div>

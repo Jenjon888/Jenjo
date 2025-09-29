@@ -92,10 +92,10 @@ body {
 
 @keyframes glow {
   0%, 100% {
-    box-shadow: 0 0 5px rgba(249, 115, 22, 0.5);
+    box-shadow: 0 0 5px rgba(234, 179, 8, 0.5);
   }
   50% {
-    box-shadow: 0 0 20px rgba(249, 115, 22, 0.8), 0 0 30px rgba(249, 115, 22, 0.6);
+    box-shadow: 0 0 20px rgba(234, 179, 8, 0.8), 0 0 30px rgba(234, 179, 8, 0.6);
   }
 }
 
@@ -116,17 +116,17 @@ body {
 }
 
 /* Pulsating color effect for blog read more text on hover */
-@keyframes pulse-orange-hover {
+@keyframes pulse-yellow-hover {
   0%, 100% {
     color: rgb(107 114 128); /* gray-500 */
   }
   50% {
-    color: rgb(249 115 22); /* orange-500 */
+    color: rgb(234 179 8); /* yellow-500 */
   }
 }
 
-.pulse-orange-hover:hover {
-  animation: pulse-orange-hover 1s ease-in-out infinite !important;
+.pulse-yellow-hover:hover {
+  animation: pulse-yellow-hover 1s ease-in-out infinite !important;
 }
 
 /* Hide scrollbar for mobile tab navigation */
@@ -136,4 +136,34 @@ body {
 }
 .scrollbar-hide::-webkit-scrollbar { 
   display: none;  /* Safari and Chrome */
+}
+
+/* Confetti animation for quiz celebration */
+.confetti-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #ff6b6b;
+  animation: confetti-fall 3s linear infinite;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
 }

@@ -555,7 +555,6 @@ export default function Home() {
   <BlackSlideLeftSubmitButton 
     onClick={handleContactClick}
     disabled={isContactLoading}
-    fullWidth={true}
   >
     {isContactLoading ? (
       <>
@@ -795,7 +794,7 @@ export default function Home() {
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 text-left">
     {/* Card 1 */}
     <TiltedTextCard>
-      <div ref={setSkillCardRef(0)} className="bg-white dark:bg-[#1f1f1f] border border-gray-200 dark:border-transparent rounded-xl p-6 flex flex-col h-full">
+      <div ref={setSkillCardRef(0)} className="bg-white dark:bg-[#1f1f1f] border border-gray-200 dark:border-transparent rounded-xl px-4 py-6 flex flex-col h-full">
         <h4 className="text-lg font-semibold text-black dark:text-white mb-8">UX & Research</h4>
         <div className="flex flex-col gap-3 items-start">
           {[
@@ -818,13 +817,13 @@ export default function Home() {
 
     {/* Card 2 */}
     <TiltedTextCard>
-      <div ref={setSkillCardRef(1)} className="bg-white dark:bg-[#1f1f1f] border border-gray-200 dark:border-transparent rounded-xl p-6 flex flex-col h-full">
+      <div ref={setSkillCardRef(1)} className="bg-white dark:bg-[#1f1f1f] border border-gray-200 dark:border-transparent rounded-xl px-4 py-6 flex flex-col h-full">
         <h4 className="text-lg font-semibold text-black dark:text-white mb-8">UI & Visual Design</h4>
         <div className="flex flex-col gap-3 items-start">
           {[
             "User Interface Design",
             "Design Systems",
-            "Branding & Visual Design",
+            "Branding & Identity",
             "Prototyping",
             "Animation",
           ].map((item) => (
@@ -841,7 +840,7 @@ export default function Home() {
 
     {/* Card 3 */}
     <TiltedTextCard>
-      <div ref={setSkillCardRef(2)} className="bg-white dark:bg-[#1f1f1f] border border-gray-200 dark:border-transparent rounded-xl p-6 flex flex-col h-full">
+      <div ref={setSkillCardRef(2)} className="bg-white dark:bg-[#1f1f1f] border border-gray-200 dark:border-transparent rounded-xl px-4 py-6 flex flex-col h-full">
         <h4 className="text-lg font-semibold text-black dark:text-white mb-8">Front End Development</h4>
         <div className="flex flex-col gap-3 items-start">
           {["React.js", "Next.js", "Vue.js", "HTML/CSS", "Tailwind UI"].map(
@@ -860,7 +859,7 @@ export default function Home() {
 
     {/* Card 4 */}
     <TiltedTextCard>
-      <div ref={setSkillCardRef(3)} className="bg-white dark:bg-[#1f1f1f] border border-gray-200 dark:border-transparent rounded-xl p-6 flex flex-col h-full">
+      <div ref={setSkillCardRef(3)} className="bg-white dark:bg-[#1f1f1f] border border-gray-200 dark:border-transparent rounded-xl px-4 py-6 flex flex-col h-full">
         <h4 className="text-lg font-semibold text-black dark:text-white mb-8">Design Tools</h4>
         <div className="flex flex-col gap-3 items-start">
           {["Figma", "Adobe Suite", "Supernova"].map((item) => (

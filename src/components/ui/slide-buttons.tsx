@@ -169,7 +169,7 @@ export const BlackSlideLeftDownloadButton = ({
 
 // Orange/Black Background Slide Left Button with Icon (Theme-aware)
 export const OrangeSlideLeftButton = ({ 
-  text = "Start a project", 
+  text = "Let's work", 
   href = "/contact",
   onClick,
   disabled = false,
@@ -185,12 +185,10 @@ export const OrangeSlideLeftButton = ({
   className?: string;
   iconPosition?: "end" | "default";
 }) => {
-  const ButtonComponent = href ? Link : 'button';
-  const buttonProps = href ? { href } : { onClick, disabled };
-  
-  return (
-    <ButtonComponent
-      {...buttonProps}
+  if (href) {
+    return (
+      <Link
+        href={href}
       className={`group relative inline-flex items-center gap-3 pl-6 pr-2 py-2 font-medium transition-all duration-300 ease-out overflow-hidden bg-black dark:bg-orange-500 text-orange-500 dark:text-black disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
       style={{ 
         borderRadius: '9999px',
@@ -219,7 +217,43 @@ export const OrangeSlideLeftButton = ({
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7V17" />
         </svg>
       </div>
-    </ButtonComponent>
+    </Link>
+  );
+  }
+
+  return (
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      className={`group relative inline-flex items-center gap-3 pl-6 pr-2 py-2 font-medium transition-all duration-300 ease-out overflow-hidden bg-black dark:bg-orange-500 text-orange-500 dark:text-black disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
+      style={{ 
+        borderRadius: '9999px',
+        WebkitBorderRadius: '9999px',
+        MozBorderRadius: '9999px',
+        WebkitBackfaceVisibility: 'hidden',
+        backfaceVisibility: 'hidden',
+        WebkitTransform: 'translateZ(0)',
+        transform: 'translateZ(0)'
+      }}
+    >
+      {/* Slide left effect */}
+      <div 
+        className="absolute inset-0 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out bg-orange-500 dark:bg-yellow-400"
+        style={{ borderRadius: '9999px' }}
+      />
+      
+      {/* Text content */}
+      <span className="relative z-10 transition-colors duration-300 text-orange-500 dark:text-black group-hover:text-black">
+        {children || text}
+      </span>
+      
+      {/* Icon circle */}
+      <div className="relative z-10 w-6 h-6 bg-orange-500 dark:bg-black rounded-full flex items-center justify-center group-hover:bg-black">
+        <svg className="w-3 h-3 text-black dark:text-orange-500 transition-colors duration-300 group-hover:text-orange-500 dark:group-hover:text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7V17" />
+        </svg>
+      </div>
+    </button>
   );
 };
 

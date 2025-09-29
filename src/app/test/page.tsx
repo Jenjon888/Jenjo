@@ -1839,7 +1839,7 @@ export default function TestPage() {
               {/* Custom Text BlobButton */}
               <div className="text-center">
                 <h3 className="text-lg font-medium mb-4">Custom Text</h3>
-                <BlobButton text="Start a Project" />
+                <BlobButton text="Let's work" />
               </div>
               
               {/* Multiple BlobButtons */}

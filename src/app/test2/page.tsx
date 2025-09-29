@@ -25,6 +25,73 @@ export default function Test2Page() {
     timeline: '',
     message: ''
   })
+
+  // Quiz state
+  const [quizState, setQuizState] = useState({
+    currentQuestion: 0,
+    answers: [] as number[],
+    isCompleted: false,
+    score: 0
+  })
+
+  // Quiz questions data
+  const quizQuestions = [
+    {
+      id: 1,
+      question: "What is the primary goal of user experience (UX) design?",
+      options: [
+        "To make websites look beautiful",
+        "To create products that are useful, usable, and enjoyable for users",
+        "To increase website loading speed",
+        "To reduce development costs"
+      ],
+      correct: 1
+    },
+    {
+      id: 2,
+      question: "Which of the following is NOT a UX research method?",
+      options: [
+        "User interviews",
+        "A/B testing",
+        "Color theory analysis",
+        "Usability testing"
+      ],
+      correct: 2
+    },
+    {
+      id: 3,
+      question: "What does 'affordance' mean in UX design?",
+      options: [
+        "The cost of designing a product",
+        "A visual cue that suggests how an element can be used",
+        "The time it takes to complete a task",
+        "The number of users who can access a product"
+      ],
+      correct: 1
+    },
+    {
+      id: 4,
+      question: "Which principle is most important for mobile app design?",
+      options: [
+        "Using as many features as possible",
+        "Thumb-friendly navigation and touch targets",
+        "Complex animations",
+        "Small text to fit more content"
+      ],
+      correct: 1
+    },
+    {
+      id: 5,
+      question: "What is the purpose of wireframing in the design process?",
+      options: [
+        "To add visual styling and colors",
+        "To plan the layout and structure of a product",
+        "To test user interactions",
+        "To create final designs"
+      ],
+      correct: 1
+    }
+  ]
   
   // Refs for animations
   const heroRef = useRef<HTMLDivElement>(null)
