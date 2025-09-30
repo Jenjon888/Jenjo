@@ -4,12 +4,14 @@ import Footer from '@/components/footer'
 import { ImageLoading, Loading } from '@/components/loading'
 import { BorderBeam } from '@/components/ui/border-beam'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useState, useRef, useEffect, useCallback } from 'react'
 import TiltedTextCard from '@/components/TiltedTextCard'
 import SplitText from '@/components/SplitText'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { BlackSlideLeftButton, BlackSlideLeftSubmitButton, BeamBorderButton } from '@/components/ui/slide-buttons'
+import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -23,6 +25,11 @@ export default function Home() {
   const [imageLoading, setImageLoading] = useState(true)
   const [featuredImageLoading, setFeaturedImageLoading] = useState(true)
   const [isContactLoading, setIsContactLoading] = useState(false)
+  const [currentTestimonial, setCurrentTestimonial] = useState(0)
+  const [typewriterText, setTypewriterText] = useState('')
+  const [isTyping, setIsTyping] = useState(false)
+  const [charIndex, setCharIndex] = useState(0)
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null)
   
   
   // Refs for metrics animation
@@ -66,6 +73,79 @@ export default function Home() {
   const setSkillCardRef = useCallback((index: number) => (el: HTMLDivElement | null) => {
     skillCardsRef.current[index] = el
   }, [])
+
+  // Testimonials data and refs
+  const testimonialsRef = useRef<HTMLDivElement>(null)
+  const testimonialsSectionRef = useRef<HTMLDivElement>(null)
+  const clientFeedbackTitleRef = useRef<HTMLHeadingElement>(null)
+
+  const testimonials = [
+    {
+      id: 1,
+      name: "Mark van Harmelen",
+      role: "Medify, CFO",
+      content: "Jen's ability as a UX designer to understand users, produce high-quality responsive UI designs, and extend system usefulness is exceptional. Her skill in writing functional specifications that aid developers and her positive contribution to team social dynamics makes her invaluable. I would readily employ her again."
+    },
+    {
+      id: 2,
+      name: "Paul Hopley",
+      role: "Product Manager at Backbase.com",
+      content: "Jen worked with us on a really complicated project and consistently delivered above and beyond our expectations. She is fast, detailed and well documented. I would be happy to recommend Jen for any UX project."
+    },
+    {
+      id: 3,
+      name: "Michael Smith",
+      role: "Senior Software Developer at MSD",
+      content: "Jen is hard working, passionate and strives for perfection. She works well with developers in an agile environment and can deliver to tight deadlines."
+    },
+    {
+      id: 4,
+      name: "Rachel Fournier",
+      role: "Director at Initialize",
+      content: "Jen is a fantastic UX Consultant. A client was extremely satisfied with the quality of her work, professionalism, flexibility and work ethic, and her brilliant personality."
+    },
+    {
+      id: 5,
+      name: "Nick Grantham",
+      role: "Associate Director at Zebra People",
+      content: "Jen is most definitely on my A-team of UX freelancers! I have worked with her multiple times and she is reliable, creative, hard working and has a fantastic personality. Clients would gladly have her back."
+    }
+  ]
+
+  const nextTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
+  }
+
+  const prevTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+  }
+
+  const goToTestimonial = (index: number) => {
+    setCurrentTestimonial(index)
+  }
+
+  // Reset when testimonial changes
+  useEffect(() => {
+    setTypewriterText('')
+    setCharIndex(0)
+    setIsTyping(true)
+  }, [currentTestimonial])
+
+  // Typewriter effect
+  useEffect(() => {
+    const fullText = testimonials[currentTestimonial].content
+    
+    if (charIndex < fullText.length) {
+      const timeout = setTimeout(() => {
+        setTypewriterText(fullText.substring(0, charIndex + 1))
+        setCharIndex(charIndex + 1)
+      }, 30)
+      
+      return () => clearTimeout(timeout)
+    } else if (charIndex === fullText.length && charIndex > 0) {
+      setIsTyping(false)
+    }
+  }, [charIndex, currentTestimonial, testimonials])
   
   const handleContactClick = async () => {
     setIsContactLoading(true)
@@ -107,19 +187,19 @@ export default function Home() {
       opacity: 1,
       y: 0,
       scale: 1,
-      duration: 1.2,
-      ease: "back.out(1.2)",
-      stagger: 0.15
+      duration: 0.6,
+      ease: "power2.out",
+      stagger: 0.08
     })
     // Animate numbers and text labels simultaneously
     .to([...numbers, ...texts], {
       opacity: 1,
       y: 0,
       scale: 1,
-      duration: 0.8,
-      ease: "back.out(1.1)",
-      stagger: 0.1
-    }, "-=0.8")
+      duration: 0.5,
+      ease: "power2.out",
+      stagger: 0.05
+    }, "-=0.4")
 
     // Add hover animations for metrics
     metrics.forEach((metric, index) => {
@@ -129,7 +209,7 @@ export default function Home() {
         gsap.to(metric, {
           scale: 1.05,
           y: -5,
-          duration: 0.3,
+          duration: 0.2,
           ease: "power2.out"
         })
       }
@@ -138,7 +218,7 @@ export default function Home() {
         gsap.to(metric, {
           scale: 1,
           y: 0,
-          duration: 0.3,
+          duration: 0.2,
           ease: "power2.out"
         })
       }
@@ -198,7 +278,7 @@ export default function Home() {
     tl.to(introText, {
       opacity: 1,
       y: 0,
-      duration: 0.8,
+      duration: 0.5,
       ease: "power2.out"
     })
     
@@ -207,9 +287,9 @@ export default function Home() {
       opacity: 1,
       y: 0,
       scale: 1,
-      duration: 1.2,
-      ease: "power3.out"
-    }, 0.3)
+      duration: 0.6,
+      ease: "power2.out"
+    }, 0.2)
 
     // CTA buttons animation
     if (ctaButtons) {
@@ -217,8 +297,8 @@ export default function Home() {
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: 1.2,
-        ease: "back.out(1.7)",
+        duration: 0.6,
+        ease: "power2.out",
         ...(isMobile() ? {} : {
         scrollTrigger: {
           trigger: ctaButtons,
@@ -262,9 +342,9 @@ export default function Home() {
       y: 0,
       scale: 1,
       filter: "blur(0px)",
-      duration: 0.4,
+      duration: 0.3,
       ease: "power2.out",
-      stagger: 0.05
+      stagger: 0.03
     })
 
   }, [])
@@ -313,9 +393,9 @@ export default function Home() {
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: 1.0,
-        ease: "back.out(1.2)",
-        stagger: 0.1
+        duration: 0.5,
+        ease: "power2.out",
+        stagger: 0.05
       })
     }
 
@@ -323,17 +403,64 @@ export default function Home() {
     if (image) {
       tl.to(image, {
         opacity: 1,
-        duration: 0.5,
+        duration: 0.3,
         ease: "power2.out"
-      }, "-=0.8")
+      }, "-=0.4")
       .to(image, {
         filter: "contrast(100%) brightness(1) grayscale(0%)",
-        duration: 2.8,
-        ease: "power4.out"
-      }, "-=0.3")
+        duration: 1.2,
+        ease: "power2.out"
+      }, "-=0.2")
     }
 
   }, [featuredImageLoading])
+
+  // Testimonials animations
+  useEffect(() => {
+    if (!testimonialsSectionRef.current) return
+
+    // Client Feedback Title Fade In Effect
+    if (clientFeedbackTitleRef.current) {
+      gsap.set(clientFeedbackTitleRef.current, { 
+        opacity: 0,
+        y: 30
+      })
+      
+      gsap.to(clientFeedbackTitleRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: testimonialsSectionRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse"
+        }
+      })
+    }
+
+    // Testimonials Section Fade In Effect
+    if (testimonialsRef.current) {
+      gsap.set(testimonialsRef.current, { 
+        opacity: 0,
+        y: 50
+      })
+      
+      gsap.to(testimonialsRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: testimonialsSectionRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse"
+        }
+      })
+    }
+  }, [])
 
   
   return (
@@ -343,14 +470,14 @@ export default function Home() {
                 {/* MAIN BODY SECTION */}
 <section ref={mainBodySectionRef} className="flex justify-center">
   <div className="relative w-full max-w-6xl pt-4 pb-0 md:py-6 lg:py-8 text-black dark:text-white">
-    <div className="space-y-12 px-4 md:px-14 pt-6">
+    <div className="space-y-12 px-4 md:px-14 pt-2">
       {/* Intro Text */}
       <p ref={introTextRef} className="text-2xl text-left" style={{ opacity: 0, transform: 'translateY(50px)' }}>
       With over 15 years of experience leading end to end design in fintech, education, and e-commerce, I translate deep user research into scalable interfaces. My expertise covers the full product lifecycle, from initial strategy and user research to front-end development in React and Next.js.
       </p>
 
       {/* Case Study Image */}
-      <div ref={caseStudyImageRef} className="w-full h-[32rem] rounded-xl overflow-hidden relative" style={{ opacity: 0, transform: 'translateY(30px) scale(0.95)' }}>
+      {/* <div ref={caseStudyImageRef} className="w-full h-[32rem] rounded-xl overflow-hidden relative" style={{ opacity: 0, transform: 'translateY(30px) scale(0.95)' }}>
         {imageLoading && <ImageLoading />}
         <Image 
           src="/desk.jpg" 
@@ -360,7 +487,7 @@ export default function Home() {
           className={`w-full h-full object-cover transition-opacity duration-300 ${imageLoading ? 'opacity-0' : 'opacity-100'}`}
           onLoad={() => setImageLoading(false)}
         />
-      </div>
+      </div> */}
 
       {/* Metrics Row */}
 <div ref={metricsSectionRef} className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -462,103 +589,42 @@ export default function Home() {
   </div>
 </section>
 
-  {/* Featured Case Study Section */}
-  <section ref={featuredCaseStudyRef} className="flex justify-center pt-16 pb-0 md:pb-16">
-    <div className="relative w-full max-w-6xl px-4 py-16 lg:px-16 lg:py-24 rounded-2xl overflow-hidden bg-gray-50 dark:bg-transparent">
-      <BorderBeam 
-        size={200}
-        duration={4}
-        colorFrom="#ff0000"
-        colorTo="#00ff00"
-        borderWidth={4}
-        delay={0}
-      />
-        {/* Featured Case Study */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
-          {/* Left: Image - Modern card style */}
-          <div className="lg:col-span-7">
-            <div className="relative group">
-              {/* Main image container */}
-              <div ref={featuredImageRef} className="relative w-full h-96 lg:h-[500px] rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900" style={{ opacity: 0, filter: "contrast(3000%) brightness(0.05) grayscale(100%)" }}>
-                {/* Animated border beam effect */}
-                <div className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-border">
-                  <div className="absolute inset-[2px] rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900"></div>
-                </div>
-                <div className="absolute inset-0 rounded-2xl border-2 border-transparent">
-                  <div className="absolute inset-[2px] rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900"></div>
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-orange-500 to-transparent animate-pulse" style={{ animationDuration: '2s' }}></div>
-                  <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-transparent via-orange-500 to-transparent animate-pulse" style={{ animationDuration: '2s', animationDelay: '0.5s' }}></div>
-                  <div className="absolute bottom-0 right-0 w-full h-1 bg-gradient-to-r from-transparent via-orange-500 to-transparent animate-pulse" style={{ animationDuration: '2s', animationDelay: '1s' }}></div>
-                  <div className="absolute bottom-0 left-0 w-1 h-full bg-gradient-to-b from-transparent via-orange-500 to-transparent animate-pulse" style={{ animationDuration: '2s', animationDelay: '1.5s' }}></div>
-                </div>
-                <div className="absolute inset-0 overflow-hidden rounded-2xl">
-                  {featuredImageLoading && <ImageLoading />}
-                <Image
-                  src="/charts.png"
-                  alt="Crypto Portfolio Manager Case Study"
-                  fill
-                    className={`object-cover transition-all duration-700 group-hover:scale-105 ${featuredImageLoading ? 'opacity-0' : 'opacity-100'}`}
-                    onLoad={() => setFeaturedImageLoading(false)}
-                />
-                {/* Gradient overlay for modern look */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        </div>
-      </div>
-
-              {/* Floating elements for modern feel */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-orange-500/10 rounded-full blur-xl"></div>
-              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-blue-500/10 rounded-full blur-xl"></div>
-        </div>
-      </div>
-
-          {/* Right: Content */}
-          <div ref={featuredContentRef} className="lg:col-span-5 space-y-8">
-            {/* Featured Work Badge */}
-            <div ref={featuredBadgeRef} className="inline-flex items-center gap-2 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 px-4 py-2 rounded-full text-sm font-medium">
-              <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-              Featured Work
-            </div>
-
-            {/* Project Title */}
-            <div>
-              <h2 ref={featuredTitleRef} className="text-3xl md:text-4xl font-light text-black dark:text-white mb-3">
-                Crypto Portfolio Manager
-              </h2>
-        </div>
-
-            {/* Challenge */}
-            <div ref={featuredChallengeRef} className="space-y-4">
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white">Challenge</h3>
-              <p className="text-gray-800 dark:text-gray-400 leading-relaxed">
-                Design and launch a premium crypto portfolio management platform that balances sophisticated functionality with intuitive user experience, all while maintaining high performance standards.
-        </p>
-      </div>
-
-
-
-            {/* CTA Buttons */}
-            <div ref={featuredButtonsRef} className="flex flex-col sm:flex-row gap-4 pt-4">
-              <BlackSlideLeftButton 
-                text="View Case Study"
-                href="/case-studies/crypto-ai-portfolio"
-                className="whitespace-nowrap"
-              />
-              <BeamBorderButton 
-                text="All Case Studies"
-                href="/case-studies"
-                className="whitespace-nowrap"
-              />
-      </div>
-    </div>
-  </div>
-</div>
-  </section>
-
   <section className="flex justify-center pb-2">
   <div className="relative w-full max-w-6xl py-4 md:py-6 lg:py-8 text-black dark:text-white">
     <div className="space-y-12 px-4 md:px-14 pt-6 "> 
 
-
+  {/* Featured Case Study Card */}
+  <div>
+    <Link href="/portfolio/crypto" className="block">
+      <div className="relative overflow-hidden rounded-[12px] border border-gray-200 dark:border-gray-700 group cursor-pointer hover:border-orange-500 transition-all duration-300 hover:shadow-[0_0_15px_rgba(249,115,22,0.15)]">
+        {/* Featured Work Badge - Top Left */}
+        <div className="absolute top-0 left-0 z-10">
+          <span className="inline-flex items-center px-3 py-1 rounded-br-full bg-orange-500 text-black text-xs">
+            Featured work
+          </span>
+        </div>
+        
+        <div className="flex flex-col md:flex-row h-full">
+          <div className="md:w-3/5 aspect-[16/9] md:aspect-auto md:min-h-[500px] relative overflow-hidden bg-gray-100 dark:bg-gray-900">
+            <img 
+              src="/charts.png"
+              alt="Crypto Trading Platform"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+          </div>
+          <div className="md:w-2/5 p-12 bg-white dark:bg-transparent flex flex-col justify-center">
+            <span className="text-orange-500 text-sm font-medium">UI/UX</span>
+            <h3 className="text-4xl font-semibold text-black dark:text-white mt-4 mb-4">Crypto Trading Platform</h3>
+            <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">End-to-end crypto trading experience with seamless transaction flow</p>
+            <div className="flex items-center gap-2 text-orange-500">
+              <span className="text-base font-medium">Explore Project</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </Link>
+  </div>
 
 
 {/* Skills Section */}
@@ -575,9 +641,9 @@ export default function Home() {
         tag="h3"
         className="text-2xl md:text-3xl font-medium leading-snug text-left"
         splitType="chars"
-        delay={50}
-        duration={0.8}
-        ease="power3.out"
+        delay={25}
+        duration={0.5}
+        ease="power2.out"
         from={{ opacity: 0, y: 50, rotationX: -90 }}
         to={{ opacity: 1, y: 0, rotationX: 0 }}
         threshold={0.1}
@@ -679,6 +745,63 @@ export default function Home() {
     </div>
   </div>
 </section>
+
+      {/* Client Testimonials Section - Typewriter Effect */}
+      <section ref={testimonialsSectionRef} className="px-6 md:px-12 py-16">
+        <div className="w-full max-w-4xl mx-auto">
+          <h2 ref={clientFeedbackTitleRef} className="text-3xl font-medium text-black dark:text-white mb-8" style={{ opacity: 0, transform: "translateY(30px)" }}>Client Feedback</h2>
+          
+          <div ref={testimonialsRef} className="bg-gray-900 dark:bg-transparent p-8 min-h-[320px]" style={{ opacity: 0, transform: "translateY(50px)" }}>
+            <div className="flex items-center gap-2 mb-6">
+              <div className="flex gap-1">
+                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+              </div>
+              <span className="text-gray-400 text-sm font-mono">terminal</span>
+            </div>
+            
+            <div className="font-mono text-green-400 text-sm mb-4">
+              <span className="text-gray-500">$</span> cat testimonial.txt
+            </div>
+            
+            <div className="font-mono text-gray-300 leading-relaxed min-h-[200px]">
+              <div className="mb-4">
+                <span className="text-blue-400">"</span>
+                <span>{typewriterText || '\u00A0'}</span>
+                <span className={`inline-block w-0.5 h-5 bg-green-400 ml-1 align-middle ${isTyping ? 'animate-pulse' : 'opacity-0'}`}></span>
+                {!isTyping && typewriterText && <span className="text-blue-400">"</span>}
+              </div>
+              {!isTyping && typewriterText && (
+                <div className="text-gray-500">
+                  <div>— {testimonials[currentTestimonial].name}</div>
+                  <div className="text-gray-600">{testimonials[currentTestimonial].role}</div>
+                </div>
+              )}
+            </div>
+            
+            <div className="flex items-center justify-center gap-4 mt-8">
+              <button onClick={prevTestimonial} className="px-4 py-2 hover:bg-gray-800 rounded border border-gray-600 transition-colors">
+                <ChevronLeft className="w-4 h-4 text-gray-300" />
+              </button>
+              <div className="flex gap-1">
+                {testimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToTestimonial(index)}
+                    className={`w-2 h-2 rounded-full transition-all ${
+                      index === currentTestimonial ? 'bg-green-400' : 'bg-gray-600'
+                    }`}
+                  />
+                ))}
+              </div>
+              <button onClick={nextTestimonial} className="px-4 py-2 hover:bg-gray-800 rounded border border-gray-600 transition-colors">
+                <ChevronRight className="w-4 h-4 text-gray-300" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Blog Posts Section */}
       <section className="px-6 md:px-12 py-16">
@@ -860,7 +983,7 @@ export default function Home() {
                   If you are working on a <span className="font-medium relative inline-block">
                     new project
                     <span className="absolute bottom-0 left-0 w-full h-0.5 bg-orange-500 transform origin-left animate-pulse" style={{
-                      animation: 'drawUnderline 2s ease-in-out infinite'
+                      animation: 'drawUnderline 1.5s ease-in-out infinite'
                     }}></span>
                   </span>,<br />
                   then let's talk

@@ -3,30 +3,22 @@ import Navigation from '@/components/navigation'
 import Footer from '@/components/footer'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ChevronLeft, ChevronRight, X, Palette, Box, Code, Gamepad2 } from 'lucide-react'
+import { X, Palette, Box, Code, Gamepad2, ArrowRight } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
 import SplitText from '@/components/SplitText'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 export default function About() {
-  const [currentTestimonial, setCurrentTestimonial] = useState(0)
   const contentRef = useRef<HTMLDivElement>(null)
   const contentSectionRef = useRef<HTMLDivElement>(null)
-  const testimonialsRef = useRef<HTMLDivElement>(null)
-  const testimonialsSectionRef = useRef<HTMLDivElement>(null)
   const titleRef = useRef<HTMLDivElement>(null)
   const tagRef = useRef<HTMLDivElement>(null)
-  const clientFeedbackTitleRef = useRef<HTMLHeadingElement>(null)
   const ctaButtonsRef1 = useRef<HTMLDivElement>(null)
   const ctaButtonsRef2 = useRef<HTMLDivElement>(null)
   const quizSectionRef = useRef<HTMLDivElement>(null)
   const quizContentRef = useRef<HTMLDivElement>(null)
   const educationSectionRef = useRef<HTMLDivElement>(null)
-  const educationTitleRef = useRef<HTMLHeadingElement>(null)
-  const educationSubtextRef = useRef<HTMLParagraphElement>(null)
-  const iconRefs = useRef<(HTMLDivElement | null)[]>([])
-  const textRefs = useRef<(HTMLParagraphElement | null)[]>([])
 
   // Quiz state
   const [quizQuestion, setQuizQuestion] = useState(0)
@@ -36,6 +28,7 @@ export default function About() {
   const [quizTime, setQuizTime] = useState(0)
   const [isQuizActive, setIsQuizActive] = useState(false)
   const [quizHistory, setQuizHistory] = useState<Array<{question: number, answer: number, correct: boolean, time: number}>>([])
+
 
   // Quiz questions data
   const quizQuestions = [
@@ -162,50 +155,6 @@ export default function About() {
     setQuizHistory([])
   }
 
-  const testimonials = [
-    {
-      id: 1,
-      name: "Mark van Harmelen",
-      role: "Provides strategy, value and solutions / PhD in Computer Architecture",
-      content: "Jen's ability as a UX designer to understand users, produce high-quality responsive UI designs, and extend system usefulness is exceptional. Her skill in writing functional specifications that aid developers and her positive contribution to team social dynamics makes her invaluable. I would readily employ her again."
-    },
-    {
-      id: 2,
-      name: "Paul Hopley",
-      role: "Product Manager at Backbase.com",
-      content: "Jen worked with us on a really complicated project and consistently delivered above and beyond our expectations. She is fast, detailed and well documented. I would be happy to recommend Jen for any UX project."
-    },
-    {
-      id: 3,
-      name: "Michael Smith",
-      role: "Senior Software Developer at MSD",
-      content: "Jen is hard working, passionate and strives for perfection. She works well with developers in an agile environment and can deliver to tight deadlines."
-    },
-    {
-      id: 4,
-      name: "Rachel Fournier",
-      role: "Director at Initialize",
-      content: "Jen is a fantastic UX Consultant. A client was extremely satisfied with the quality of her work, professionalism, flexibility and work ethic, and her brilliant personality."
-    },
-    {
-      id: 5,
-      name: "Nick Grantham",
-      role: "Associate Director at Zebra People",
-      content: "Jen is most definitely on my A-team of UX freelancers! I have worked with her multiple times and she is reliable, creative, hard working and has a fantastic personality. Clients would gladly have her back."
-    }
-  ]
-
-  const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
-  }
-
-  const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)
-  }
-
-  const goToTestimonial = (index: number) => {
-    setCurrentTestimonial(index)
-  }
 
   // GSAP Animations for About Page
   useEffect(() => {
@@ -263,47 +212,6 @@ export default function About() {
       })
     }
 
-    // Client Feedback Title Fade In Effect
-    if (clientFeedbackTitleRef.current && testimonialsSectionRef.current) {
-      gsap.set(clientFeedbackTitleRef.current, { 
-        opacity: 0,
-        y: 30
-      })
-      
-      gsap.to(clientFeedbackTitleRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: testimonialsSectionRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse"
-        }
-      })
-    }
-
-    // Testimonials Section Fade In Effect
-    if (testimonialsRef.current && testimonialsSectionRef.current) {
-      gsap.set(testimonialsRef.current, { 
-        opacity: 0,
-        y: 50
-      })
-      
-      gsap.to(testimonialsRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: testimonialsSectionRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse"
-        }
-      })
-    }
 
     // CTA Buttons Fade In Effects
     if (ctaButtonsRef1.current && contentSectionRef.current) {
@@ -326,7 +234,7 @@ export default function About() {
       })
     }
 
-    if (ctaButtonsRef2.current && testimonialsSectionRef.current) {
+    if (ctaButtonsRef2.current) {
       gsap.set(ctaButtonsRef2.current, { 
         opacity: 0,
         y: 30
@@ -346,62 +254,6 @@ export default function About() {
       })
     }
 
-    // Education Section Fade In Effect
-    if (educationSectionRef.current) {
-      const title = educationTitleRef.current
-      const subtext = educationSubtextRef.current
-      const icons = iconRefs.current.filter(Boolean)
-      const texts = textRefs.current.filter(Boolean)
-
-      // Set initial states
-      gsap.set([title, subtext], {
-        opacity: 0,
-        y: 30
-      })
-      
-      gsap.set([...icons, ...texts], {
-        opacity: 0,
-        y: 20
-      })
-
-      // Create timeline
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: educationSectionRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse"
-        }
-      })
-
-      // Animate title and subtext first
-      if (title) {
-        tl.to(title, {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out"
-        })
-      }
-      
-      if (subtext) {
-        tl.to(subtext, {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out"
-        }, "-=0.2")
-      }
-      
-      // Animate icons and text labels together
-      tl.to([...icons, ...texts], {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        stagger: 0.1
-      }, "-=0.2")
-    }
 
     // Quiz Section Fade In Effect
     if (quizContentRef.current && quizSectionRef.current) {
@@ -454,7 +306,32 @@ export default function About() {
             to={{ opacity: 1, y: 0, rotationX: 0 }}
             threshold={0.1}
             rootMargin="-50px"
-          />
+            />
+          </div>
+      </div>
+
+      {/* Education Section */}
+      <div className="flex justify-center px-4 pb-8">
+        <div className="max-w-3xl w-full">
+          <section ref={educationSectionRef} className="space-y-6">
+            {/* <h2 className="text-3xl md:text-4xl font-medium text-black dark:text-white">
+              Education
+            </h2> */}
+            
+            <div className="space-y-6">
+              <div className="bg-white dark:bg-transparent">
+                <h3 className="text-xl font-semibold text-black dark:text-white mb-2">
+                  Bachelor of Arts - Hons (2.1)
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Digital Arts and Multimedia Computing, 1999
+                </p>
+                <p className="text-gray-600 dark:text-gray-400 text-sm mt-2">
+                  Thames Valley University • London, UK
+              </p>
+              </div>
+            </div>
+          </section>
         </div>
       </div>
 
@@ -465,102 +342,51 @@ export default function About() {
           <section ref={contentRef} className="space-y-6" style={{ opacity: 0, transform: "translateY(50px)" }}>
             
             <div className="text-lg text-gray-800 dark:text-gray-400 leading-relaxed space-y-4">
-              <p>
-                I've worked in the industry for over 15 years, across all sectors including advertising agencies, fintech, banking, hedge funds, education, and charity, working with startups and large corporations alike. I am able to fully adjust to whatever size team I'm in. Comfortable working by myself or within a team, I also have experience creating my own startups including an award-winning digital magazine and innovative social media app. I thrive in environments where I can work on projects from scratch or get involved in redesign projects. My interests include art, writing and coding.
+              <p className="first-letter:text-7xl first-letter:font-bold first-letter:text-black dark:first-letter:text-white first-letter:mr-2 first-letter:float-left first-letter:leading-[0.8]">
+                I've worked in the industry for over <span className="font-light text-black dark:text-white">15 years</span>, across all sectors including advertising agencies, <span className="font-light text-black dark:text-white">fintech, banking, hedge funds</span>, education, and charity, working with <span className="font-light text-black dark:text-white">startups and large corporations</span> alike. I am able to fully adjust to whatever size team I'm in. Comfortable working by myself or within a team, I also have experience creating my own startups including an <span className="font-light text-black dark:text-white">award-winning</span> digital magazine and <span className="font-light text-black dark:text-white">innovative</span> social media app. I thrive in environments where I can work on projects from scratch or get involved in redesign projects.
               </p>
+              
               <p>
-                I've learnt so much over the years including trials and errors, but I'm a natural geek at heart and a tech nerd. Every day you will find me researching, designing, animating or coding. I like to be kept busy as I'm always full of ideas and like to get things done after finding out how to do it. With the advent of AI agents, I am finding it a great assistant when it comes to transitioning my own projects from design to code and I absolutely love it.
+                I've learnt so much over the years including trials and errors, but I'm a natural geek at heart and a tech nerd. Every day you will find me <span className="font-light text-black dark:text-white">researching, designing, animating or coding</span>. I like to be kept busy as I'm always full of ideas and like to get things done after finding out how to do it. With the advent of AI agents, I am finding it a great assistant when it comes to transitioning my own projects from design to code and I absolutely love it.
               </p>
+              
+              <p>
+                My interests include art, writing and coding.
+              </p>
+              
+              {/* Profile Images */}
+              <div className="flex flex-col items-center gap-4 my-8">
+                <div className="flex justify-center gap-2 w-full max-w-3xl">
+                  <Image
+                    src="/w_mask1.png"
+                    alt="Profile"
+                    width={400}
+                    height={400}
+                    className="rounded-[12px] shadow-lg object-cover flex-1"
+                  />
+                  <Image
+                    src="/ty60.png"
+                    alt="Profile"
+                    width={400}
+                    height={400}
+                    className="rounded-[12px] shadow-lg object-cover flex-1"
+                  />
+                </div>
+                <p className="text-sm text-gray-500 dark:text-gray-400 italic">
+                  Some of my NFT AI artwork using midjourney
+                </p>
+              </div>
              
             </div>
-          </section>
 
-          {/* Education Section */}
-          <section ref={educationSectionRef} className="space-y-6">
-            <h2 className="text-3xl md:text-4xl font-medium text-black dark:text-white">
-              Education
-            </h2>
-            
-            <div className="space-y-6">
-              {/* Title */}
-              <h3 ref={educationTitleRef} className="text-2xl md:text-3xl font-regular">
-                Bachelor of Arts - Hons (2.1)
-              </h3>
-
-              {/* Subtext + Icons row */}
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-                {/* Subtext (left) */}
-                <p ref={educationSubtextRef} className="text-gray-800 dark:text-gray-400 sm:whitespace-nowrap sm:mr-8">
-                  Digital Arts and Multimedia Computing, 1999
-                </p>
-
-                {/* Icons with full-height dividers (right) */}
-                <div className="grid grid-cols-2 gap-0 border border-gray-300 dark:border-gray-600 rounded-lg sm:flex sm:flex-nowrap sm:items-stretch sm:text-center sm:overflow-visible sm:border-0 sm:rounded-none">
-                  {/* Item 1 */}
-                  <div className="flex flex-col items-center p-4 border-r border-b border-gray-300 dark:border-gray-600 sm:border-0 cursor-pointer group">
-                    <div 
-                      ref={(el) => { iconRefs.current[0] = el }}
-                      className="mb-2 transition-colors duration-300 group-hover:text-orange-500"
-                    >
-                      <Palette size={24} className="text-black dark:text-white" />
-                    </div>
-                    <p 
-                      ref={(el) => { textRefs.current[0] = el }}
-                      className="text-sm text-gray-800 dark:text-gray-300 leading-tight"
-                    >
-                      Digital Arts
-                    </p>
-                  </div>
-
-                  {/* Item 2 */}
-                  <div className="flex flex-col items-center p-4 border-b border-gray-300 dark:border-gray-600 sm:border-0 cursor-pointer group">
-                    <div 
-                      ref={(el) => { iconRefs.current[1] = el }}
-                      className="mb-2 transition-colors duration-300 group-hover:text-orange-500"
-                    >
-                      <Box size={24} className="text-black dark:text-white" />
-                    </div>
-                    <p 
-                      ref={(el) => { textRefs.current[1] = el }}
-                      className="text-sm text-gray-800 dark:text-gray-300 leading-tight"
-                    >
-                      3D Animation
-                    </p>
-                  </div>
-
-                  {/* Item 3 */}
-                  <div className="flex flex-col items-center p-4 border-r border-gray-300 dark:border-gray-600 sm:border-0 cursor-pointer group">
-                    <div 
-                      ref={(el) => { iconRefs.current[2] = el }}
-                      className="mb-2 transition-colors duration-300 group-hover:text-orange-500"
-                    >
-                      <Code size={24} className="text-black dark:text-white" />
-                    </div>
-                    <p 
-                      ref={(el) => { textRefs.current[2] = el }}
-                      className="text-sm text-gray-800 dark:text-gray-300 leading-tight text-center"
-                    >
-                      Full Stack Development
-                    </p>
-                  </div>
-
-                  {/* Item 4 */}
-                  <div className="flex flex-col items-center p-4 cursor-pointer group">
-                    <div 
-                      ref={(el) => { iconRefs.current[3] = el }}
-                      className="mb-2 transition-colors duration-300 group-hover:text-orange-500"
-                    >
-                      <Gamepad2 size={24} className="text-black dark:text-white" />
-                    </div>
-                    <p 
-                      ref={(el) => { textRefs.current[3] = el }}
-                      className="text-sm text-gray-800 dark:text-gray-300 leading-tight"
-                    >
-                      Game Design
-                    </p>
-                  </div>
-                </div>
-              </div>
+            {/* CTA Buttons */}
+            <div ref={ctaButtonsRef1} className="flex flex-col sm:flex-row gap-4 pt-6" style={{ opacity: 0 }}>
+              <Link href="/contact" className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-300 font-medium">
+                Let's Connect <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link href="/portfolio" className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-300 font-medium">
+                View My Work <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
           </section>
 
@@ -569,7 +395,7 @@ export default function About() {
             <div ref={quizContentRef}>
             {!isQuizActive && quizQuestion === 0 ? (
               <div className="text-center max-w-2xl mx-auto">
-                <div className="border border-black dark:bg-gray-900 p-8 rounded-xl mb-8">
+                <div className="border border-black dark:border-gray-700 p-8 rounded-xl mb-8">
                   <h3 className="text-2xl font-bold text-black dark:text-white mb-4">Ready to test your knowledge?</h3>
                   <p className="text-gray-800 dark:text-gray-400 mb-6">
                     This quiz has {quizQuestions.length} questions about my background and expertise.
@@ -601,7 +427,23 @@ export default function About() {
                 </div>
               </div>
             ) : quizQuestion < quizQuestions.length ? (
-              <div className="max-w-3xl mx-auto border border-black dark:border-gray-700 rounded-xl p-8">
+              <div className="max-w-3xl mx-auto border border-black dark:border-gray-700 rounded-xl p-8 relative">
+                {/* Close button */}
+                <button
+                  onClick={() => {
+                    setIsQuizActive(false)
+                    setQuizQuestion(0)
+                    setSelectedAnswer(null)
+                    setShowFeedback(false)
+                    setScore(0)
+                    setQuizTime(0)
+                  }}
+                  className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+                  aria-label="Close quiz"
+                >
+                  <X className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                </button>
+                
                 <div className="mb-8">
                   <div className="flex justify-between items-center mb-3">
                     <span className="text-sm font-semibold text-gray-500 dark:text-gray-400">Question {quizQuestion + 1} of {quizQuestions.length}</span>
@@ -653,13 +495,13 @@ export default function About() {
             ) : (
               <div className="text-center max-w-2xl mx-auto">
                 <div className="border border-black dark:bg-gray-900 p-8 rounded-xl mb-8 relative">
-                  <button
+                <button
                     onClick={resetQuiz}
                     className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
                     aria-label="Close quiz"
                   >
                     <X size={20} />
-                  </button>
+                </button>
                   <h3 className="text-2xl font-medium text-black dark:text-white mb-6">Completed!</h3>
                   
                   {/* Styled score display */}
@@ -735,59 +577,6 @@ export default function About() {
             </div>
           </section>
 
-          {/* Client Feedback Section */}
-          <section ref={testimonialsSectionRef} className="space-y-6">
-            <h2 ref={clientFeedbackTitleRef} className="text-3xl font-medium text-black dark:text-white" style={{ opacity: 0, transform: "translateY(30px)" }}>Client Feedback</h2>
-            
-            <div ref={testimonialsRef} className="border border-gray-200 dark:border-gray-700 rounded-2xl p-8 space-y-6" style={{ opacity: 0, transform: "translateY(50px)" }}>
-              <blockquote className="text-lg text-gray-800 dark:text-gray-300 leading-relaxed">
-                &ldquo;{testimonials[currentTestimonial].content}&rdquo;
-              </blockquote>
-              
-              <div className="space-y-1">
-                <p className="font-medium text-black dark:text-white">
-                  {testimonials[currentTestimonial].name}
-                </p>
-                <p className="text-sm text-gray-500 dark:text-gray-500">
-                  {testimonials[currentTestimonial].role}
-                </p>
-              </div>
-
-              {/* Simple Navigation */}
-              <div className="flex items-center justify-between pt-4">
-                <button
-                  onClick={prevTestimonial}
-                  className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
-                  aria-label="Previous testimonial"
-                >
-                  <ChevronLeft size={20} />
-                </button>
-
-                <div className="flex space-x-2">
-                  {testimonials.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => goToTestimonial(index)}
-                      className={`w-2 h-2 rounded-full transition-colors ${
-                        index === currentTestimonial 
-                          ? 'bg-gray-600 dark:bg-gray-400' 
-                          : 'bg-gray-300 dark:bg-gray-600'
-                      }`}
-                      aria-label={`Go to testimonial ${index + 1}`}
-                    />
-                  ))}
-                </div>
-
-                <button
-                  onClick={nextTestimonial}
-                  className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
-                  aria-label="Next testimonial"
-                >
-                  <ChevronRight size={20} />
-                </button>
-              </div>
-            </div>
-          </section>
 
         </div>
       </div>
