@@ -473,7 +473,7 @@ export default function Home() {
     <div className="space-y-12 px-4 md:px-14 pt-2">
       {/* Intro Text */}
       <p ref={introTextRef} className="text-2xl text-left" style={{ opacity: 0, transform: 'translateY(50px)' }}>
-      With over 15 years of experience leading end to end design in fintech, education, and e-commerce, I translate deep user research into scalable interfaces. My expertise covers the full product lifecycle, from initial strategy and user research to front-end development in React and Next.js.
+      I've spent the last 15 years leading design across fintech, education, e-commerce and startups. I'm good at turning user research into interfaces that actually scale. I work across the entire product lifecycle - from the initial strategy right through to coding the front-end in React and Next.js. In addition to this I also launched an award-winning music magazine and created a social app that pulled in over 10,000 users globally in its first year.
       </p>
 
       {/* Case Study Image */}
@@ -664,7 +664,7 @@ export default function Home() {
         <h4 className="text-lg font-semibold text-black dark:text-white mb-8">UX & Research</h4>
         <div className="flex flex-col gap-3 items-start">
         {[
-          "User Research & Testing",
+          "User Research",
           "Wireframing",
           "Interaction Design",
           "Competitive Analysis",
@@ -707,7 +707,7 @@ export default function Home() {
     {/* Card 3 */}
     <TiltedTextCard>
       <div ref={setSkillCardRef(2)} className="bg-white dark:bg-transparent border border-gray-400 dark:border-white dark:border-opacity-20 rounded-xl px-4 py-6 flex flex-col h-full">
-        <h4 className="text-lg font-semibold text-black dark:text-white mb-8">Front End Development</h4>
+        <h4 className="text-lg font-semibold text-black dark:text-white mb-8">Front End Dev</h4>
         <div className="flex flex-col gap-3 items-start">
         {["React.js", "Next.js", "Vue.js", "HTML/CSS", "Tailwind UI"].map(
           (item) => (
@@ -728,7 +728,7 @@ export default function Home() {
       <div ref={setSkillCardRef(3)} className="bg-white dark:bg-transparent border border-gray-400 dark:border-white dark:border-opacity-20 rounded-xl px-4 py-6 flex flex-col h-full">
         <h4 className="text-lg font-semibold text-black dark:text-white mb-8">Design Tools</h4>
         <div className="flex flex-col gap-3 items-start">
-        {["Figma", "Adobe Suite", "Supernova"].map((item) => (
+        {["Figma", "Adobe Suite", "Lottie Animations"].map((item) => (
           <span
             key={item}
               className="bg-gray-100 dark:bg-[#2a2a2a] px-4 py-2 rounded-full text-base text-gray-900 dark:text-gray-300 w-fit"
@@ -808,7 +808,15 @@ export default function Home() {
         <div className="w-full max-w-6xl mx-auto">
           <div className="mb-8">
             <h2 className="text-3xl font-medium text-black dark:text-white mb-4">Insights</h2>
-            <p className="text-gray-600 dark:text-gray-400">Thoughts on design, development, and the intersection of technology and user experience.</p>
+            <div className="flex items-center justify-between gap-4">
+              <p className="text-gray-600 dark:text-gray-400">Thoughts on design, development, and the intersection of technology and user experience.</p>
+              
+              {/* Scroll Indicator */}
+              <div className="flex items-center gap-2 text-orange-500 flex-shrink-0">
+                <span className="text-sm font-medium whitespace-nowrap">Scroll</span>
+                <ChevronRight className="w-5 h-5 animate-pulse" />
+              </div>
+            </div>
           </div>
           
           <div className="relative">
