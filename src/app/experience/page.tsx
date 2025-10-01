@@ -77,8 +77,8 @@ export default function Experience() {
                {/* Download CV Link */}
                <div className="mt-4">
                  <a 
-                   href="/cv.pdf" 
-                   download="Jenjo_UX_Designer_CV.pdf"
+                   href="/JJCV.pdf" 
+                   download="JJCV.pdf"
                    className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 transition-colors font-medium"
                  >
                    <span>Download</span>
