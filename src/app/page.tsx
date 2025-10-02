@@ -21,6 +21,19 @@ const isMobile = () => {
   return window.innerWidth < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
 }
 
+// Performance detection utility
+const isSlowDevice = () => {
+  if (typeof window === 'undefined') return false
+  // Check for reduced motion preference
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return true
+  // Check for slow connection (basic heuristic)
+  if (navigator.connection && navigator.connection.effectiveType && 
+      ['slow-2g', '2g', '3g'].includes(navigator.connection.effectiveType)) return true
+  // Check for low-end device indicators
+  if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) return true
+  return false
+}
+
 export default function Home() {
   const [imageLoading, setImageLoading] = useState(true)
   const [featuredImageLoading, setFeaturedImageLoading] = useState(true)
@@ -242,6 +255,21 @@ export default function Home() {
     const introText = introTextRef.current
     const caseStudyImage = caseStudyImageRef.current
     const ctaButtons = ctaButtonsRef.current
+    const isSlow = isSlowDevice()
+
+    // For slow devices, show content immediately with no animations
+    if (isSlow) {
+      if (introText) {
+        gsap.set(introText, { opacity: 1, y: 0 })
+      }
+      if (caseStudyImage) {
+        gsap.set(caseStudyImage, { opacity: 1, y: 0, scale: 1 })
+      }
+      if (ctaButtons) {
+        gsap.set(ctaButtons, { opacity: 1, y: 0, scale: 1 })
+      }
+      return
+    }
 
     // Set initial states
     gsap.set(introText, {

@@ -124,6 +124,35 @@ export default function HeroSection() {
     }
 
     useEffect(() => {
+        // Performance detection
+        const isSlowDevice = () => {
+            if (typeof window === 'undefined') return false
+            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return true
+            if (navigator.connection && navigator.connection.effectiveType && 
+                ['slow-2g', '2g', '3g'].includes(navigator.connection.effectiveType)) return true
+            return false
+        }
+
+        // Fallback timer - show content after 3 seconds regardless of animation state
+        const fallbackTimer = setTimeout(() => {
+            gsap.set([titleRef.current, subtitleRef.current, buttonsRef.current], {
+                opacity: 1,
+                scale: 1,
+                filter: "blur(0px)"
+            })
+        }, 3000)
+
+        // For slow devices, show content immediately
+        if (isSlowDevice()) {
+            gsap.set([titleRef.current, subtitleRef.current, buttonsRef.current], {
+                opacity: 1,
+                scale: 1,
+                filter: "blur(0px)"
+            })
+            clearTimeout(fallbackTimer)
+            return
+        }
+
         const tl = gsap.timeline()
         
         // Set initial states with blur effect
@@ -142,6 +171,12 @@ export default function HeroSection() {
             ease: "power3.out",
             stagger: 0.1
         })
+
+        // Cleanup
+        return () => {
+            tl.kill()
+            clearTimeout(fallbackTimer)
+        }
     }, [])
     return (
         <>
