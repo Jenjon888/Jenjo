@@ -399,7 +399,7 @@ export default function About() {
                   />
                 </div>
                 <p className="text-sm text-gray-500 dark:text-gray-400 italic">
-                  Some of my NFT AI artwork using midjourney
+                  NFT AI artwork using midjourney
               </p>
               </div>
              
