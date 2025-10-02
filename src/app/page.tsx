@@ -489,7 +489,7 @@ export default function Home() {
         />
       </div> */}
 
-      {/* Metrics Row */}
+      {/* Experience Highlights */}
 <div ref={metricsSectionRef} className="grid grid-cols-2 md:grid-cols-4 gap-8">
   <div 
     ref={setMetricRef(0)}
@@ -499,13 +499,13 @@ export default function Home() {
       ref={setMetricNumberRef(0)}
       className="text-6xl font-medium pb-16 group-hover:text-orange-500 transition-colors duration-300"
     >
-      40%
+      User-First
     </p>
     <p 
       ref={setMetricTextRef(0)}
       className="text-sm tracking-wide text-gray-800 dark:text-gray-400"
     >
-    Increase in user task completion rates
+    Design methodology
     </p>
   </div>
   <div 
@@ -516,13 +516,13 @@ export default function Home() {
       ref={setMetricNumberRef(1)}
       className="text-6xl font-medium pb-16 group-hover:text-orange-500 transition-colors duration-300"
     >
-      75%
+      Award
     </p>
     <p 
       ref={setMetricTextRef(1)}
       className="text-sm tracking-wide text-gray-800 dark:text-gray-400"
     >
-    Improvement in user satisfaction scores
+    Winning music magazine launch
     </p>
   </div>
   <div 
@@ -533,13 +533,13 @@ export default function Home() {
       ref={setMetricNumberRef(2)}
       className="text-6xl font-medium pb-16 group-hover:text-orange-500 transition-colors duration-300"
     >
-      100+
+      5+
     </p>
     <p 
       ref={setMetricTextRef(2)}
       className="text-sm tracking-wide text-gray-800 dark:text-gray-400"
     >
-    Projects delivered across multiple sectors
+    Industries: Fintech, Crypto, AI, Education
     </p>
   </div>
   <div 
@@ -550,13 +550,13 @@ export default function Home() {
       ref={setMetricNumberRef(3)}
       className="text-6xl font-medium pb-16 group-hover:text-orange-500 transition-colors duration-300"
     >
-      £2M+
+      Full
     </p>
     <p 
       ref={setMetricTextRef(3)}
       className="text-sm tracking-wide text-gray-800 dark:text-gray-400"
     >
-    Revenue impact from design-driven improvements
+    Stack: Strategy to React & Next.js
     </p>
   </div>
 </div>
