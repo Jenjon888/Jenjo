@@ -10,9 +10,11 @@ export const WhiteSlideLeftButton = ({
   href?: string;
   className?: string;
 }) => {
+  const isExternal = href.startsWith('http');
   return (
     <Link 
       href={href}
+      {...(isExternal && { target: "_blank", rel: "noopener noreferrer" })}
       className={`group relative inline-flex items-center justify-center w-full sm:w-fit px-6 py-2 font-medium transition-all duration-300 ease-out overflow-hidden bg-white text-black border border-gray-200 ${className}`}
       style={{ 
         borderRadius: '9999px',
@@ -50,9 +52,11 @@ export const BlackSlideLeftButton = ({
   className?: string;
   fullWidth?: boolean;
 }) => {
+  const isExternal = href.startsWith('http');
   return (
     <Link 
       href={href}
+      {...(isExternal && { target: "_blank", rel: "noopener noreferrer" })}
       className={`group relative inline-flex items-center justify-center ${fullWidth ? 'w-full' : 'w-full sm:w-fit'} px-6 py-2 font-medium transition-all duration-300 ease-out overflow-hidden bg-black dark:bg-white text-white dark:text-black ${className}`}
       style={{ 
         borderRadius: '9999px',
@@ -185,10 +189,12 @@ export const OrangeSlideLeftButton = ({
   className?: string;
   iconPosition?: "end" | "default";
 }) => {
+  const isExternal = href?.startsWith('http');
   if (href) {
     return (
       <Link
         href={href}
+        {...(isExternal && { target: "_blank", rel: "noopener noreferrer" })}
       className={`group relative inline-flex items-center gap-3 pl-6 pr-2 py-2 font-medium transition-all duration-300 ease-out overflow-hidden bg-black dark:bg-orange-500 text-orange-500 dark:text-black disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
       style={{ 
         borderRadius: '9999px',
