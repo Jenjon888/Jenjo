@@ -560,7 +560,7 @@ export default function Experience() {
       </div>
 
       <div className="flex-1 flex justify-center px-4 sm:px-6 lg:px-12">
-        <div className="w-full max-w-7xl">
+        <div className="w-full max-w-6xl">
           {/* Intro Section with Download CV */}
           <div ref={introRef} className="mb-8 sm:mb-12" style={{ opacity: 0 }}>
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 sm:gap-6">
