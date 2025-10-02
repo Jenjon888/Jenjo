@@ -4,8 +4,10 @@ import Footer from '@/components/footer'
 import Image from 'next/image'
 import Link from 'next/link'
 import { X, Palette, Box, Code, Gamepad2, ArrowRight } from 'lucide-react'
+import { BlackSlideLeftButton, BlackSlideLeftSubmitButton, BeamBorderButton } from '@/components/ui/slide-buttons'
 import { useState, useRef, useEffect } from 'react'
 import SplitText from '@/components/SplitText'
+import { Loading } from '@/components/loading'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -19,6 +21,7 @@ export default function About() {
   const quizSectionRef = useRef<HTMLDivElement>(null)
   const quizContentRef = useRef<HTMLDivElement>(null)
   const educationSectionRef = useRef<HTMLDivElement>(null)
+  const educationContentRef = useRef<HTMLDivElement>(null)
 
   // Quiz state
   const [quizQuestion, setQuizQuestion] = useState(0)
@@ -28,6 +31,7 @@ export default function About() {
   const [quizTime, setQuizTime] = useState(0)
   const [isQuizActive, setIsQuizActive] = useState(false)
   const [quizHistory, setQuizHistory] = useState<Array<{question: number, answer: number, correct: boolean, time: number}>>([])
+  const [isContactLoading, setIsContactLoading] = useState(false)
 
 
   // Quiz questions data
@@ -155,6 +159,13 @@ export default function About() {
     setQuizHistory([])
   }
 
+  const handleContactClick = async () => {
+    setIsContactLoading(true)
+    // Simulate navigation delay
+    await new Promise(resolve => setTimeout(resolve, 500))
+    window.location.href = '/contact'
+  }
+
 
   // GSAP Animations for About Page
   useEffect(() => {
@@ -255,6 +266,27 @@ export default function About() {
     }
 
 
+    // Education Section Fade In Effect
+    if (educationContentRef.current && educationSectionRef.current) {
+      gsap.set(educationContentRef.current, { 
+        opacity: 0,
+        y: 30
+      })
+      
+      gsap.to(educationContentRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: educationSectionRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse"
+        }
+      })
+    }
+
     // Quiz Section Fade In Effect
     if (quizContentRef.current && quizSectionRef.current) {
       gsap.set(quizContentRef.current, { 
@@ -319,7 +351,7 @@ export default function About() {
               Education
             </h2> */}
             
-            <div className="space-y-6">
+            <div ref={educationContentRef} className="space-y-6" style={{ opacity: 0, transform: "translateY(30px)" }}>
               <div className="bg-white dark:bg-transparent">
                 <h3 className="text-xl font-semibold text-black dark:text-white mb-2">
                   Bachelor of Arts - Hons (2.1)
@@ -363,7 +395,7 @@ export default function About() {
                     alt="Profile"
                     width={400}
                     height={400}
-                    className="rounded-[12px] shadow-lg object-cover flex-1"
+                    className="hidden md:block rounded-[12px] shadow-lg object-cover flex-1"
                   />
                   <Image
                     src="/ty60.png"
@@ -382,12 +414,26 @@ export default function About() {
 
             {/* CTA Buttons */}
             <div ref={ctaButtonsRef1} className="flex flex-col sm:flex-row gap-4 pt-6" style={{ opacity: 0 }}>
-              <Link href="/contact" className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-300 font-medium">
-                Let's Connect <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link href="/portfolio" className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-300 font-medium">
-                View My Work <ArrowRight className="w-4 h-4" />
-              </Link>
+              <BlackSlideLeftSubmitButton 
+                onClick={handleContactClick}
+                disabled={isContactLoading}
+              >
+                {isContactLoading ? (
+                  <>
+                    <Loading size="sm" />
+                    <span className="font-medium ml-2">Loading...</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="w-2 h-2 rounded-full bg-green-500 mr-2"></span>
+                    <span className="font-medium">Let's work together</span>
+                  </>
+                )}
+              </BlackSlideLeftSubmitButton>
+              <BeamBorderButton 
+                text="Schedule a call"
+                href="https://calendly.com/jenjo700/30min"
+              />
             </div>
           </section>
 

@@ -256,11 +256,14 @@ export default function Home() {
       scale: 0.95
     })
     
-    gsap.set(ctaButtons, {
-      opacity: 0,
-      y: 60,
-      scale: 0.8
-    })
+    // Only set initial animation state on desktop
+    if (!isMobile()) {
+      gsap.set(ctaButtons, {
+        opacity: 0,
+        y: 60,
+        scale: 0.8
+      })
+    }
 
     // Create timeline for intro and image
     const tl = gsap.timeline(
@@ -490,7 +493,7 @@ export default function Home() {
       </div> */}
 
       {/* Experience Highlights */}
-<div ref={metricsSectionRef} className="grid grid-cols-2 md:grid-cols-4 gap-8">
+<div ref={metricsSectionRef} className="hidden md:grid grid-cols-2 md:grid-cols-4 gap-8">
   <div 
     ref={setMetricRef(0)}
     className="pl-4 border-l border-gray-600 cursor-pointer group hover:border-orange-500 transition-colors duration-300"
@@ -563,7 +566,7 @@ export default function Home() {
 
 
       {/* CTA Buttons */}
-<div ref={ctaButtonsRef} className="w-full mt-8 pt-8 md:pt-16 flex flex-col sm:flex-row gap-4">
+<div ref={ctaButtonsRef} className="w-full mt-8 pt-0 md:pt-16 flex flex-col sm:flex-row gap-4">
   <BlackSlideLeftSubmitButton 
     onClick={handleContactClick}
     disabled={isContactLoading}
@@ -628,7 +631,7 @@ export default function Home() {
 
 
 {/* Skills Section */}
-<div className="space-y-8">
+<div className="hidden md:block space-y-8">
   {/* Heading */}
   <div className="flex flex-col items-start sm:flex-row sm:items-center sm:justify-between pt-4 gap-4">
     {isMobile() ? (

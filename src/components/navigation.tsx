@@ -51,20 +51,24 @@ export default function Navigation() {
                 isScrolled ? 'border-b border-gray-200/30 dark:border-gray-700/30' : ''
             }`}>
                 <Link href="/" onClick={closeMobileMenu}>
-                    <Image 
-                        src="/blk-logo2.png" 
-                        alt="Logo" 
-                        width={258} 
-                        height={86} 
-                        className="h-20 sm:h-16 lg:h-[86px] w-auto dark:hidden"
-                    />
-                    <Image 
-                        src="/wht-logo2.png" 
-                        alt="Logo" 
-                        width={258} 
-                        height={86} 
-                        className="h-20 sm:h-16 lg:h-[86px] w-auto hidden dark:block"
-                    />
+                    <div className="h-20 sm:h-16 lg:h-[86px] w-auto flex-shrink-0">
+                        <Image 
+                            src="/blk-logo2.png" 
+                            alt="Logo" 
+                            width={258} 
+                            height={86} 
+                            className="h-full w-auto object-contain dark:hidden"
+                            priority
+                        />
+                        <Image 
+                            src="/wht-logo2.png" 
+                            alt="Logo" 
+                            width={258} 
+                            height={86} 
+                            className="h-full w-auto object-contain hidden dark:block"
+                            priority
+                        />
+                    </div>
                 </Link>
                 
                 {/* Desktop Navigation (lg and above) */}

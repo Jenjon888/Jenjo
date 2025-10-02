@@ -19,8 +19,8 @@ const CustomMorphingText = ({ texts }: { texts: string[] }) => {
   const textIndexRef = useRef(0)
   const morphRef = useRef(0)
   const cooldownRef = useRef(0)
-  const timeRef = useRef(new Date())
-  const animationRef = useRef<number>()
+  const timeRef = useRef<Date>(new Date())
+  const animationRef = useRef<number>(0)
 
   const morphTime = 3.5  // Much slower for relaxed pace
   const cooldownTime = 1.0  // Longer pause between transitions
@@ -150,11 +150,11 @@ export default function HeroSection() {
             <main className="overflow-x-hidden">
                 {/* HERO PANEL */}
                 <section className="flex justify-center px-1 md:px-6 lg:px-10 ">
-                    <div className="relative flex flex-col lg:flex-row items-center justify-between w-full max-w-6xl rounded-[12px] bg-[#141414] dark:bg-[#141414] bg-gray-50 p-6 md:p-10 lg:p-12 text-white dark:text-white text-black min-h-[600px] overflow-hidden">
+                    <div className="relative flex flex-col lg:flex-row items-start lg:items-center justify-center lg:justify-between w-full max-w-6xl rounded-[12px] bg-[#141414] dark:bg-[#141414] bg-gray-50 pt-12 px-6 pb-4 md:p-10 lg:p-12 text-white dark:text-white text-black min-h-[600px] overflow-hidden">
                         <HeroBackgroundAnimation />
                         
                         {/* LEFT CONTENT */}
-                        <div className="max-w-xl space-y-6 relative z-10">
+                        <div className="max-w-xl space-y-6 relative z-10 flex flex-col items-start justify-center">
                             <h1 ref={titleRef} className="text-5xl font-semibold tracking-tight" style={{ opacity: 0, scale: 0.5, filter: "blur(20px)" }}>
                             <div className="flex flex-col">
                                 <span className="text-gray-300 dark:text-gray-300 text-gray-600">Building the</span>
