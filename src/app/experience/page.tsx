@@ -279,6 +279,7 @@ export default function Experience() {
   const [activeJob, setActiveJob] = useState<Job | null>(null)
   const [isDragging, setIsDragging] = useState<string | null>(null)
   const [isOverDropZone, setIsOverDropZone] = useState(false)
+  const [isSnapshotView, setIsSnapshotView] = useState(false)
   const dropZoneRef = useRef<HTMLDivElement>(null)
   
   // Refs for animations
@@ -374,10 +375,24 @@ export default function Experience() {
 
   const handleCardClick = (job: Job) => {
     setActiveJob(job)
+    setIsSnapshotView(false) // Reset to detailed view when selecting new job
   }
 
   const closeExpandedView = () => {
     setActiveJob(null)
+    setIsSnapshotView(false)
+  }
+
+  const toggleView = () => {
+    setIsSnapshotView(!isSnapshotView)
+  }
+
+  // Generate snapshot summary
+  const getSnapshotSummary = (jobId: string): string | null => {
+    if (jobId === '4') { // Medify
+      return 'Led comprehensive UX/UI redesign for Medify\'s healthcare education platform. Created a new design system that increased developer efficiency by 25% and improved user satisfaction by 20%. Conducted structured usability testing with 30+ users, reducing critical navigation errors by 50%. Delivered consistent design across all content types with regular QA reviews.'
+    }
+    return null
   }
 
   const handleDownloadCV = () => {
@@ -398,22 +413,22 @@ export default function Experience() {
         onDragStart={(e) => handleDragStart(e, job)}
         onDragEnd={handleDragEnd}
         onClick={() => handleCardClick(job)}
-      className={`
-        p-6 rounded-[12px] border border-gray-200 dark:border-gray-800
-        cursor-grab active:cursor-grabbing
-        hover:border-orange-500 transition-all duration-300
-        ${isDragging === job.id ? 'opacity-50' : 'opacity-100'}
-        ${isActive ? 'border-orange-500 shadow-[0_0_20px_rgba(249,115,22,0.3)]' : 'bg-white dark:bg-transparent'}
-      `}
-    >
-      <h3 className={`text-lg font-medium mb-1 transition-colors ${
-          isActive ? 'text-orange-500' : 'text-black dark:text-white'
-        }`}>
+        className={`
+          p-4 sm:p-6 rounded-[12px] border border-gray-200 dark:border-gray-800
+          cursor-grab active:cursor-grabbing
+          hover:border-orange-500 transition-all duration-300
+          ${isDragging === job.id ? 'opacity-50' : 'opacity-100'}
+          ${isActive ? 'border-orange-500 shadow-[0_0_20px_rgba(249,115,22,0.3)]' : 'bg-white dark:bg-transparent'}
+        `}
+      >
+        <h3 className={`text-base sm:text-lg font-medium mb-1 transition-colors ${
+            isActive ? 'text-orange-500' : 'text-black dark:text-white'
+          }`}>
           {job.company}
         </h3>
-        <p className="text-sm font-light text-gray-600 dark:text-gray-400 mb-2">{job.role}</p>
+        <p className="text-xs sm:text-sm font-light text-gray-600 dark:text-gray-400 mb-2">{job.role}</p>
         <p className="text-xs text-gray-500 dark:text-gray-500">{job.period}</p>
-             </div>
+      </div>
     )
   }
 
@@ -425,45 +440,63 @@ export default function Experience() {
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
       className={`
-        min-h-[500px] rounded-[12px] border border-dashed
+        min-h-[400px] sm:min-h-[500px] rounded-[12px] border border-dashed
         flex items-start justify-center transition-all duration-300
         ${isOverDropZone ? 'border-orange-500 bg-orange-50 dark:bg-orange-950' : 'border-gray-200 dark:border-gray-800'}
       `}
     >
       {!activeJob ? (
-        <div className="text-center mt-40">
-          <Eye className="w-12 h-12 text-gray-300 dark:text-gray-700 mx-auto mb-4" />
-          <p className="text-sm font-light text-gray-400">Drag or click a card to view details</p>
-           </div>
+        <div className="text-center mt-20 sm:mt-40 px-4">
+          <Eye className="w-10 h-10 sm:w-12 sm:h-12 text-gray-300 dark:text-gray-700 mx-auto mb-4" />
+          <p className="text-xs sm:text-sm font-light text-gray-400">Drag or click a card to view details</p>
+        </div>
       ) : (
-        <div className="relative w-full px-8 md:px-12 py-6 md:py-8 animate-in fade-in duration-300">
+        <div className="relative w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 animate-in fade-in duration-300">
           <button 
             onClick={closeExpandedView} 
-            className="absolute top-4 right-6 p-2 hover:bg-gray-100 dark:hover:bg-gray-900 rounded-full transition-colors"
+            className="absolute top-2 right-2 sm:top-4 sm:right-6 p-2 hover:bg-gray-100 dark:hover:bg-gray-900 rounded-full transition-colors"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
           
-          <div className="flex gap-8">
+          <div className="flex flex-col lg:flex-row lg:gap-8">
             <div className="flex-1">
-              <h2 className="text-2xl md:text-3xl font-medium mb-2">{activeJob.company}</h2>
-              <p className="text-lg md:text-xl font-light text-gray-600 dark:text-gray-400 mb-1">{activeJob.role}</p>
-              <p className="text-sm text-gray-500 mb-6 md:mb-8">{activeJob.period}</p>
-              
-              <div className="max-h-[350px] overflow-y-auto pr-4 space-y-4 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-200 [&::-webkit-scrollbar-thumb]:rounded-full dark:[&::-webkit-scrollbar-thumb]:bg-gray-800 [&::-webkit-scrollbar-thumb]:hover:bg-gray-300 dark:[&::-webkit-scrollbar-thumb]:hover:bg-gray-700">
-                {activeJob.description.map((item, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <span className="text-orange-500 text-sm mt-1 flex-shrink-0">•</span>
-                    <p className="font-light text-gray-700 dark:text-gray-300 leading-relaxed">
-                      {item}
-                    </p>
-                  </div>
-                ))}
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-medium mb-2">{activeJob.company}</h2>
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1 gap-2">
+                <p className="text-base sm:text-lg lg:text-xl font-light text-gray-600 dark:text-gray-400">{activeJob.role}</p>
+                {getSnapshotSummary(activeJob.id) && (
+                  <button
+                    onClick={toggleView}
+                    className="text-xs font-medium px-3 py-1.5 rounded-full border border-gray-300 dark:border-gray-700 hover:border-orange-500 transition-colors self-start sm:self-auto"
+                  >
+                    {isSnapshotView ? 'Detailed View' : 'Snapshot View'}
+                  </button>
+                )}
               </div>
+              <p className="text-sm text-gray-500 mb-4 sm:mb-6 lg:mb-8">{activeJob.period}</p>
+              
+              {isSnapshotView && getSnapshotSummary(activeJob.id) ? (
+                <div className="p-4 sm:p-6 rounded-[12px] border border-orange-500">
+                  <p className="font-light text-gray-700 dark:text-gray-300 leading-relaxed text-sm sm:text-base">
+                    {getSnapshotSummary(activeJob.id)}
+                  </p>
+                </div>
+              ) : (
+                <div className="max-h-[300px] sm:max-h-[350px] overflow-y-auto pr-2 sm:pr-4 space-y-3 sm:space-y-4 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-200 [&::-webkit-scrollbar-thumb]:rounded-full dark:[&::-webkit-scrollbar-thumb]:bg-gray-800 [&::-webkit-scrollbar-thumb]:hover:bg-gray-300 dark:[&::-webkit-scrollbar-thumb]:hover:bg-gray-700">
+                  {activeJob.description.map((item, index) => (
+                    <div key={index} className="flex items-start gap-2 sm:gap-3">
+                      <span className="text-orange-500 text-sm mt-1 flex-shrink-0">•</span>
+                      <p className="font-light text-gray-700 dark:text-gray-300 leading-relaxed text-sm sm:text-base">
+                        {item}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
-            <div className="flex-shrink-0 w-64">
-              <div className="h-[52px]"></div>
+            <div className="flex-shrink-0 w-full lg:w-64 mt-6 lg:mt-0">
+              <div className="hidden lg:block h-[52px]"></div>
               
               {activeJob.businessGoals && activeJob.businessGoals.length > 0 && (
                 <div className="p-4 rounded-[12px] border border-gray-200 dark:border-gray-800">
@@ -472,7 +505,7 @@ export default function Experience() {
                     {activeJob.businessGoals.map((goal, index) => (
                       <li key={index} className="flex items-start gap-2">
                         <span className="text-orange-500 text-xs mt-0.5">✓</span>
-                        <span className="text-sm font-light text-gray-700 dark:text-gray-300">{goal}</span>
+                        <span className="text-xs sm:text-sm font-light text-gray-700 dark:text-gray-300">{goal}</span>
                       </li>
                     ))}
                   </ul>
@@ -480,8 +513,8 @@ export default function Experience() {
               )}
 
               {activeJob.keyResult && (
-                <div className="mt-4 p-4 rounded-[12px] bg-gray-50 dark:bg-gray-900">
-                  <p className="text-sm font-light text-gray-700 dark:text-gray-300 text-center leading-relaxed">
+                <div className="mt-4 p-4 rounded-[12px] border border-orange-500">
+                  <p className="text-xs sm:text-sm font-light text-gray-700 dark:text-gray-300 text-center leading-relaxed">
                     {activeJob.keyResult}
                   </p>
                 </div>
@@ -490,17 +523,17 @@ export default function Experience() {
               {activeJob.caseStudy && (
                 <Link
                   href={activeJob.caseStudy}
-                  className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 transition-colors font-medium text-sm mt-6"
+                  className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 transition-colors font-medium text-sm mt-4 sm:mt-6"
                 >
                   <Eye className="w-4 h-4" />
                   View Case Study
                 </Link>
               )}
-                    </div>
-                  </div>
-                    </div>
+            </div>
+          </div>
+        </div>
       )}
-                  </div>
+    </div>
   )
 
   return (
@@ -508,12 +541,12 @@ export default function Experience() {
       <Navigation />
       
       {/* Animated Title Section */}
-      <div className="flex justify-center px-4 md:px-12 py-12">
+      <div className="flex justify-center px-4 sm:px-6 lg:px-12 py-8 sm:py-12">
         <div className="w-full max-w-6xl">
           <SplitText
             text="Experience"
             tag="h1"
-            className="text-2xl md:text-3xl font-medium text-black dark:text-white"
+            className="text-2xl sm:text-3xl lg:text-4xl font-medium text-black dark:text-white"
             splitType="chars"
             delay={50}
             duration={0.8}
@@ -523,58 +556,58 @@ export default function Experience() {
             threshold={0.1}
             rootMargin="-50px"
           />
-                    </div>
-                  </div>
+        </div>
+      </div>
 
-      <div className="flex justify-center px-4 md:px-12">
+      <div className="flex justify-center px-4 sm:px-6 lg:px-12">
         <div className="w-full max-w-7xl">
           {/* Intro Section with Download CV */}
-          <div ref={introRef} className="mb-12" style={{ opacity: 0 }}>
-            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+          <div ref={introRef} className="mb-8 sm:mb-12" style={{ opacity: 0 }}>
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 sm:gap-6">
               <div className="flex-1">
-                <h2 className="text-xl font-medium text-black dark:text-white mb-3">
+                <h2 className="text-lg sm:text-xl font-medium text-black dark:text-white mb-3">
                   Interactive Experience Timeline
                 </h2>
-                <p className="font-light text-gray-700 dark:text-gray-300 leading-relaxed">
-                  In order to view full details, drag any experience card<br />
+                <p className="font-light text-gray-700 dark:text-gray-300 leading-relaxed text-sm sm:text-base">
+                  To view full details, drag any experience card
                   into the center or simply click it.
                 </p>
-                  </div>
+              </div>
 
               <div className="flex-shrink-0">
                 <button
                   onClick={handleDownloadCV}
-                  className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 transition-colors font-medium cursor-pointer"
+                  className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300 transition-colors font-medium cursor-pointer text-sm sm:text-base"
                 >
                   <span>Download CV</span>
                   <Download size={16} />
                 </button>
-                  </div>
-                    </div>
-                  </div>
+              </div>
+            </div>
+          </div>
 
           {/* Experience Cards - Horizontal Scroll */}
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             <div ref={cardsRef} style={{ opacity: 0 }}>
-              <h2 className="text-lg font-light mb-6 flex items-center gap-2">
+              <h2 className="text-base sm:text-lg font-light mb-4 sm:mb-6 flex items-center gap-2">
                 <span className="text-black dark:text-white">Scroll to</span>
                 <span className="text-orange-500 flex items-center gap-1">
                   explore
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </span>
               </h2>
               <div className="flex gap-3 overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide">
                 {jobs.map((job) => (
-                  <div key={job.id} className="flex-shrink-0 w-72">
+                  <div key={job.id} className="flex-shrink-0 w-64 sm:w-72">
                     <JobCard job={job} />
                   </div>
                 ))}
-                    </div>
-                  </div>
+              </div>
+            </div>
             <div ref={dropZoneContainerRef} style={{ opacity: 0 }}>
               <DropZone />
-                    </div>
-                  </div>
+            </div>
+          </div>
 
 
         </div>
