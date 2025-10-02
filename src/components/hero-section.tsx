@@ -10,6 +10,106 @@ import { useTheme } from '@/contexts/ThemeContext'
 import Navigation from '@/components/navigation'
 import { gsap } from 'gsap'
 import { BlackSlideLeftButton, BeamBorderButton } from '@/components/ui/slide-buttons'
+import { MorphingText } from '@/components/ui/morphing-text'
+
+// Custom Morphing Text Component with consistent left alignment
+const CustomMorphingText = ({ texts }: { texts: string[] }) => {
+  const text1Ref = useRef<HTMLSpanElement>(null)
+  const text2Ref = useRef<HTMLSpanElement>(null)
+  const textIndexRef = useRef(0)
+  const morphRef = useRef(0)
+  const cooldownRef = useRef(0)
+  const timeRef = useRef(new Date())
+  const animationRef = useRef<number>()
+
+  const morphTime = 3.5  // Much slower for relaxed pace
+  const cooldownTime = 1.0  // Longer pause between transitions
+
+  const setStyles = (fraction: number) => {
+    const [current1, current2] = [text1Ref.current, text2Ref.current]
+    if (!current1 || !current2) return
+
+    // Smoother blur transitions
+    current2.style.filter = `blur(${Math.min(6 / fraction - 6, 100)}px)`
+    current2.style.opacity = `${Math.pow(fraction, 0.3) * 100}%`
+
+    const invertedFraction = 1 - fraction
+    current1.style.filter = `blur(${Math.min(6 / invertedFraction - 6, 100)}px)`
+    current1.style.opacity = `${Math.pow(invertedFraction, 0.3) * 100}%`
+
+    current1.textContent = texts[textIndexRef.current % texts.length]
+    current2.textContent = texts[(textIndexRef.current + 1) % texts.length]
+  }
+
+  const doMorph = () => {
+    morphRef.current -= cooldownRef.current
+    cooldownRef.current = 0
+
+    let fraction = morphRef.current / morphTime
+
+    if (fraction > 1) {
+      cooldownRef.current = cooldownTime
+      fraction = 1
+    }
+
+    setStyles(fraction)
+
+    if (fraction === 1) {
+      textIndexRef.current++
+    }
+  }
+
+  const doCooldown = () => {
+    morphRef.current = 0
+    const [current1, current2] = [text1Ref.current, text2Ref.current]
+    if (current1 && current2) {
+      current2.style.filter = "none"
+      current2.style.opacity = "100%"
+      current1.style.filter = "none"
+      current1.style.opacity = "0%"
+    }
+  }
+
+  const animate = () => {
+    animationRef.current = requestAnimationFrame(animate)
+
+    const newTime = new Date()
+    const dt = (newTime.getTime() - timeRef.current.getTime()) / 1000
+    timeRef.current = newTime
+
+    morphRef.current += dt
+    cooldownRef.current -= dt
+
+    if (cooldownRef.current <= 0) doMorph()
+    else doCooldown()
+  }
+
+  useEffect(() => {
+    // Start animation immediately
+    animate()
+    
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current)
+      }
+    }
+  }, [])
+
+  return (
+    <>
+      <span
+        className="absolute left-0 top-0 inline-block"
+        ref={text1Ref}
+        style={{ opacity: 0 }}
+      />
+      <span
+        className="absolute left-0 top-0 inline-block"
+        ref={text2Ref}
+        style={{ opacity: 0 }}
+      />
+    </>
+  )
+}
 
 export default function HeroSection() {
     const { theme } = useTheme()
@@ -56,8 +156,14 @@ export default function HeroSection() {
                         {/* LEFT CONTENT */}
                         <div className="max-w-xl space-y-6 relative z-10">
                             <h1 ref={titleRef} className="text-5xl font-semibold tracking-tight" style={{ opacity: 0, scale: 0.5, filter: "blur(20px)" }}>
-                            <span className="text-gray-300 dark:text-gray-300 text-gray-600">Building the</span><br />
-                            <span className="text-orange-500 dark:text-orange-500">Future</span> <span className="text-gray-300 dark:text-gray-300 text-gray-600">Now</span>
+                            <div className="flex flex-col">
+                                <span className="text-gray-300 dark:text-gray-300 text-gray-600">Building the</span>
+                                <div className="relative inline-block text-orange-500 dark:text-orange-500 text-5xl font-semibold tracking-tight h-16 flex items-start">
+                                    <CustomMorphingText 
+                                        texts={["Future", "Design", "UX/UI", "Products", "Experiences"]}
+                                    />
+                                </div>
+                            </div>
                             </h1>
                             <p ref={subtitleRef} className="text-lg text-gray-400 dark:text-gray-400 text-gray-600 max-w-[450px]" style={{ opacity: 0, scale: 0.5, filter: "blur(20px)" }}>
                             From research to launch: designing and building products for fintech, crypto, AI, and education.
