@@ -473,7 +473,7 @@ export default function Home() {
     <div className="space-y-12 px-4 md:px-14 pt-2">
       {/* Intro Text */}
       <p ref={introTextRef} className="text-2xl text-left" style={{ opacity: 0, transform: 'translateY(50px)' }}>
-      I've spent the last 15 years leading design across fintech, education, e-commerce and startups. I'm good at turning user research into interfaces that actually scale. I work across the entire product lifecycle - from the initial strategy right through to coding the front-end in React and Next.js. In addition to this I also launched an award-winning music magazine and created a social app that pulled in over 10,000 users globally in its first year.
+      For 15 years, I've led product design for startups and global brands in fintech, banking, and education. I guide products from initial strategy and user research through to front-end development in React and Next.js, building interfaces that scale. My entrepreneurial work includes launching a social app to over 10,000 users in its first year.
       </p>
 
       {/* Case Study Image */}

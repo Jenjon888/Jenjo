@@ -56,10 +56,11 @@ export default function HeroSection() {
                         {/* LEFT CONTENT */}
                         <div className="max-w-xl space-y-6 relative z-10">
                             <h1 ref={titleRef} className="text-5xl font-semibold tracking-tight" style={{ opacity: 0, scale: 0.5, filter: "blur(20px)" }}>
-                            <span className="text-orange-500 dark:text-white">Intelligent</span>  <span className="text-gray-300 dark:text-gray-300 text-gray-600">Design & Development </span>
+                            <span className="text-gray-300 dark:text-gray-300 text-gray-600">Building the</span><br />
+                            <span className="text-orange-500 dark:text-orange-500">Future</span> <span className="text-gray-300 dark:text-gray-300 text-gray-600">Now</span>
                             </h1>
                             <p ref={subtitleRef} className="text-lg text-gray-400 dark:text-gray-400 text-gray-600 max-w-[450px]" style={{ opacity: 0, scale: 0.5, filter: "blur(20px)" }}>
-                            A Senior UX/UI Product Designer who designs and builds products including AI-powered applications.
+                            From research to launch: designing and building products for fintech, crypto, AI, and education.
                             </p>
 
                             <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-4 mt-6 justify-start sm:justify-start" style={{ opacity: 0, scale: 0.5, filter: "blur(20px)" }}>
