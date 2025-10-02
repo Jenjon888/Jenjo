@@ -10,6 +10,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 export default function Process() {
   const [activeSection, setActiveSection] = useState(0)
+  const [typewriterText, setTypewriterText] = useState('')
+  const [isTypewriterComplete, setIsTypewriterComplete] = useState(false)
   const researchImageRef = useRef<HTMLDivElement>(null)
   const researchSectionRef = useRef<HTMLDivElement>(null)
   const strategyImageRef = useRef<HTMLDivElement>(null)
@@ -28,6 +30,9 @@ export default function Process() {
   const developmentWordRef = useRef<HTMLSpanElement>(null)
   const testingWordRef = useRef<HTMLSpanElement>(null)
   const launchWordRef = useRef<HTMLSpanElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
+
+  const fullText = "From baseline to breakthrough. My comprehensive process follows a proven methodology. Starting with deep research and strategic planning, moving through design and solid development, and finishing with thorough testing and successful launch. I craft digital products that do more than just look good, but serve a purpose, create meaningful connections, and drive real business impact."
 
   const sections = [
     {
@@ -130,6 +135,49 @@ export default function Process() {
 
   const currentSection = sections[activeSection]
   const IconComponent = currentSection.icon
+
+  // Typewriter Effect - Only for first-time visitors
+  useEffect(() => {
+    const hasSeenTypewriter = localStorage.getItem('hasSeenProcessTypewriter')
+    
+    if (hasSeenTypewriter) {
+      // Skip animation, show everything immediately
+      setTypewriterText(fullText)
+      setIsTypewriterComplete(true)
+      if (contentRef.current) {
+        gsap.set(contentRef.current, { opacity: 1, y: 0 })
+      }
+      return
+    }
+
+    // First time visitor - play typewriter animation
+    let currentIndex = 0
+    const typingSpeed = 40 // milliseconds per character
+    
+    const typeNextCharacter = () => {
+      if (currentIndex < fullText.length) {
+        setTypewriterText(fullText.substring(0, currentIndex + 1))
+        currentIndex++
+        setTimeout(typeNextCharacter, typingSpeed)
+      } else {
+        // Typewriter is complete, wait a moment then fade in the content
+        setTimeout(() => {
+          setIsTypewriterComplete(true)
+          // Mark as seen in localStorage
+          localStorage.setItem('hasSeenProcessTypewriter', 'true')
+          // Fade in the main content
+          if (contentRef.current) {
+            gsap.fromTo(contentRef.current,
+              { opacity: 0, y: 30 },
+              { opacity: 1, y: 0, duration: 1, ease: "power2.out" }
+            )
+          }
+        }, 500)
+      }
+    }
+
+    typeNextCharacter()
+  }, [])
 
   // Image Preloading Effect
   useEffect(() => {
@@ -379,16 +427,21 @@ export default function Process() {
       {/* Hero Section */}
       <section className="flex justify-center px-4 md:px-12 py-20">
         <div className="w-full max-w-6xl">
-          <div className="text-center mb-20">
+          <div className="text-center mb-20 min-h-[200px] flex items-center justify-center">
             <p className="text-2xl md:text-3xl font-light leading-relaxed text-black dark:text-white max-w-5xl mx-auto">
-              From baseline to breakthrough. My comprehensive process follows a proven methodology. Starting with deep <em><span ref={researchWordRef} className="transition-all duration-300">research</span></em> and strategic <em><span ref={planningWordRef} className="transition-all duration-300">planning</span></em>, moving through <em><span ref={designWordRef} className="transition-all duration-300">design</span></em> and solid <em><span ref={developmentWordRef} className="transition-all duration-300">development</span></em>, and finishing with thorough <em><span ref={testingWordRef} className="transition-all duration-300">testing</span></em> and successful <em><span ref={launchWordRef} className="transition-all duration-300">launch</span></em>. I craft digital products that do more than just look good, but serve a purpose, create <em>meaningful connections</em>, and drive real business impact.
+              {typewriterText}
+              <span className={`inline-block w-0.5 h-6 md:h-8 bg-orange-500 ml-1 ${isTypewriterComplete ? 'opacity-0' : 'animate-pulse'}`}></span>
             </p>
           </div>
         </div>
       </section>
 
-      {/* Main Content */}
-      <div className="flex-1 max-w-6xl mx-auto px-4 md:px-12 pb-16">
+      {/* Main Content - Hidden until typewriter completes */}
+      <div 
+        ref={contentRef}
+        className="flex-1 max-w-6xl mx-auto px-4 md:px-12 pb-16"
+        style={{ opacity: 0 }}
+      >
         
         {/* Tab Navigation */}
         <div className="mb-16 border-b border-gray-200 dark:border-gray-700">
