@@ -389,20 +389,13 @@ export default function About() {
               
               {/* Profile Images */}
               <div className="flex flex-col items-center gap-4 my-8">
-                <div className="flex justify-center gap-2 w-full max-w-3xl">
-                  <Image
-                    src="/w_mask1.png"
-                    alt="Profile"
-                    width={400}
-                    height={400}
-                    className="hidden md:block rounded-[12px] shadow-lg object-cover flex-1"
-                  />
+                <div className="flex justify-center w-full max-w-3xl">
                   <Image
                     src="/ty60.png"
                     alt="Profile"
                     width={400}
                     height={400}
-                    className="rounded-[12px] shadow-lg object-cover flex-1"
+                    className="rounded-[12px] shadow-lg object-cover w-full md:w-auto"
                   />
                 </div>
                 <p className="text-sm text-gray-500 dark:text-gray-400 italic">
