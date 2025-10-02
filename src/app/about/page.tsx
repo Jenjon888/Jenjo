@@ -282,7 +282,7 @@ export default function About() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
+    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white flex flex-col">
       <Navigation />
       
       {/* Page Title */}
@@ -291,6 +291,7 @@ export default function About() {
 
 
       {/* Content Sections - Minimal Layout */}
+      <div className="flex-1">
       {/* Section Title */}
       <div className="flex justify-center px-4 md:px-12 py-12">
         <div ref={titleRef} className="w-full max-w-6xl text-center" style={{ opacity: 0 }}>
@@ -374,7 +375,7 @@ export default function About() {
                 </div>
                 <p className="text-sm text-gray-500 dark:text-gray-400 italic">
                   Some of my NFT AI artwork using midjourney
-                </p>
+              </p>
               </div>
              
             </div>
@@ -435,7 +436,7 @@ export default function About() {
                     setQuizQuestion(0)
                     setSelectedAnswer(null)
                     setShowFeedback(false)
-                    setScore(0)
+                    setQuizScore(0)
                     setQuizTime(0)
                   }}
                   className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
@@ -443,7 +444,7 @@ export default function About() {
                 >
                   <X className="w-5 h-5 text-gray-600 dark:text-gray-400" />
                 </button>
-                
+
                 <div className="mb-8">
                   <div className="flex justify-between items-center mb-3">
                     <span className="text-sm font-semibold text-gray-500 dark:text-gray-400">Question {quizQuestion + 1} of {quizQuestions.length}</span>
@@ -580,7 +581,7 @@ export default function About() {
 
         </div>
       </div>
-
+      </div>
 
       <Footer />
     </div>

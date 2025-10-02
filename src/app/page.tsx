@@ -464,11 +464,11 @@ export default function Home() {
 
   
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
+    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white flex flex-col">
       <HeroSection />
 
                 {/* MAIN BODY SECTION */}
-<section ref={mainBodySectionRef} className="flex justify-center">
+<section ref={mainBodySectionRef} className="flex-1 flex justify-center">
   <div className="relative w-full max-w-6xl pt-4 pb-0 md:py-6 lg:py-8 text-black dark:text-white">
     <div className="space-y-12 px-4 md:px-14 pt-2">
       {/* Intro Text */}

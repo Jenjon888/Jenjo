@@ -73,7 +73,7 @@ export default function CaseStudies() {
   ]
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
+    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white flex flex-col">
       <Navigation />
 
       {/* Section Title */}
@@ -96,7 +96,7 @@ export default function CaseStudies() {
       </div>
 
       {/* Case Studies Grid */}
-      <div className="flex justify-center px-4 md:px-12 pb-20">
+      <div className="flex-1 flex justify-center px-4 md:px-12 pb-20">
         <div className="w-full max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {highlights.map((item) => {

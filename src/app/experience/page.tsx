@@ -537,7 +537,7 @@ export default function Experience() {
   )
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
+    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white flex flex-col">
       <Navigation />
       
       {/* Animated Title Section */}
@@ -559,7 +559,7 @@ export default function Experience() {
         </div>
       </div>
 
-      <div className="flex justify-center px-4 sm:px-6 lg:px-12">
+      <div className="flex-1 flex justify-center px-4 sm:px-6 lg:px-12">
         <div className="w-full max-w-7xl">
           {/* Intro Section with Download CV */}
           <div ref={introRef} className="mb-8 sm:mb-12" style={{ opacity: 0 }}>

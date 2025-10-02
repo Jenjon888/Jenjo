@@ -73,7 +73,7 @@ export default function Contact() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
+    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white flex flex-col">
       <Navigation />
 
       {/* Section Title */}
@@ -96,7 +96,7 @@ export default function Contact() {
       </div>
 
       {/* Contact Options */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 px-4 md:px-12 pb-20">
+      <div className="flex-1 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 px-4 md:px-12 pb-20">
 
         {/* Option 1 | Calendly */}
         <div>
