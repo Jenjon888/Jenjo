@@ -494,8 +494,8 @@ export default function Experience() {
 
   const handleDownloadCV = () => {
     const link = document.createElement('a')
-    link.href = '/JJCV.pdf'
-    link.download = 'JJCV.pdf'
+    link.href = '/CV_JJ.pdf'
+    link.download = 'CV_JJ.pdf'
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
