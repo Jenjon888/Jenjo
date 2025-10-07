@@ -15,14 +15,6 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: "Jen Jones - UX/UI AI Design Development Consulting",
   description: "Test fast, learn faster",
-  icons: {
-    icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/favicon.png', type: 'image/png' }
-    ],
-    shortcut: '/favicon.ico',
-    apple: '/favicon.png',
-  },
 };
 
 export default function RootLayout({
@@ -33,9 +25,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicon.png" type="image/png" />
-        <link rel="apple-touch-icon" href="/favicon.png" />
         <script
           dangerouslySetInnerHTML={{
             __html: `

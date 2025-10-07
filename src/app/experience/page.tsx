@@ -25,29 +25,93 @@ interface Job {
 const jobs: Job[] = [
   {
     id: '1',
-    company: 'Independent Projects',
-    role: 'Professional Development & R&D',
-    period: 'Feb 2024 – Present',
+    company: 'Candidata',
+    role: 'AI Product Designer & Developer',
+    period: 'Jun 2025 – Present',
     description: [
-      'Deeply involved in AI research and development with a focus on UX/UI, front-end development, and content management, bringing together design expertise and emerging technology through two key projects.',
-      'Cryptocurrency Portfolio Management App (Feb 2024 - Nov 2024): Designed the complete UX and UI for an AI-powered application leveraging crypto experience since 2016. Created a secure, intuitive tool with real-time insights, buy/sell signals, and sentiment analysis features, built with a practical, forward-thinking approach designed to evolve into a fully working product.',
-      'UX Design Chatbot (Dec 2024 - Jun 2025): Created a conversational AI chatbot to accelerate the product design process and improve cross-team collaboration. The tool guides designers, researchers, and stakeholders through journey mapping, wireframing, and user testing inside a conversational interface, blending creativity with efficiency.',
-      'Enhanced development proficiency by integrating AI coding assistants including Cursor and GitHub Copilot into the workflow, accelerating project creation and improving code quality.'
+      'Working on a cutting edge way for people to hire and find work.'
     ],
     businessGoals: [
-      'AI-powered crypto app',
-      'UX design chatbot',
-      'Real-time trading insights',
-      'Accelerate design process',
-      'Cross-team collaboration'
+      'AI-powered hiring platform',
+      'Modern recruitment solution',
+      'User-centric design'
     ],
-    keyResult: 'Built two AI-powered products from concept to functional prototypes'
+    keyResult: 'Building innovative hiring platform from the ground up'
   },
   {
     id: '2',
+    company: 'Various',
+    role: 'Product Designer',
+    period: 'Feb 2025 – May 2025',
+    description: [
+      'Designed and developed various websites for small businesses, including consultancy-based websites that balanced user needs with business goals, providing clear, modern design solutions tailored to limited resources and fast turnarounds.',
+      'www.europaoilltd.com',
+      'www.inspiredsolutions.com'
+    ],
+    businessGoals: [
+      'Small business websites',
+      'Consultancy platforms',
+      'Fast turnaround delivery',
+      'Budget-conscious solutions',
+      'Modern design systems'
+    ],
+    keyResult: 'Delivered multiple client websites with modern design solutions'
+  },
+  {
+    id: '3',
+    company: 'CryptFolio',
+    role: 'AI UX UI Designer & Front End Dev',
+    period: 'Sep 2024 – Feb 2025',
+    description: [
+      'Led the entire experience from strategy to pixels for an AI-powered cryptocurrency portfolio management platform that helps investors make confident decisions through explainable intelligence.',
+      'Shaped the product narrative, defined information architecture, and designed interactions and visuals that balance advanced functionality with user-friendly design for investors with varying experience levels.',
+      'The work spans research, information architecture, user flows, high-fidelity UI, interactive prototypes, and a lightweight design system.',
+      'Designed for two primary groups: emerging investors who need clarity and simple guidance, and active investors who want deeper analytics, rules, and automation with safeguards.',
+      'Created a unified dashboard reconciling exchange and on-chain data, explainable AI insight cards with confidence and risk levels, and an automation builder with built-in guardrails.',
+      'Conducted interviews and concept testing focused on decision moments such as checking daily risk, rebalancing, and handling alerts, discovering that investors need trust, transparency, and actionable insights above all.',
+      'Core features include connecting exchanges and wallets with read-only permissions, viewing true holdings and performance across time, understanding exposure and risk, acting on recommendations with impact preview, and exporting reports for tax.',
+      'Developed and coded the complete MVP, bringing the full design vision to life as a functional product.'
+    ],
+    caseStudy: '/case-studies/crypto-ai-portfolio',
+    businessGoals: [
+      'AI-powered crypto app',
+      'Trust & transparency',
+      'Explainable intelligence',
+      'Real-time insights',
+      'Automation with safeguards'
+    ],
+    keyResult: 'Built AI-powered crypto portfolio app with explainable insights and unified dashboard'
+  },
+  {
+    id: '4',
+    company: 'UXChat',
+    role: 'AI UX UI Designer & Front End Dev',
+    period: 'May 2024 – Aug 2024',
+    description: [
+      'Designed an AI-powered UX research chatbot to democratise expert knowledge and make trusted guidance accessible 24/7 for practitioners at all career stages.',
+      'Led the experience from problem framing to high-fidelity design, mapping user and business goals, designing the conversation model, curating and structuring the knowledge corpus, and building prototypes to test comprehension, trust, and time to useful outcome.',
+      'Uses modern large language models grounded in a curated corpus of research notes, case studies, workshop decks, and writing to provide mentor-like guidance that explains methods, critiques artefacts, and suggests next steps with clear references.',
+      'Designed for two groups: beginners who want foundations and clear examples, and practitioners who need quick refreshers, critique, and reusable patterns.',
+      'Created a conversation loop that triages intent and skill level, retrieves relevant sources from the corpus, composes answers with real examples, offers practical actions, and logs key takeaways with reflection prompts.',
+      'All answers are grounded in structured corpus with abstracts, key takeaways, and canonical references. Project artefacts are de-identified and annotated with decision rationale and outcomes.',
+      'Knowledge base covers methods (interviews, diary studies, surveys, usability testing), synthesis patterns (affinity mapping, insight writing), design artefacts (journey maps, IA proposals, interaction patterns), and facilitation playbooks for workshops.',
+      'Built trust through grounded answers with inline source citations, adaptive multiturn conversations, practical actions like generating test plans and critiquing scripts, and reflection prompts that turn sessions into learning logs.'
+    ],
+    caseStudy: '/case-studies/ux-research-chatbot',
+    businessGoals: [
+      'Democratise UX knowledge',
+      '24/7 expert guidance',
+      'Grounded AI responses',
+      'Mentor-like experience',
+      'Practical learning outcomes'
+    ],
+    keyResult: 'Developed AI mentor chatbot with grounded answers and adaptive learning paths'
+  },
+  {
+    id: '5',
     company: 'Poker Dealer Academy',
     role: 'Product Designer/Consultant',
-    period: 'Jul 2023 – Jan 2024',
+    period: 'Jul 2023 – Apr 2024',
     description: [
       'Led design for Poker Dealer Academy (PDA), an online instructional video platform for aspiring poker dealers, collaborating closely with a full-stack developer in an agile setup.',
       'Designed both the visual identity and end-to-end user experience, from early wireframes through to fully interactive UI designs, creating an intuitive and engaging learning environment.',
@@ -68,7 +132,7 @@ const jobs: Job[] = [
     keyResult: 'Launched platform supporting 1,000+ students with custom video features'
   },
   {
-    id: '3',
+    id: '6',
     company: 'YLD',
     role: 'Product Designer',
     period: 'Jan 2023 – Jul 2023',
@@ -93,7 +157,7 @@ const jobs: Job[] = [
     keyResult: 'Unified 24 brands and reduced development time by 40%'
   },
   {
-    id: '4',
+    id: '7',
     company: 'Medify',
     role: 'Senior UX/UI Designer',
     period: 'Apr 2022 – Sep 2022',
@@ -117,7 +181,7 @@ const jobs: Job[] = [
     keyResult: 'Increased developer efficiency by 25% and user satisfaction by 20%'
   },
   {
-    id: '5',
+    id: '8',
     company: 'Eiger Trading',
     role: 'UX/UI Lead',
     period: 'Sep 2021 – Feb 2022',
@@ -140,7 +204,7 @@ const jobs: Job[] = [
     keyResult: 'Established complete visual identity and reusable component library'
   },
   {
-    id: '6',
+    id: '9',
     company: 'Mortgage Gym',
     role: 'Senior UX/UI Lead',
     period: 'Mar 2021 – May 2021',
@@ -162,7 +226,7 @@ const jobs: Job[] = [
     keyResult: 'Delivered advanced mortgage fact-finder with comprehensive specs'
   },
   {
-    id: '7',
+    id: '10',
     company: 'CoGo',
     role: 'Product UX/UI Lead',
     period: 'Oct 2019 – Dec 2019',
@@ -185,7 +249,7 @@ const jobs: Job[] = [
     keyResult: 'Increased user retention by 10% through 15+ user interviews'
   },
   {
-    id: '8',
+    id: '11',
     company: 'HSBC',
     role: 'UX Lead',
     period: 'Jul 2019 – Sep 2019',
@@ -208,7 +272,7 @@ const jobs: Job[] = [
     keyResult: 'Simplified cash flow insights for small business owners'
   },
   {
-    id: '9',
+    id: '12',
     company: 'Urbanarchive',
     role: 'Senior UX & UI Designer',
     period: 'Mar 2019 – Jul 2019',
@@ -229,7 +293,7 @@ const jobs: Job[] = [
     keyResult: 'Delivered responsive Google Maps website with full team hired'
   },
   {
-    id: '10',
+    id: '13',
     company: 'New Signature',
     role: 'UX/UI Consultant',
     period: 'Jul 2018 – Feb 2019',
@@ -251,7 +315,7 @@ const jobs: Job[] = [
     keyResult: 'Showcased at Amsterdam ISE and delivered British Heart Foundation website'
   },
   {
-    id: '11',
+    id: '14',
     company: 'Open Banking',
     role: 'UX/UI Lead',
     period: 'Aug 2017 - Feb 2018',
@@ -389,8 +453,41 @@ export default function Experience() {
 
   // Generate snapshot summary
   const getSnapshotSummary = (jobId: string): string | null => {
-    if (jobId === '4') { // Medify
+    if (jobId === '3') { // CryptFolio
+      return 'Led end-to-end design for an AI-powered cryptocurrency portfolio platform from strategy to pixels. Conducted user research revealing that trust and transparency are critical for investors. Created explainable intelligence through unified dashboards, transparent insight cards with confidence levels, and automation with built-in safeguards. Delivered complete information architecture, interactive prototypes, lightweight design system, and created the MVP.'
+    }
+    if (jobId === '4') { // UXChat
+      return 'Designed AI-powered UX research chatbot to democratize expert knowledge with 24/7 mentor-like guidance. Built grounded conversation model using curated corpus of research notes and case studies. Created adaptive learning experience covering methods, synthesis patterns, design artifacts, and facilitation playbooks. Delivered prototype with inline source citations, practical actions, and reflection prompts that turn sessions into learning logs.'
+    }
+    if (jobId === '5') { // Poker Dealer Academy
+      return 'Led complete design for Poker Dealer Academy, an online instructional platform for aspiring poker dealers. Designed visual identity, brand logo, and end-to-end user experience from wireframes to interactive UI. Created custom video player with advanced features including multilingual subtitles, autoplay, and video submission for instructor review. Implemented dark/light modes, designed interactive dashboard, and integrated Stripe payments for 1,000+ students.'
+    }
+    if (jobId === '6') { // YLD
+      return 'Collaborated to develop multi-brand design system for financial client through Discovery, Foundations, and Components phases. Conducted stakeholder interviews, UI audit, and authored foundational guidelines on Supernova for 24 brands. Built core components with brand theming kits, conducted workshops for onboarding, and led creation of design council. Reduced component development time by 40% through comprehensive documentation and reusable architecture.'
+    }
+    if (jobId === '7') { // Medify
       return 'Led comprehensive UX/UI redesign for Medify\'s healthcare education platform. Created a new design system that increased developer efficiency by 25% and improved user satisfaction by 20%. Conducted structured usability testing with 30+ users, reducing critical navigation errors by 50%. Delivered consistent design across all content types with regular QA reviews.'
+    }
+    if (jobId === '8') { // Eiger Trading
+      return 'Served as senior UX/UI designer on greenfield Shari\'ah-compliant commodities trading platform. Developed complete design from wireframes to innovative UI in agile environment. Built reusable components, design patterns, and comprehensive style guide. Created internal tool for quick style guide updates from Figma. Wrote detailed functional specifications with page-by-page behavioral breakdowns for development team.'
+    }
+    if (jobId === '9') { // Mortgage Gym
+      return 'Led UX/UI for advanced mortgage fact-finder tool, working closely with COO and Product Manager. Organised user testing sessions to validate design decisions on mortgage workflows. Created high-fidelity annotated wireframes showing structure, taxonomy, and interaction patterns. Developed extensive functional specifications for development teams. Participated in daily scrums and client meetings throughout project lifecycle.'
+    }
+    if (jobId === '10') { // CoGo
+      return 'Transformed complex data into simplified user experiences for ethical fintech app. Worked with Product Owner and Head of Data to prioritize goals and define outcomes. Conducted user testing, focus groups, and 15+ user interviews to inform design decisions. Created comprehensive user journeys, wireframes, and functionality specifications. Led redesign that increased user retention by 10% in first month through multidisciplinary agile collaboration.'
+    }
+    if (jobId === '11') { // HSBC
+      return 'Led UX design for HSBC Kinetic\'s Data & Insights team, focusing on cash flow analysis and accounting integration for small business owners. Translated complex requirements into intuitive designs and tested wireframes with users including card sorting exercises. Conducted observation sessions to identify behavioral patterns early. Collaborated with cross-functional team and presented findings to Heads of Design, UX, and Development.'
+    }
+    if (jobId === '12') { // Urbanarchive
+      return 'Constructed high-fidelity wireframes for Google Maps API website with optimal user flow and visual hierarchy. Designed responsive UI using Sketch and Zeplin with consistency across all devices. Created interactive prototypes for stakeholder sign-off. Managed hiring process for designers and developers within limited budgets. Provided detailed QA documentation with screen-by-screen bug analysis.'
+    }
+    if (jobId === '13') { // New Signature
+      return 'Worked on WCD web application for meeting insights and responsive website for British Heart Foundation\'s National Defibrillator Network. Designed UX wireframes and fine-tuned Microsoft Power BI charts for better data visualization. Created interactive HTML prototypes showcased at Integrated Systems Europe Exhibition in Amsterdam. Developed scalable design systems using shared Sketch libraries and prioritized content strategy and information architecture.'
+    }
+    if (jobId === '14') { // Open Banking
+      return 'Served as sole UX/UI lead for two core development teams designing Open Banking API applications. Created and validated interactive prototypes for security models and user consent flows. Presented to 200+ industry stakeholders including Barclays and HSBC representatives. Developed comprehensive design documentation and pattern libraries. Collaborated with compliance teams to balance regulatory requirements with UX best practices.'
     }
     return null
   }
