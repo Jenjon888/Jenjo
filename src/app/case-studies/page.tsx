@@ -13,17 +13,17 @@ export default function CaseStudies() {
     {
       id: 1,
       title: "Crypto Portfolio Platform",
-      description: "Launching a premium crypto portfolio management platform with focus on performance and scalability.",
+      description: "AI crypto portfolio management platform with focus on insights and performance.",
       metric: "40%",
       metricDescription: "increase in task completion after onboarding redesign",
       link: "/case-studies/crypto-ai-portfolio",
-      image: "/charts.png",
+      image: "/crypto/capp1.png",
       year: "2024"
     },
     {
       id: 2,
       title: "UX Research Chatbot",
-      description: "A distinctive and immersive AI-powered chatbot for user research and design insights",
+      description: "Immersive AI-powered chatbot for user research and design insights",
       metric: "1",
       metricDescription: "Awwwards nomination",
       link: "/case-studies/ux-research-chatbot",
@@ -53,7 +53,7 @@ export default function CaseStudies() {
     {
       id: 5,
       title: "YLD Design System",
-      description: "Creating a comprehensive design system for YLD to ensure consistency and scalability across all digital products",
+      description: "Creating a comprehensive design system to ensure consistency and scalability across all digital products",
       metric: "50+",
       metricDescription: "components designed and documented",
       link: "/case-studies/yld-design-system",
