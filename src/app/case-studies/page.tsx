@@ -17,7 +17,7 @@ export default function CaseStudies() {
       metric: "40%",
       metricDescription: "increase in task completion after onboarding redesign",
       link: "/case-studies/crypto-ai-portfolio",
-      image: "/crypto/capp1.png",
+      image: "/capp1.png",
       year: "2024"
     },
     {

@@ -626,7 +626,7 @@ export default function Home() {
 
   {/* Featured Case Study Card */}
   <div>
-    <Link href="/portfolio/crypto" className="block">
+    <Link href="/case-studies/crypto-ai-portfolio" className="block">
       <div className="relative overflow-hidden rounded-[12px] border border-gray-200 dark:border-gray-700 group cursor-pointer hover:border-orange-500 transition-all duration-300 hover:shadow-[0_0_15px_rgba(249,115,22,0.15)]">
         {/* Featured Work Badge - Top Left */}
         <div className="absolute top-0 left-0 z-10">

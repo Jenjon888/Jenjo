@@ -13,7 +13,7 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
 }
 
-export default function CaseStudyPage() {
+export default function CryptoAICaseStudy() {
   // Create refs for all image containers
   const heroContainerRef = useRef<HTMLDivElement>(null)
   const heroImageRef = useRef<HTMLImageElement>(null)
@@ -82,7 +82,7 @@ export default function CaseStudyPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-white dark:bg-black text-gray-800 dark:text-white px-4 py-20">
+      <section className="bg-white dark:bg-black text-gray-800 dark:text-white px-4 md:px-12 py-20">
         <div className="max-w-6xl mx-auto">
 
           {/* Logo and Company Name */}
@@ -103,7 +103,7 @@ export default function CaseStudyPage() {
       </section>
 
       {/* Hero Image with Parallax Effect */}
-      <section className="px-4 pt-16">
+      <section className="px-4 md:px-12 pt-16">
         <div className="max-w-6xl mx-auto">
           <div ref={heroContainerRef} className="w-full h-[500px] md:h-[800px] relative overflow-hidden rounded-lg">
             <Image
@@ -119,7 +119,7 @@ export default function CaseStudyPage() {
 
 
       {/* Project Information */}
-      <section className="px-4 pb-8">
+      <section className="px-4 md:px-12 pb-8">
         <div className="max-w-6xl mx-auto bg-gray-50 dark:bg-black text-gray-800 dark:text-white rounded-lg p-8">
           <div className="flex flex-wrap gap-[60px]">
             <div>
@@ -140,7 +140,7 @@ export default function CaseStudyPage() {
 
 
       {/* Project Details */}
-      <section className="px-4 py-16">
+      <section className="px-4 md:px-12 py-16">
         <div className="max-w-6xl mx-auto space-y-16">
           
           {/* What We Did Section */}
@@ -366,7 +366,7 @@ export default function CaseStudyPage() {
                     </p>
                     
                     {/* Key Insight Callout */}
-                    <div className="mt-6 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-l-4 border-blue-500 rounded-r-lg">
+                    <div className="mt-6 p-6 bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 rounded-r-lg">
                       <div>
                         <h4 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-2">Key Insight</h4>
                         <p className="text-blue-800 dark:text-blue-200 leading-relaxed">
@@ -550,7 +550,7 @@ export default function CaseStudyPage() {
                 <p>
                   Cryptfolio represents a personal milestone in creativity, research, and innovation. A complete journey from idea to a functioning product that adds real value and has strong potential to scale.
                 </p>
-                <div className="mt-8 p-6 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-l-4 border-green-500 rounded-r-lg">
+                <div className="mt-8 p-6 bg-green-50 dark:bg-green-900/20 border-l-4 border-green-500 rounded-r-lg">
                   <h4 className="text-lg font-semibold text-green-900 dark:text-green-100 mb-2">Future Opportunities</h4>
                   <p className="text-green-800 dark:text-green-200 leading-relaxed">
                     AI insights can be deepened further through more sophisticated visualisations such as cluster style data views for uncovering correlations and emerging patterns. Growth is planned in measured stages, starting with early adopters and scaling toward one hundred thousand active users by the third year. Sponsorships and limited edition merchandise present additional ways to build community and strengthen brand presence.
@@ -564,7 +564,7 @@ export default function CaseStudyPage() {
       </section>
 
       {/* Results Section */}
-      <section className="px-4 py-8">
+      <section className="px-4 md:px-12 py-8">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-2">
             <div className="lg:col-span-2">
@@ -622,7 +622,7 @@ export default function CaseStudyPage() {
       </section>
 
       {/* Case Study Navigation */}
-      <section className="px-4 py-8">
+      <section className="px-4 md:px-12 py-8">
         <div className="max-w-6xl mx-auto">
           <div className="pt-8">
           <div className="flex justify-between items-center">
