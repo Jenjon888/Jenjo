@@ -82,11 +82,11 @@ export default function CryptoAICaseStudy() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-white dark:bg-black text-gray-800 dark:text-white px-4 md:px-12 py-20">
+      <section className="bg-white dark:bg-black text-gray-800 dark:text-white px-4 md:px-12 pt-20 pb-[40px]">
         <div className="max-w-6xl mx-auto">
 
           {/* Logo and Company Name */}
-          <div className="mb-16">
+          <div className="mb-0">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-gray-800 dark:bg-white rounded-lg flex items-center justify-center">
                 <span className="text-white dark:text-black font-bold text-xl">C</span>
@@ -96,14 +96,14 @@ export default function CryptoAICaseStudy() {
           </div>
 
           {/* Project Summary */}
-          <h1 className="text-4xl md:text-6xl font-light leading-tight max-w-5xl text-gray-800 dark:text-white">
-            A crypto portfolio intelligence app that brings everything needed to understand a portfolio at a glance, transforming data into actionable insights.
-          </h1>
+          {/* <h1 className="text-4xl md:text-6xl font-light leading-tight max-w-5xl text-gray-800 dark:text-white">
+            A crypto portfolio intelligence app, transforming data into actionable insights.
+          </h1> */}
         </div>
       </section>
 
       {/* Hero Image with Parallax Effect */}
-      <section className="px-4 md:px-12 pt-16">
+      <section className="px-4 md:px-12 pt-0">
         <div className="max-w-6xl mx-auto">
           <div ref={heroContainerRef} className="w-full h-[500px] md:h-[800px] relative overflow-hidden rounded-lg">
             <Image
@@ -119,7 +119,7 @@ export default function CryptoAICaseStudy() {
 
 
       {/* Project Information */}
-      <section className="px-4 md:px-12 pb-8">
+      <section className="px-2 md:px-8 pb-8">
         <div className="max-w-6xl mx-auto bg-gray-50 dark:bg-black text-gray-800 dark:text-white rounded-lg p-8">
           <div className="flex flex-wrap gap-[60px]">
             <div>
@@ -151,7 +151,7 @@ export default function CryptoAICaseStudy() {
             <div className="lg:col-span-3">
               <div className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed space-y-6 text-left">
                 <p>
-                  I conceived and built a crypto portfolio intelligence app that aggregates real time prices for the top one hundred cryptocurrencies, unifies market context such as news, events, influencer updates, and macro signals, and adds an AI layer that transforms data into actionable insights.
+                  I built a crypto portfolio app that aggregates real time prices for personal crypto assets, unifies market context such as news, events, influencer updates, and macro signals, and adds an AI layer that transforms data into actionable insights.
                 </p>
                 <p>
                   I designed the UX and UI, created the charts and widgets, and implemented the interactions and micro animations to make the experience clear, responsive, and enjoyable. A defining element is the AI InsightCard and the Insight Feed, which surface explanations, opportunities, and risks directly within the portfolio view.

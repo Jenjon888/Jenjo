@@ -88,11 +88,11 @@ export default function EducationPlatformCaseStudy() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-white dark:bg-black text-gray-800 dark:text-white px-4 md:px-12 py-20">
+      <section className="bg-white dark:bg-black text-gray-800 dark:text-white px-4 md:px-12 pt-20 pb-[40px]">
         <div className="max-w-6xl mx-auto">
 
           {/* Logo and Company Name */}
-          <div className="mb-16">
+          <div className="mb-0">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-gray-800 dark:bg-white rounded-lg flex items-center justify-center">
                 <span className="text-white dark:text-black font-bold text-xl">M</span>
@@ -102,14 +102,14 @@ export default function EducationPlatformCaseStudy() {
           </div>
 
           {/* Project Summary */}
-          <h1 className="text-4xl md:text-6xl font-light leading-tight max-w-5xl text-gray-800 dark:text-white">
+          {/* <h1 className="text-4xl md:text-6xl font-light leading-tight max-w-5xl text-gray-800 dark:text-white">
             Built a responsive GAMSAT preparation platform with structured practice tests and personalised feedback.
-          </h1>
+          </h1> */}
         </div>
       </section>
 
       {/* Hero Image with Parallax Effect */}
-      <section className="px-4 md:px-12 pt-16">
+      <section className="px-4 md:px-12 pt-0">
         <div className="max-w-6xl mx-auto">
           <div ref={heroContainerRef} className="w-full h-[600px] md:h-[800px] relative overflow-hidden rounded-lg">
             <Image
