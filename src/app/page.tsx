@@ -638,15 +638,15 @@ export default function Home() {
         <div className="flex flex-col md:flex-row h-full">
           <div className="md:w-3/5 aspect-[16/9] md:aspect-auto md:min-h-[500px] relative overflow-hidden bg-gray-100 dark:bg-gray-900">
             <img 
-              src="/charts.png"
+              src="/crypto/capp1.png"
               alt="Crypto Trading Platform"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
           </div>
           <div className="md:w-2/5 p-12 bg-white dark:bg-transparent flex flex-col justify-center">
             <span className="text-orange-500 text-sm font-medium">UI/UX</span>
-            <h3 className="text-4xl font-semibold text-black dark:text-white mt-4 mb-4">Crypto Trading Platform</h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">End-to-end crypto trading experience with seamless transaction flow</p>
+            <h3 className="text-4xl font-semibold text-black dark:text-white mt-4 mb-4">Crypto Portfolio Platform</h3>
+            <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">End-to-end crypto portfolio management experience with AI insights</p>
             <div className="flex items-center gap-2 text-orange-500">
               <span className="text-base font-medium">Explore Project</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />

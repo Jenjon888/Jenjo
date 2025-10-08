@@ -97,7 +97,7 @@ export default function CaseStudyPage() {
 
           {/* Project Summary */}
           <h1 className="text-4xl md:text-6xl font-light leading-tight max-w-5xl text-gray-800 dark:text-white">
-            Designed a innovative crypto portfolio interface with explainable AI to help investors make confident decisions.
+            A crypto portfolio intelligence app that brings everything needed to understand a portfolio at a glance, transforming data into actionable insights.
           </h1>
         </div>
       </section>
@@ -151,17 +151,21 @@ export default function CaseStudyPage() {
             <div className="lg:col-span-3">
               <div className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed space-y-6 text-left">
                 <p>
-                  The work spans research, information architecture, flows, high fidelity UI, interactive prototypes, and a lightweight design system that is ready for engineering discovery. End to end journey from connect accounts to portfolio to insights to recommendation to review.
+                  I conceived and built a crypto portfolio intelligence app that aggregates real time prices for the top one hundred cryptocurrencies, unifies market context such as news, events, influencer updates, and macro signals, and adds an AI layer that transforms data into actionable insights.
+                </p>
+                <p>
+                  I designed the UX and UI, created the charts and widgets, and implemented the interactions and micro animations to make the experience clear, responsive, and enjoyable. A defining element is the AI InsightCard and the Insight Feed, which surface explanations, opportunities, and risks directly within the portfolio view.
                 </p>
                 
                 <div className="flex flex-wrap gap-3">
                   {[
+                    "Product Strategy",
                     "UX Research",
                     "UI Design", 
-                    "Strategy",
-                    "Information Architecture",
-                    "Interactive Prototypes",
-                    "Design System"
+                    "Front-End Engineering",
+                    "Data Integration",
+                    "Animation Design",
+                    "Information Architecture"
                   ].map((item) => (
                     <span
                       key={item}
@@ -196,12 +200,10 @@ export default function CaseStudyPage() {
             <div className="lg:col-span-3">
               <div className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed space-y-4 text-left">
                 <p>
-                  Investors deal with scattered data and noisy signals. This concept shows how a calm interface and explainable intelligence can reduce effort, build trust, and help people act with confidence while staying in control.
+                  Managing a crypto portfolio previously meant switching between several platforms for prices, news, and events. I needed an immediate understanding of market-moving moments like Fed meetings, large buys or selloffs, and major updates, without compromising security.
                 </p>
                 <p>
-                  The key challenge was creating a platform that could handle complex financial data 
-                  while remaining intuitive for users with varying levels of crypto investment experience. 
-                  We needed to balance advanced functionality with user-friendly design.
+                  That led to a key decision: the product is intentionally information only, meaning no trading takes place within the app. This keeps user data safe while still delivering a powerful environment for analysis and decision making.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
                   <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
@@ -209,19 +211,19 @@ export default function CaseStudyPage() {
                     <ul className="text-base space-y-3 text-gray-700 dark:text-gray-300">
                       <li className="flex items-start">
                         <span className="text-blue-500 mr-2 mt-1">•</span>
-                        <span>Create a competitive AI-powered investment platform</span>
+                        <span>Create a product with real market value that users are willing to subscribe to</span>
                       </li>
                       <li className="flex items-start">
                         <span className="text-blue-500 mr-2 mt-1">•</span>
-                        <span>Increase user engagement and portfolio growth</span>
+                        <span>Develop a clear path for scaling from early adopters to a large active user base</span>
                       </li>
                       <li className="flex items-start">
                         <span className="text-blue-500 mr-2 mt-1">•</span>
-                        <span>Build trust in AI-driven financial recommendations</span>
+                        <span>Differentiate through meaningful AI insights and elegant data visualisation</span>
                       </li>
                       <li className="flex items-start">
                         <span className="text-blue-500 mr-2 mt-1">•</span>
-                        <span>Scale platform for diverse investment strategies</span>
+                        <span>Explore sponsorship opportunities and branded merchandise for extra revenue</span>
                       </li>
                     </ul>
                   </div>
@@ -230,19 +232,23 @@ export default function CaseStudyPage() {
                     <ul className="text-base space-y-3 text-gray-700 dark:text-gray-300">
                       <li className="flex items-start">
                         <span className="text-green-500 mr-2 mt-1">•</span>
-                        <span>Make informed investment decisions with AI insights</span>
+                        <span>See a unified real-time view of all crypto holdings across exchanges</span>
                       </li>
                       <li className="flex items-start">
                         <span className="text-green-500 mr-2 mt-1">•</span>
-                        <span>Track portfolio performance across multiple assets</span>
+                        <span>Understand what is happening in the market and why it matters</span>
                       </li>
                       <li className="flex items-start">
                         <span className="text-green-500 mr-2 mt-1">•</span>
-                        <span>Understand complex crypto market dynamics</span>
+                        <span>Receive AI insights that turn data into practical actions</span>
                       </li>
                       <li className="flex items-start">
                         <span className="text-green-500 mr-2 mt-1">•</span>
-                        <span>Access professional-grade tools with simple interface</span>
+                        <span>Enjoy a visually clear experience that performs seamlessly across desktop and mobile</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-green-500 mr-2 mt-1">•</span>
+                        <span>Trust the product through a secure, read-only setup</span>
                       </li>
                     </ul>
                   </div>
@@ -273,27 +279,29 @@ export default function CaseStudyPage() {
               <div className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed space-y-4 text-left">
                 <div className="space-y-6">
             <div>
+              <h3 className="text-xl font-semibold mb-4">Approach</h3>
+                    <p>
+                I began with in-depth market research to see what already existed, identify gaps, and define where a more intuitive and useful experience could fit. From there, I designed a dashboard-first MVP focused on giving users an immediate overview upon login.
+              </p>
+                    <p className="mt-4">
+                Real-time data, clean formatting, responsive charts, and interactive tooltips set the foundation. Each component was developed and tested in isolation using a sandbox environment before being integrated into the main interface.
+              </p>
+              <p className="mt-4">
+                Security guided every architectural decision, ensuring data could be accessed and analysed safely through read only connections without exposing trading permissions.
+              </p>
+            </div>
+
+            <div>
               <h3 className="text-xl font-semibold mb-4">My Role</h3>
                     <p>
-                I led the entire experience from strategy to pixels. I shaped the product narrative, defined the information architecture, designed interactions and visuals, and created prototypes to test comprehension and decision making. I wrapped everything into a clear handoff pack for an engineering team to pick up.
+                I led every part of the process, covering product strategy, user research, UX and UI design, front-end engineering, data integration, and animation. Every visual and interaction detail, from chart defaults to timing curves, was crafted to make complex information feel approachable and trustworthy.
               </p>
             </div>
 
             <div>
               <h3 className="text-xl font-semibold mb-4">Audience and Core Jobs</h3>
                     <p>
-                Two primary groups guided the design. Emerging investors want clarity and simple guidance. Active investors want deeper analytics, rules, and the ability to automate with safeguards.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold mb-4">Core Jobs the Product Must Support</h3>
-                    <p>
-                • Connect exchanges and wallets using read only permissions<br/>
-                • See true holdings, cost basis, and performance across time<br/>
-                • Understand exposure, drawdown, and concentration risk<br/>
-                • Act on recommendations with a preview of impact<br/>
-                • Export reports for tax and accounting
+                Two main audiences informed the design. Newcomers want to understand the crypto landscape without being overwhelmed. Experienced traders need a central, real-time command center that consolidates their insights. Both groups share similar needs: monitoring portfolio health, tracking events that influence markets, exploring AI insights, and running quick scenario checks without toggling between different tools.
               </p>
             </div>
           </div>
@@ -351,7 +359,10 @@ export default function CaseStudyPage() {
                   <div>
                     <h3 className="text-xl font-semibold mb-4">Research Methodology</h3>
                     <p>
-                      I combined short interviews, competitor scans, and quick concept tests using clickable prototypes. I focused on decision moments such as checking daily risk, rebalancing, and handling alerts.
+                      A combination of competitor research, market analysis, and user conversations informed the design. I compared popular crypto tools to map their strengths and gaps, while direct discussions with users revealed frustrations and opportunities.
+                    </p>
+                    <p className="mt-4">
+                      I also examined how other industries visualised complex data, helping refine how to present dense financial information without creating visual fatigue.
                     </p>
                     
                     {/* Key Insight Callout */}
@@ -359,7 +370,7 @@ export default function CaseStudyPage() {
                       <div>
                         <h4 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-2">Key Insight</h4>
                         <p className="text-blue-800 dark:text-blue-200 leading-relaxed">
-                          Investors didn't just want data, they needed <strong>trust, transparency, and actionable insights</strong>. Most were overwhelmed by market noise and needed clear signals they could understand and act upon with confidence.
+                          People do not want more data; they want <strong>clarity and confidence</strong>. They need an intelligent command center that adds context and meaning to the information they already have.
                         </p>
                       </div>
                     </div>
@@ -367,20 +378,47 @@ export default function CaseStudyPage() {
 
                   <div>
                     <h3 className="text-xl font-semibold mb-4">User Research Findings</h3>
+                    <ul className="space-y-2 mt-4">
+                      <li className="flex items-start">
+                        <span className="text-blue-500 mr-2 mt-1">•</span>
+                        <span>Beginners value clear explanations, helpful defaults, and visible security reassurance</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-blue-500 mr-2 mt-1">•</span>
+                        <span>Traders prefer fast, low-friction monitoring and scenario testing</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-blue-500 mr-2 mt-1">•</span>
+                        <span>Both groups trust read-only data connections that protect their accounts</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-blue-500 mr-2 mt-1">•</span>
+                        <span>Users expect updates to be real-time without manual refreshes</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-blue-500 mr-2 mt-1">•</span>
+                        <span>Customizable alerts and concise insights outperform long-form reports</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4">Competitive Analysis</h3>
                     <p>
-                      Through interviews with both novice and experienced crypto investors, I discovered that trust is the primary barrier to adoption. Users need to understand not just what the AI recommends, but why it's making those recommendations and what the potential risks are.
+                      Most tools fragment the experience by separating prices, news, and analytics into different products. Few combine all these data sources with AI-driven analysis or predictive modeling.
                     </p>
-                    
-                    <h4 className="text-lg font-semibold mb-2 mt-4">Competitive Analysis</h4>
-                    <p>
-                      Analysis of existing platforms revealed that most focus on either simplicity (losing power users) or complexity (overwhelming beginners). The opportunity was to create a platform that could scale with user sophistication while maintaining clarity.
+                    <p className="mt-4">
+                      The opportunity lies in creating a single environment where users can connect everything they care about, understand what matters most, and make better decisions.
                     </p>
                   </div>
 
                   <div>
                     <h3 className="text-xl font-semibold mb-4">Market Insights</h3>
                     <p>
-                      The crypto market's volatility creates unique challenges for portfolio management. Users need real-time insights but also want to understand the reasoning behind recommendations to build confidence in their investment decisions.
+                      Crypto markets move quickly and are heavily influenced by macro events such as interest rate announcements, government policy, and institutional activity. Social and influencer ecosystems also play a key role in driving sentiment.
+                    </p>
+                    <p className="mt-4">
+                      There is growing demand for products that translate these rapid changes into guidance rather than more noise.
                     </p>
                   </div>
                 </div>
@@ -423,48 +461,73 @@ export default function CaseStudyPage() {
                 <div className="space-y-6">
 
                   <div>
+                    <h3 className="text-xl font-semibold mb-4">Design Process</h3>
+                    <p>
+                      The design evolved from the dashboard outward to focus on immediate situational awareness. A component-based structure allowed continuous iteration on charts, widgets, and news feeds.
+                    </p>
+                    <p className="mt-4">
+                      Micro interactions and transitions were added to make navigation feel natural and data easier to interpret. Early sketches helped plan the hierarchy of charts and tables, ensuring users could move effortlessly from summary views to detailed analysis.
+                    </p>
+                  </div>
+
+                  <div>
                     <h3 className="text-xl font-semibold mb-4">Information Architecture</h3>
                     <p>
-                      I centered the IA around three questions. What do I own. What should I care about right now. What can I do next.
+                      The structure is built around a central dashboard that combines portfolio overviews, AI insights, and current market signals. Users can move deeper into specific assets, explore data over time, and manage preferences like notifications or influencer feeds.
                     </p>
                     
                     <h4 className="text-lg font-semibold mb-2 mt-4">Sections and Their Roles</h4>
-                    <p>
-                      • <strong>Portfolio</strong> gives the single view across exchanges and chains<br/>
-                      • <strong>Insights</strong> surfaces signals such as trend shifts, funding extremes, correlation breaks, and large wallet flows<br/>
-                      • <strong>Automations</strong> enables rule based actions and schedules<br/>
-                      • <strong>Activity and Audit</strong> provide history for transparency and learning<br/>
-                      • <strong>Settings</strong> manages connections, permissions, and exports
-                    </p>
-                    
-                    {/* Information Architecture */}
-                    {/* <div className="mt-6 w-full h-[300px] relative overflow-hidden rounded-lg">
-                      <Image
-                        src="/crypto/5.png"
-                        alt="Information Architecture - Sitemap and user flows"
-                        fill
-                        className="object-cover"
-                      />
-                    </div> */}
+                    <ul className="space-y-2">
+                      <li className="flex items-start">
+                        <span className="text-blue-500 mr-2 mt-1">•</span>
+                        <span><strong>Portfolio Overview</strong> – Summarizes holdings, allocation, and performance</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-blue-500 mr-2 mt-1">•</span>
+                        <span><strong>Market Pulse</strong> – Displays live prices and high-impact events</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-blue-500 mr-2 mt-1">•</span>
+                        <span><strong>Insight Center</strong> – Highlights AI-driven opportunities and risk analyses</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-blue-500 mr-2 mt-1">•</span>
+                        <span><strong>News and Media</strong> – Aggregates trusted news sources and personalized influencer content</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-blue-500 mr-2 mt-1">•</span>
+                        <span><strong>Scenario Lab</strong> – Enables exploration of what-if analyses based on past events</span>
+                      </li>
+                    </ul>
                   </div>
 
                   <div>
                     <h3 className="text-xl font-semibold mb-4">Technical Challenges</h3>
                     <p>
-                      The biggest challenge was optimizing chart rendering performance for large datasets. 
-                      We implemented virtual scrolling and data pagination to handle real-time updates without 
-                      compromising user experience. API rate limiting required careful data caching strategies 
-                      to ensure smooth interactions across all portfolio views.
+                      Integrating multiple real-time APIs meant handling synchronization, data cleaning, and consistent formatting. Chart accuracy and responsiveness had to remain flawless across devices.
+                    </p>
+                    <p className="mt-4">
+                      On mobile, I reduced visual noise and limited scroll length to improve readability. Security was maintained through a fully read-only setup with encrypted API handling and no trading functionality.
                     </p>
                   </div>
 
                   <div>
                     <h3 className="text-xl font-semibold mb-4">Iteration & Refinement</h3>
                     <p>
-                      We conducted three rounds of user testing, each revealing new insights. The first iteration 
-                      focused on basic functionality, the second on performance optimization, and the third on 
-                      advanced features. Each cycle helped us refine the balance between simplicity and power, 
-                      ultimately creating a platform that serves both novice and experienced investors.
+                      A dedicated test playground made it easy to prototype new ideas, layouts, and interactions before introducing them into the main app.
+                    </p>
+                    <p className="mt-4">
+                      I refined animations, transitions, and data refresh timing to keep the interface feeling alive without being distracting. For mobile, certain widgets were optimised or hidden to maintain clarity and speed. Countdown timers were added for key market events such as Bitcoin halvings, keeping important milestones front and centre.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4">Access to Data</h3>
+                    <p>
+                      The platform connects to a combination of APIs for real-time prices, crypto market news, global events and sentiment data, and exchange portfolio balances through secure read-only access.
+                    </p>
+                    <p className="mt-4">
+                      These inputs combine seamlessly, allowing users to understand both their portfolio and the broader market context in one place.
                     </p>
                   </div>
                 </div>
@@ -474,60 +537,87 @@ export default function CaseStudyPage() {
 
 
 
-          {/* Results Section */}
-          <section className="grid grid-cols-1 lg:grid-cols-5 gap-2">
+          {/* Outcome Section */}
+          <section className="grid grid-cols-1 lg:grid-cols-5 gap-2 mt-16">
             <div className="lg:col-span-2">
-              <h2 className="text-xl font-light tracking-wide text-left text-black dark:text-white">Results</h2>
+              <h2 className="text-xl font-light tracking-wide text-left text-black dark:text-white">Outcome</h2>
             </div>
             <div className="lg:col-span-3">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Result 1 - Single Portfolio View */}
-                <div className="border border-gray-300 dark:border-gray-600 rounded-xl p-6 flex flex-col">
-                  <div className="mb-3">
-                    <div className="text-3xl font-bold text-black dark:text-white mb-1">1</div>
-                    <h3 className="text-base font-semibold text-black dark:text-white">Single Portfolio View</h3>
-                  </div>
-                  <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-                    A unified dashboard that reconciles exchange and on-chain data, providing investors with a complete picture of their holdings across all platforms.
-                  </p>
-                </div>
-
-                {/* Result 2 - Insight Cards */}
-                <div className="border border-gray-300 dark:border-gray-600 rounded-xl p-6 flex flex-col">
-                  <div className="mb-3">
-                    <div className="text-3xl font-bold text-black dark:text-white mb-1">100%</div>
-                    <h3 className="text-base font-semibold text-black dark:text-white">Transparent Signals</h3>
-                  </div>
-                  <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-                    Insight cards that explain signals with confidence and risk levels, helping users understand market trends and make informed decisions.
-                  </p>
-                </div>
-
-                {/* Result 3 - Automation Builder */}
-                <div className="border border-gray-300 dark:border-gray-600 rounded-xl p-6 flex flex-col">
-                  <div className="mb-3">
-                    <div className="text-3xl font-bold text-black dark:text-white mb-1">∞</div>
-                    <h3 className="text-base font-semibold text-black dark:text-white">Automation with Guardrails</h3>
-                  </div>
-                  <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-                    An automation builder with built-in safeguards and instant pause functionality, allowing users to set rules while maintaining control.
-                  </p>
-                </div>
-
-                {/* Result 4 - Design System */}
-                <div className="border border-gray-300 dark:border-gray-600 rounded-xl p-6 flex flex-col">
-                  <div className="mb-3">
-                    <div className="text-3xl font-bold text-black dark:text-white mb-1">✓</div>
-                    <h3 className="text-base font-semibold text-black dark:text-white">Accessibility First</h3>
-                  </div>
-                  <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-                    A chart-friendly design system with accessibility baked in, ensuring the platform is usable by investors of all abilities and experience levels.
+              <div className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed space-y-4 text-left">
+                <p>
+                  The product evolved from concept to a live MVP that now serves as my personal crypto intelligence platform. It demonstrates how design, technology, and AI can work together to simplify complexity and empower informed decisions.
+                </p>
+                <p>
+                  Cryptfolio represents a personal milestone in creativity, research, and innovation. A complete journey from idea to a functioning product that adds real value and has strong potential to scale.
+                </p>
+                <div className="mt-8 p-6 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-l-4 border-green-500 rounded-r-lg">
+                  <h4 className="text-lg font-semibold text-green-900 dark:text-green-100 mb-2">Future Opportunities</h4>
+                  <p className="text-green-800 dark:text-green-200 leading-relaxed">
+                    AI insights can be deepened further through more sophisticated visualisations such as cluster style data views for uncovering correlations and emerging patterns. Growth is planned in measured stages, starting with early adopters and scaling toward one hundred thousand active users by the third year. Sponsorships and limited edition merchandise present additional ways to build community and strengthen brand presence.
                   </p>
                 </div>
               </div>
             </div>
           </section>
 
+        </div>
+      </section>
+
+      {/* Results Section */}
+      <section className="px-4 py-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-2">
+            <div className="lg:col-span-2">
+              <h2 className="text-xl font-light tracking-wide text-left text-black dark:text-white">Results</h2>
+            </div>
+            <div className="lg:col-span-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Result 1 - Unified Portfolio View */}
+                <div className="border border-gray-300 dark:border-gray-600 rounded-xl p-6 flex flex-col">
+                  <div className="mb-3">
+                    <div className="text-3xl font-bold text-black dark:text-white mb-1">1</div>
+                    <h3 className="text-base font-semibold text-black dark:text-white">Unified Portfolio View</h3>
+                  </div>
+                  <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                    A single dashboard reconciling exchange and on-chain data across all platforms, eliminating the need to switch between multiple tools.
+                  </p>
+                </div>
+
+                {/* Result 2 - AI-Powered Insights */}
+                <div className="border border-gray-300 dark:border-gray-600 rounded-xl p-6 flex flex-col">
+                  <div className="mb-3">
+                    <div className="text-3xl font-bold text-black dark:text-white mb-1">⚡</div>
+                    <h3 className="text-base font-semibold text-black dark:text-white">Real-time Asset Tracking</h3>
+                  </div>
+                  <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                    Live pricing and performance tracking for user's actual portfolio holdings with AI-driven insights and sentiment analysis.
+                  </p>
+                </div>
+
+                {/* Result 3 - Full Stack MVP */}
+                <div className="border border-gray-300 dark:border-gray-600 rounded-xl p-6 flex flex-col">
+                  <div className="mb-3">
+                    <div className="text-3xl font-bold text-black dark:text-white mb-1">✓</div>
+                    <h3 className="text-base font-semibold text-black dark:text-white">Complete MVP Delivered</h3>
+                  </div>
+                  <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                    From concept to fully functional product, demonstrating end-to-end capabilities in design, development, and AI integration.
+                  </p>
+                </div>
+
+                {/* Result 4 - Security First */}
+                <div className="border border-gray-300 dark:border-gray-600 rounded-xl p-6 flex flex-col">
+                  <div className="mb-3">
+                    <div className="text-3xl font-bold text-black dark:text-white mb-1">🔒</div>
+                    <h3 className="text-base font-semibold text-black dark:text-white">Read-Only Security</h3>
+                  </div>
+                  <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                    Information-only architecture ensuring user data remains secure without exposing trading permissions.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
